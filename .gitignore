@@ -1,0 +1,87 @@
+# .gitignore for CRP Comply
+
+# Environment & secrets
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# Build
+*.whl
+*.tar.gz
+
+# Runtime data (generated at runtime, never commit)
+data/
+data-round2-validation/
+data-round3-validation/
+data-round4-validation/
+crp_sessions/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Test output files
+_test_*.txt
+test_results*.txt
+_*.txt
+
+# Regulation corpus — copyrighted PDFs and generated index must never be committed
+corpus/iso/**/*.pdf
+corpus/iso/**/*.PDF
+corpus/**/*.scraped.json
+corpus/_deferred/
+corpus/_scraped/
+corpus/us/**/*.pdf
+corpus/eu/**/*.pdf
+corpus/uk/**/*.pdf
+corpus/intl/**/*.pdf
+data/rag_index/
+
+# Railway snapshots
+crp-data-snapshot.tgz
+*.snapshot.tgz
+  
+# Tooling scratch logs  
+*.log  
+pip_audit.err 
+frontend/tsconfig.tsbuildinfo  
+_test.out 
+_t.out 
+
+# Agent session / runtime scratch
+.agents/
+tmp_cache.sqlite
+
+test_result.log 
+CRP-comply-worker-*.log

@@ -1,0 +1,122 @@
+recipe_id: conformity_evidence_pack
+title: Meta — Conformity Evidence Pack (EU AI Act + ISO 42001 + GDPR)
+regulation: Multi (EU AI Act; ISO/IEC 42001; GDPR)
+version: "1.0"
+description: >-
+  A meta-deliverable that binds together the individual recipes into
+  a single conformity evidence binder suitable for a notified body,
+  a supervisory authority, or an enterprise customer due-diligence
+  questionnaire. This recipe does not re-write content — it composes
+  the cross-reference index and the cover letter.
+required_inputs:
+  - organisation
+  - system_id
+  - scope  # eu_ai_act_high_risk | eu_ai_act_gpai | iso_42001_certification | enterprise_due_diligence
+ckf_queries:
+  - "all shipped deliverables for this system"
+  - "open nonconformities and corrective actions in flight"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [meta, evidence_pack, multi_regulation, conformity]
+output_format: both
+output_artefacts:
+  - Conformity Evidence Pack (EU AI Act + ISO 42001 + GDPR)
+applicability:
+  purpose: >-
+    A composed binder that ties together the individual deliverables
+    for a specific system, tailored to the regulations that actually
+    apply to the caller (EU AI Act, ISO 42001, GDPR).
+  triggers:
+    - "Before conformity assessment or customer due-diligence response"
+    - "Before certification or recertification audit"
+  deadline: "As required by recipient"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    system_category:
+      question: "How is the system classified \u2014 high_risk, limited_risk, minimal_risk, prohibited,\
+  \ gpai, or gpai_systemic?"
+      context: "Risk category gates the obligation set; prohibited and minimal_risk exit most pipelines."
+      priority: high
+      fact_key: system_category
+      citation: "EU AI Act Art. 5, 6, 50; Annex III"
+      answer_type: choice
+      options: [high_risk, limited_risk, minimal_risk, prohibited, gpai, gpai_systemic]
+sections:
+  - id: cover_letter
+    title: 1. Cover Letter
+    word_budget: 200
+    instructions: >-
+      Short cover letter addressed to the intended recipient
+      (notified body / authority / customer) naming the scope,
+      system, version, and point of contact.
+  - id: scope_and_applicable_regulations
+    title: 2. Scope and Applicable Regulations
+    word_budget: 200
+    citations: ["Article 2", "Clause 1"]
+    instructions: >-
+      State the applicable regulations (EU AI Act chapters / ISO
+      42001 clauses / GDPR articles / sectoral law) and the boundary
+      of the evidence pack.
+  - id: deliverable_index
+    title: 3. Deliverable Index
+    word_budget: 350
+    instructions: >-
+      Produce the index table cross-referencing every shipped recipe
+      output for the system: recipe_id, title, regulation citation,
+      document ID, version, date, hash, storage location. Where a
+      recipe has NOT been produced, flag it explicitly with rationale
+      (not applicable / planned / outside-scope).
+  - id: eu_ai_act_evidence
+    title: 4. EU AI Act Evidence Summary
+    word_budget: 300
+    citations: ["Article 11", "Article 47"]
+    instructions: >-
+      Summarise the evidence for each applicable Chapter III §2
+      requirement (Arts 9–15), the QMS (Art 17), post-market
+      monitoring (Art 72), incident-reporting readiness (Art 73),
+      the DoC (Art 47) and registration (Art 49). Link to the
+      underlying recipe outputs.
+  - id: iso_42001_evidence
+    title: 5. ISO/IEC 42001 Evidence Summary
+    word_budget: 250
+    citations: ["Clause 4", "Clause 6.1.3", "Annex A"]
+    instructions: >-
+      Summarise the evidence for the AIMS (context, leadership,
+      planning, support, operation, performance evaluation,
+      improvement) and Annex A controls via the SoA.
+  - id: gdpr_evidence
+    title: 6. GDPR Evidence Summary
+    word_budget: 200
+    citations: ["Article 30", "Article 35"]
+    instructions: >-
+      Summarise ROPA, DPIA, privacy notices, processor agreements,
+      and transfer mechanisms where applicable.
+  - id: open_items_and_attestation
+    title: 7. Open Items and Attestation
+    word_budget: 200
+    instructions: >-
+      List open nonconformities / corrective actions with owners and
+      due dates. Attestation line by the accountable executive that
+      the pack is complete and accurate as of the stated date.

@@ -1,0 +1,102 @@
+recipe_id: ai_strategy
+title: AI Strategy Document
+regulation: ISO/IEC 42001:2023 / EU AI Act
+version: "1.0"
+description: >-
+  A top-level AI strategy that aligns AI objectives with organisational
+  goals, defines the AI portfolio, governance model and risk appetite,
+  and supports ISO/IEC 42001 Clause 5.1 leadership commitment and
+  Clause 6.2 AI objectives.
+required_inputs:
+  - organisation
+  - aims_scope
+  - top_management_sponsor
+ckf_queries:
+  - "strategic AI objectives and business alignment"
+  - "AI use-case inventory and risk classifications"
+  - "existing AI governance roles and accountability"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_strategy, iso_42001, leadership, clause_5_1, clause_6_2]
+output_format: both
+output_artefacts:
+  - AI Strategy Document
+applicability:
+  purpose: >-
+    Provides the strategic foundation for AI adoption, including
+    governance, risk appetite, portfolio priorities and metrics that
+    inform the AI management system.
+  triggers:
+    - "Initial AI strategy formulation"
+    - "Annual strategic refresh"
+    - "Major change in AI portfolio or risk appetite"
+  deadline: "Approved by top management before AIMS implementation"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: executive_summary
+    title: 1. Executive Summary and Strategic Objectives
+    word_budget: 250
+    citations: ["Clause 5.1", "Clause 6.2"]
+    instructions: >-
+      State the AI vision, strategic objectives and how they support the
+      organisation's purpose. Define measurable objectives and link them
+      to the AIMS scope.
+  - id: ai_portfolio
+    title: 2. AI Portfolio and Use-Case Roadmap
+    word_budget: 300
+    citations: ["Clause 4.3", "Clause 6.3"]
+    instructions: >-
+      Describe the current and planned AI use cases, their business
+      value, risk level, and roadmap. Identify high-risk systems under
+      the EU AI Act and systems that process personal data.
+  - id: governance_model
+    title: 3. Governance, Roles and Accountability
+    word_budget: 250
+    citations: ["Clause 5.3", "Clause 7.1"]
+    instructions: >-
+      Define the AI governance structure, roles, responsibilities and
+      authorities. Name the executive sponsor, AI policy owner, risk
+      owner and oversight forums.
+  - id: risk_and_compliance_approach
+    title: 4. Risk and Compliance Approach
+    word_budget: 300
+    citations: ["Clause 6.1", "Clause 8.1"]
+    instructions: >-
+      Set out the organisation's AI risk appetite, the approach to
+      identifying and treating AI risks, and how regulatory requirements
+      (EU AI Act, GDPR, sector rules) are tracked and implemented.
+  - id: investment_and_metrics
+    title: 5. Investment, Metrics and KPIs
+    word_budget: 200
+    citations: ["Clause 6.2", "Clause 9.1"]
+    instructions: >-
+      Outline investment priorities and the KPIs used to monitor AI
+      performance, risk treatment progress and AIMS effectiveness.
+  - id: review_and_communication
+    title: 6. Review and Communication
+    word_budget: 150
+    citations: ["Clause 7.4", "Clause 9.3"]
+    instructions: >-
+      State how the strategy is communicated, reviewed and updated,
+      including management review inputs and approval authority.

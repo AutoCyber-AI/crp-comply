@@ -1,0 +1,24 @@
+case_id: ai_act_cv_screening_high_risk
+task: |
+  We are deploying an AI system that screens CVs for recruitment at a
+  European bank. The model ranks candidates before a human recruiter
+  reviews the shortlist. Advise on EU AI Act classification and the
+  minimum documentation we need.
+system_id: cv-bot-v1
+customer_id: acme-bank
+expected_risk_level: high
+expected_citations:
+  - Article 6
+  - Annex III
+must_contain:
+  - high-risk
+  - recruitment
+must_not_contain:
+  - prohibited
+  - Article 5
+expected_tools:
+  - classify_ai_act_risk
+tags:
+  - ai_act
+  - high_risk
+  - recruitment

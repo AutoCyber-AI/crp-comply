@@ -1,0 +1,26 @@
+services:
+  comply:
+    build: .
+    container_name: crp-comply
+    ports:
+      - "8400:8400"
+    environment:
+      - CRP_COMPLY_JWT_SECRET=${CRP_COMPLY_JWT_SECRET:-change-me-in-production}
+      - CRP_COMPLY_DATA_DIR=/app/data
+      # Web-search sidecar (optional). When unset the agent runs corpus-only.
+      # Point this at the searxng-backed sidecar so the agent can call
+      # web_search / web_research / vendor_profile / compare_documents.
+      - CRP_COMPLY_SEARCH_URL=${CRP_COMPLY_SEARCH_URL:-}
+      - CRP_COMPLY_SEARCH_API_KEY=${CRP_COMPLY_SEARCH_API_KEY:-}
+    volumes:
+      - comply-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8400/api/v1/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  comply-data:

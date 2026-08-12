@@ -1,0 +1,103 @@
+recipe_id: risk_register
+title: AI Risk Register (ISO/IEC 42001 Clause 6.1.2)
+regulation: ISO/IEC 42001:2023 (supported by ISO/IEC 23894)
+version: "1.0"
+description: >-
+  A standalone AI risk register derived from the Clause 6.1.2 AI risk
+  assessment process. It tracks identified AI risks, their analysis,
+  evaluation, treatment decisions, owners and status.
+required_inputs:
+  - organisation
+  - aims_scope
+  - systems_in_scope
+ckf_queries:
+  - "AI risk assessment outcomes and risk register"
+  - "risk treatment decisions and owners"
+  - "monitoring and review records for AI risks"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - classify_ai_act_risk
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, risk_register, clause_6_1_2, iso_23894]
+output_format: both
+output_artefacts:
+  - AI Risk Register
+applicability:
+  purpose: >-
+    Provides a live inventory of AI risks for monitoring, treatment
+    tracking and management review, derived from the Clause 6.1.2
+    risk assessment.
+  triggers:
+    - "After each AI risk assessment cycle"
+    - "New AI system introduction"
+    - "Material change to system, context or risk criteria"
+    - "Periodic review (Clause 8.2)"
+  deadline: "Maintained continuously; reviewed at least annually"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification changes the control and evidence expectations for the risk register."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: methodology
+    title: 1. Risk Register Methodology
+    word_budget: 250
+    citations: ["Clause 6.1.2", "Clause 6.1.1"]
+    instructions: >-
+      Describe the risk register structure, risk scoring scales,
+      acceptance criteria and how it links to the AI risk assessment
+      methodology (ISO/IEC 23894 where applicable).
+  - id: risk_inventory
+    title: 2. Risk Inventory
+    word_budget: 400
+    citations: ["Clause 6.1.2(b)"]
+    instructions: >-
+      List each AI risk with a unique identifier, description,
+      category (technology, data, human, organisational, societal),
+      affected assets or stakeholders, and sources.
+  - id: risk_analysis_and_evaluation
+    title: 3. Risk Analysis and Evaluation
+    word_budget: 300
+    citations: ["Clause 6.1.2(d)", "Clause 6.1.2(e)"]
+    instructions: >-
+      For each risk state likelihood, consequence, residual risk level,
+      and whether it exceeds the organisation's risk acceptance
+      criteria.
+  - id: treatment_tracking
+    title: 4. Treatment Tracking
+    word_budget: 300
+    citations: ["Clause 6.1.3"]
+    instructions: >-
+      Record the treatment decision (accept, mitigate, transfer,
+      avoid), planned controls, owner, due date and current status for
+      each risk requiring treatment.
+  - id: monitoring_and_review
+    title: 5. Monitoring and Review
+    word_budget: 150
+    citations: ["Clause 8.2", "Clause 9.3"]
+    instructions: >-
+      State the monitoring cadence, triggers for ad-hoc review,
+      management review inputs and the process for closing risks.

@@ -1,0 +1,5 @@
+# Placeholder — drop ISO/IEC 42001:2023 PDFs into this directory.
+# Required files:
+#   official.pdf   — ISO/IEC 42001:2023 AI Management System (from ISO store, ~CHF 187)
+#   explainer.pdf  — optional vendor/consultant explainer  
+# Both are gitignored. See ../../README.md for details.

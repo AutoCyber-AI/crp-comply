@@ -1,0 +1,34 @@
+TOFIX:
+
+I performed testing on 11.05.2026--- the latest test -- on the LLM of LM studio loaded with 16k context (a lot, the baseline is 4096, but had to put more because CRP is misconfigured and doesn't work)
+
+in the crp comply worker forward...there's no actual check to ensure that lm studio is running. Eg. I run the worker, with no lm studio running and it was detected as on and enable din the application!!!
+
+---BUT THEN AFTER A WHILE IT SAID WORKER NOT CONNECTED UNDR SETTINGS...so somewhat false positive?
+
+In the sidebar I see the green box on top of my profile saying: 'local_worker connected'
+
+
+
+2. Add convenience throughout...being able to copy eg. in settings being able to copy the commands to connect and run the crp comply worker for local llm. 
+
+Then, for the proxy commands to connect to the system...
+
+Then, for chat responses....
+
+
+3. Critical issue, the output is incoherent, repeated, and not constructive/diverse. It was also not streamed, and seems to have errored. Refer to railway deploy logs 11.05.2026, CRP_Comply_interface_details&returned_answer.log and CRP-comply-worker-11.05.2026.log. Note, no search was used!Both loops are flawed, coherence is flawed. Streaming not utilized to properly return responses. CRP misconfigured, not properly used---- THE MOST CRITICAL ISSUE!
+
+4. Based on those logs is Intellectual property revealed in the way thinking is disclosed...I like it.....but I dont want people stealing much. Should things be removed for security reasons as well....and let's say something like a narrator be added?! If not, what should we remove for the pure purpose of security and intellectual property preservation....I like the explainability...but it is also flawed in terms that it's not fully explanatory and understandable by the day-to-day non-technical user....
+
+
+
+Also note...after the response was returned the frontend structure, layout, format was completely broken in terms of width, height, zoom....
+
+
+
+
+files:
+- railway_deploy_logs-11.05.2026.log
+- CRP_Comply_interface_details&returned_answer.log
+- CRP-comply-worker-11.05.2026.log

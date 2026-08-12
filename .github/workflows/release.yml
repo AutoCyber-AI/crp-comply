@@ -1,0 +1,99 @@
+# Copyright © 2025-2026 Constantinos Vidiniotis / AutoCyber AI Pty Ltd.
+# Licensed under Elastic License 2.0 — see LICENSE.md for details.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  # ── Run full CI first ───────────────────────────────────────
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  # ── Build & Push Docker Image ───────────────────────────────
+  docker-release:
+    name: Docker Release
+    runs-on: ubuntu-latest
+    needs: [ci]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+
+      - name: Lowercase repository name for OCI tag
+        id: repo
+        run: echo "REPO_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ steps.repo.outputs.REPO_LOWER }}:${{ steps.version.outputs.VERSION }}
+            ghcr.io/${{ steps.repo.outputs.REPO_LOWER }}:latest
+          build-args: |
+            VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          labels: |
+            org.opencontainers.image.title=CRP Comply
+            org.opencontainers.image.description=AI Governance & EU AI Act Compliance Platform
+            org.opencontainers.image.version=${{ steps.version.outputs.VERSION }}
+            org.opencontainers.image.vendor=AutoCyber AI Pty Ltd
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+  # ── GitHub Release ──────────────────────────────────────────
+  github-release:
+    name: GitHub Release
+    runs-on: ubuntu-latest
+    needs: [docker-release]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+
+      - name: Lowercase repository name for OCI tag
+        id: repo
+        run: echo "REPO_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: CRP Comply v${{ steps.version.outputs.VERSION }}
+          generate_release_notes: true
+          body: |
+            ## CRP Comply v${{ steps.version.outputs.VERSION }}
+
+            ### Docker
+            ```bash
+            docker pull ghcr.io/${{ steps.repo.outputs.REPO_LOWER }}:${{ steps.version.outputs.VERSION }}
+            ```
+
+            ### Quick Start
+            ```bash
+            docker run -p 8400:8400 \
+              -e CRP_COMPLY_JWT_SECRET=$(openssl rand -hex 32) \
+              -v comply-data:/app/data \
+              ghcr.io/${{ steps.repo.outputs.REPO_LOWER }}:${{ steps.version.outputs.VERSION }}
+            ```
+
+            Then visit http://localhost:8400

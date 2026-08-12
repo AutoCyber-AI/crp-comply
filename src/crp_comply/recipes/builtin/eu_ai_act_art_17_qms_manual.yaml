@@ -1,0 +1,157 @@
+recipe_id: eu_ai_act_art_17_qms_manual
+title: EU AI Act — Quality Management System Manual (Art. 17)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of high-risk AI systems shall put a Quality Management
+  System in place ensuring compliance with the Regulation. The QMS
+  shall be documented in a systematic and orderly manner in the form
+  of written policies, procedures and instructions. This recipe
+  produces the QMS manual aligned with Article 17.
+required_inputs:
+  - provider
+  - system_id
+  - organisation_structure
+ckf_queries:
+  - "existing QMS under ISO 9001 / ISO 42001"
+  - "roles, responsibilities, management commitment"
+  - "prior audit findings"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, qms, art17, high_risk, management_system]
+output_format: both
+output_artefacts:
+  - Quality Management System Manual (Art. 17)
+applicability:
+  purpose: >-
+    Providers of high-risk AI systems must operate a Quality Management
+    System covering design, development, data, risk, monitoring and
+    record-keeping. The QMS manual is the single document that binds
+    those procedures together.
+  triggers:
+    - "Before placing any high-risk AI system on the market"
+    - "Upon substantial organisational or process change"
+  deadline: "Before first placement on market"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: regulatory_compliance_strategy
+    title: 1. Strategy for Regulatory Compliance
+    word_budget: 200
+    citations: ["Article 17(1)(a)"]
+    instructions: >-
+      A strategy for regulatory compliance, including compliance with
+      conformity assessment procedures and procedures for the
+      management of modifications to the high-risk AI system.
+  - id: design_control_and_verification
+    title: 2. Design Control and Verification Techniques
+    word_budget: 250
+    citations: ["Article 17(1)(b)", "Article 17(1)(c)"]
+    instructions: >-
+      Techniques, procedures and systematic actions for design, design
+      control and design verification of the high-risk AI system; and
+      techniques, procedures and systematic actions for development,
+      quality control and quality assurance.
+  - id: examination_test_validation
+    title: 3. Examination, Test and Validation Procedures
+    word_budget: 200
+    citations: ["Article 17(1)(d)"]
+    instructions: >-
+      Examination, test and validation procedures to be carried out
+      before, during and after development, and the frequency.
+  - id: technical_specifications_and_standards
+    title: 4. Technical Specifications and Standards Applied
+    word_budget: 150
+    citations: ["Article 17(1)(e)"]
+    instructions: >-
+      Technical specifications, including standards, to be applied
+      and, where relevant, the means used to ensure the system
+      complies with Chapter III §2 requirements.
+  - id: data_management
+    title: 5. Systems and Procedures for Data Management
+    word_budget: 200
+    citations: ["Article 17(1)(f)", "Article 10"]
+    instructions: >-
+      Systems and procedures for data management, including data
+      acquisition, collection, analysis, labelling, storage,
+      filtration, mining, aggregation, retention, and any other
+      operation performed before and for the purpose of placing on
+      the market or putting into service.
+  - id: risk_management_integration
+    title: 6. Risk Management System Integration
+    word_budget: 150
+    citations: ["Article 17(1)(g)", "Article 9"]
+    instructions: >-
+      Reference the risk management system per Art 9 and state how
+      it integrates with the QMS, including change management.
+  - id: post_market_monitoring
+    title: 7. Setting-up, Implementing and Maintaining a Post-Market Monitoring System
+    word_budget: 200
+    citations: ["Article 17(1)(h)", "Article 72"]
+    instructions: >-
+      Setting-up, implementing and maintaining a post-market
+      monitoring system per Art 72.
+  - id: incident_reporting_procedures
+    title: 8. Procedures for Reporting Serious Incidents
+    word_budget: 150
+    citations: ["Article 17(1)(i)", "Article 73"]
+    instructions: >-
+      Procedures related to the reporting of a serious incident per
+      Art 73.
+  - id: communications_with_authorities
+    title: 9. Handling of Communications with Authorities
+    word_budget: 100
+    citations: ["Article 17(1)(j)"]
+    instructions: >-
+      The handling of communication with competent authorities,
+      notified bodies, other operators, customers or other interested
+      parties.
+  - id: record_keeping
+    title: 10. Systems and Procedures for Record Keeping
+    word_budget: 150
+    citations: ["Article 17(1)(k)"]
+    instructions: >-
+      Systems and procedures for record-keeping of all relevant
+      documentation and information.
+  - id: resource_management_and_accountability
+    title: 11. Resource Management and Accountability Framework
+    word_budget: 200
+    citations: ["Article 17(1)(l)", "Article 17(1)(m)"]
+    instructions: >-
+      Resource management, including security-of-supply measures; and
+      an accountability framework setting out the responsibilities of
+      the management and other staff with regard to all aspects
+      listed in this Article.
+  - id: sign_off
+    title: 12. Sign-Off, Integration with ISO 42001
+    word_budget: 100
+    instructions: >-
+      Management signatory, date, review cadence. Where the
+      organisation holds ISO/IEC 42001 certification, cross-reference
+      the corresponding clauses so the two systems form a single
+      management system.

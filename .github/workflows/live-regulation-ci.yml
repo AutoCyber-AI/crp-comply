@@ -1,0 +1,149 @@
+# Copyright © 2025-2026 Constantinos Vidiniotis / AutoCyber AI Pty Ltd.
+# Licensed under Elastic License 2.0 — see LICENSE.md for details.
+#
+# Live Regulation Intelligence — weekly cron per LLM_INTELLIGENCE_DESIGN.md §15.
+#
+# Every Monday 03:00 UTC:
+#   1. Re-scrape all Tier-1 regulation sources (EU AI Act, GDPR, NIST AI RMF,
+#      OECD, CoE, UK AI WP, EDPB) into corpus/_fresh/.
+#   2. Diff the fresh manifest against the committed corpus/_scraped/manifest.json
+#      using `python -m crp_comply.agent.live_regulation diff`.
+#   3. If any source changed, open a PR on a dated branch with:
+#        - the fresh corpus files
+#        - a markdown diff report in the PR body
+#        - a machine-readable delta JSON as an artefact
+#   4. If nothing changed, the job succeeds silently (no PR churn).
+#
+# ISO 42001 / 23894 are intentionally excluded — they are paywalled and
+# user-provided; they cannot be refreshed automatically.
+
+name: Live Regulation CI
+
+on:
+  schedule:
+    # Monday 03:00 UTC — picks up regulator publications from the prior week.
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      fail_on_change:
+        description: "Fail the job (red CI) if any source changed"
+        required: false
+        default: "false"
+      targets:
+        description: "Space-separated ingest targets (default: Tier-1 free sources)"
+        required: false
+        default: "eu_ai_act gdpr nist oecd_coe_uk_edpb"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-regulation-ci
+  cancel-in-progress: false
+
+jobs:
+  refresh-corpus:
+    name: Re-scrape + diff
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    # This job only needs read permissions at the workflow level.  The PR is
+    # opened via a deploy-key secret scoped to corpus/_scraped/**, avoiding
+    # the broad contents:write that a default GITHUB_TOKEN would require.
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install crp-comply (runtime only)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Snapshot baseline manifest
+        id: baseline
+        run: |
+          mkdir -p /tmp/live-reg/baseline
+          if [ -f corpus/_scraped/manifest.json ]; then
+            cp -r corpus/_scraped/. /tmp/live-reg/baseline/
+            echo "have_baseline=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have_baseline=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Re-scrape Tier-1 sources
+        id: scrape
+        env:
+          # Pick up targets from workflow_dispatch input; default is the
+          # free/auto-refreshable Tier-1 set from LLM_INTELLIGENCE_DESIGN §14.1.
+          TARGETS: ${{ github.event.inputs.targets || 'eu_ai_act gdpr nist oecd_coe_uk_edpb' }}
+        run: |
+          set -euo pipefail
+          rm -rf corpus/_scraped
+          python -m crp_comply.agent.ingest -v $TARGETS
+          test -f corpus/_scraped/manifest.json
+
+      - name: Diff baseline vs fresh
+        id: diff
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/live-reg/out
+          BASELINE_MANIFEST="/tmp/live-reg/baseline/manifest.json"
+          if [ "${{ steps.baseline.outputs.have_baseline }}" != "true" ]; then
+            BASELINE_MANIFEST="/dev/null"
+            echo '{"sources":[]}' > /tmp/live-reg/baseline/manifest.json
+            BASELINE_MANIFEST="/tmp/live-reg/baseline/manifest.json"
+          fi
+          python -m crp_comply.agent.live_regulation diff \
+            --baseline "$BASELINE_MANIFEST" \
+            --baseline-docs-dir /tmp/live-reg/baseline \
+            --candidate corpus/_scraped/manifest.json \
+            --candidate-docs-dir corpus/_scraped \
+            --md-out /tmp/live-reg/out/pr_body.md \
+            --json-out /tmp/live-reg/out/delta.json \
+            -v
+          # changed sources = entries in delta.json whose kind != unchanged
+          CHANGED=$(python -c "import json; d=json.load(open('/tmp/live-reg/out/delta.json')); print(sum(1 for s in d['sources'] if s['kind']!='unchanged'))")
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "Changed sources: $CHANGED"
+
+      - name: Upload delta artefact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-regulation-delta
+          path: /tmp/live-reg/out/
+          retention-days: 90
+
+      - name: Open PR with refreshed corpus
+        if: steps.diff.outputs.changed != '0'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.CRP_COMPLY_CORPUS_DEPLOY_KEY }}
+          commit-message: "chore(corpus): weekly regulation refresh"
+          branch: corpus-snapshots/weekly-${{ github.run_id }}
+          base: master
+          title: "Live Regulation CI — weekly corpus refresh (${{ github.run_id }})"
+          body-path: /tmp/live-reg/out/pr_body.md
+          labels: |
+            live-regulation-ci
+            corpus-update
+          add-paths: |
+            corpus/_scraped/**
+
+      - name: Fail if requested
+        if: >-
+          github.event.inputs.fail_on_change == 'true'
+          && steps.diff.outputs.changed != '0'
+        run: |
+          echo "fail_on_change=true and ${{ steps.diff.outputs.changed }} source(s) changed"
+          exit 1

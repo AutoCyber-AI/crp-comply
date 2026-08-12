@@ -1,0 +1,106 @@
+recipe_id: eu_ai_act_art_4_ai_literacy
+title: EU AI Act — AI Literacy Programme (Art. 4)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers and deployers must ensure, to their best extent, a
+  sufficient level of AI literacy for their staff and other persons
+  dealing with the operation and use of AI systems on their behalf.
+  This recipe produces a documented AI-Literacy Programme: audience
+  segmentation, curriculum, delivery plan, effectiveness measurement.
+required_inputs:
+  - organisation_name
+  - actor
+  - system_portfolio
+ckf_queries:
+  - "current training inventory for AI topics"
+  - "past incidents attributable to AI misuse or misunderstanding"
+tools_allowed:
+  - recall_facts
+  - lookup_article
+  - query_regulation
+tags: [ai_act, art4, training, ai_literacy, universal]
+output_format: both
+output_artefacts:
+  - AI Literacy Programme (Art. 4)
+applicability:
+  purpose: >-
+    Article 4 binds every provider and deployer of AI systems — not
+    only high-risk ones. A documented literacy programme is the
+    evidence regulators will ask for to establish "best-extent"
+    compliance.
+  triggers:
+    - "On entry into force of the AI Act (Art. 4 applies from 2 Feb 2025)"
+    - "On hiring new staff interacting with AI systems"
+    - "Annual refresh"
+  deadline: "Applicable since 2 February 2025; refresh at least annually"
+  actors: [provider, deployer]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    sector:
+      question: "Which sector does the system primarily operate in \u2014 health, finance, employment,\
+  \ education, law enforcement, migration, or other?"
+      context: "Several Annex III rows are sector-keyed."
+      priority: medium
+      fact_key: sector
+      citation: "EU AI Act Annex III"
+      answer_type: choice
+      options: [health, finance, employment, education, law_enforcement, migration, public_services, other]
+sections:
+  - id: scope_and_audience
+    title: 1. Scope and Audience Segmentation
+    word_budget: 250
+    citations: ["Article 4"]
+    instructions: >-
+      Identify the populations in scope: internal staff, contractors,
+      and third parties operating AI on the organisation's behalf.
+      Segment by role (e.g. developer, deployer-operator,
+      end-user-facing, oversight) and by system risk class.
+  - id: competency_framework
+    title: 2. Competency Framework per Role
+    word_budget: 300
+    citations: ["Article 4", "Recital 20"]
+    instructions: >-
+      Define minimum knowledge and skills per role — fundamentals of
+      AI, specific risks of the systems in use, fundamental-rights
+      impact, transparency obligations, human-oversight duties,
+      incident reporting. Cross-map to Art 14 oversight duties where
+      applicable.
+  - id: curriculum_and_delivery
+    title: 3. Curriculum, Delivery and Frequency
+    word_budget: 250
+    citations: ["Article 4"]
+    instructions: >-
+      Describe modules, formats (e-learning, workshops, drills),
+      cadence (onboarding, annual refresh, event-driven updates),
+      and which content is mandatory vs recommended per segment.
+  - id: effectiveness_measurement
+    title: 4. Measurement and Continuous Improvement
+    word_budget: 200
+    citations: ["Article 4"]
+    instructions: >-
+      Specify how completion and comprehension are measured (quiz
+      pass rates, practical scenarios, misuse-incident trend),
+      governance for updating the programme, and how records are
+      retained for supervisory authority review.
+  - id: records_and_evidence
+    title: 5. Records, Retention and Audit Evidence
+    word_budget: 150
+    citations: ["Article 4"]
+    applicability:
+      required: true
+    instructions: >-
+      Name the system of record (LMS), retention period, the sign-off
+      authority, and the fields captured per completion (name, role,
+      module, date, score). This is the file regulators inspect.

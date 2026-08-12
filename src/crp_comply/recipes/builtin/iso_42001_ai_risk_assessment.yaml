@@ -1,0 +1,123 @@
+recipe_id: iso_42001_ai_risk_assessment
+title: ISO/IEC 42001 — AI Risk Assessment (Clause 6.1.2)
+regulation: ISO/IEC 42001:2023 (supported by ISO/IEC 23894)
+version: "1.0"
+description: >-
+  Clause 6.1.2 requires the organisation to define and apply an AI
+  risk-assessment process. The assessment identifies AI risks
+  associated with the development, provision or use of AI systems,
+  analyses them, and evaluates them against criteria established in
+  Clause 6.1.1. This recipe produces the AI Risk Assessment Report.
+required_inputs:
+  - organisation
+  - aims_scope
+  - systems_in_scope
+ckf_queries:
+  - "previous risk-assessment iterations"
+  - "AI system inventory and criticality ratings"
+  - "stakeholder concerns raised in Clause 4.2"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - classify_ai_act_risk
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, risk_assessment, clause_6_1_2, iso_23894]
+output_format: both
+output_artefacts:
+  - AI Risk Assessment (Clause 6.1.2)
+applicability:
+  purpose: >-
+    Clause 6.1.2 mandates an AI risk assessment considering both
+    organisational and societal impacts. This is the foundational
+    analytical artefact that feeds risk treatment (6.1.3) and the AI
+    System Impact Assessment (6.1.4).
+  triggers:
+    - "Initial AIMS implementation"
+    - "New AI system introduction"
+    - "Material change to system, context, or risk appetite"
+    - "Periodic refresh (Clause 8.2)"
+  deadline: "Before risk treatment planning"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: methodology
+    title: 1. Risk Assessment Methodology
+    word_budget: 300
+    citations: ["Clause 6.1.2(a)", "Clause 6.1.1"]
+    instructions: >-
+      Describe the methodology, drawing on ISO/IEC 23894, including
+      risk identification, analysis and evaluation techniques; scales
+      for likelihood and consequence; and the criteria (risk appetite
+      / acceptance thresholds) against which risks are evaluated.
+  - id: risk_identification
+    title: 2. Identified AI Risks
+    word_budget: 400
+    citations: ["Clause 6.1.2(b)"]
+    instructions: >-
+      Enumerate identified AI risks across technology, data, human,
+      organisational and societal dimensions. For each: description,
+      affected assets / stakeholders, and sources (hazards, threats,
+      vulnerabilities).
+  - id: consequence_to_individuals_and_society
+    title: 3. Consequences for Individuals, Groups and Society
+    word_budget: 250
+    citations: ["Clause 6.1.2(c)"]
+    instructions: >-
+      Assess the potential consequences for individuals, groups of
+      individuals, and society (going beyond organisational impacts,
+      a hallmark of ISO 42001 vs other management-system standards).
+  - id: risk_analysis_and_evaluation
+    title: 4. Risk Analysis and Evaluation
+    word_budget: 300
+    citations: ["Clause 6.1.2(d)", "Clause 6.1.2(e)"]
+    instructions: >-
+      For each identified risk state likelihood, consequence, the
+      resulting risk level, and compare against the evaluation
+      criteria to identify those requiring treatment.
+  - id: risk_register
+    title: 5. Risk Register (tabular)
+    word_budget: 200
+    instructions: >-
+      Provide a tabular risk register suitable for machine output
+      (ID, description, likelihood, consequence, level, treatment
+      decision, owner, due date).
+  - id: handover_to_treatment
+    title: 6. Handover to Risk Treatment (Clause 6.1.3)
+    word_budget: 100
+    citations: ["Clause 6.1.3"]
+    instructions: >-
+      State which risks proceed to treatment and cross-reference the
+      iso_42001_ai_risk_treatment_plan recipe.
+  - id: sign_off
+    title: 7. Sign-Off and Review Cadence
+    word_budget: 100
+    citations: ["Clause 9.3", "Clause 8.2"]
+    instructions: >-
+      Assessor, reviewer, approver, date, next review (Clause 8.2).

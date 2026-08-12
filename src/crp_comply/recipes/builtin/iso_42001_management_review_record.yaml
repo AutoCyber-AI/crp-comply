@@ -1,0 +1,127 @@
+recipe_id: iso_42001_management_review_record
+title: ISO/IEC 42001 — Management Review Record (Clause 9.3)
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 9.3 requires top management to review the organisation's
+  AIMS at planned intervals to ensure its continuing suitability,
+  adequacy and effectiveness. This recipe produces the management
+  review record per Clauses 9.3.1–9.3.3.
+required_inputs:
+  - organisation
+  - review_period
+  - attendees
+ckf_queries:
+  - "previous management review actions status"
+  - "audit results, risk posture, incident trends"
+  - "changes in regulatory landscape"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, management_review, clause_9_3]
+output_format: both
+output_artefacts:
+  - Management Review Record (Clause 9.3)
+applicability:
+  purpose: >-
+    Clause 9.3 requires top management to review the AIMS at planned
+    intervals to ensure continuing suitability, adequacy and
+    effectiveness. The record evidences that review and its outputs.
+  triggers:
+    - "Planned interval (typically annual / semi-annual)"
+    - "Significant change affecting the AIMS"
+  deadline: "At least annually"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: review_meta
+    title: 1. Review Period, Attendees, Chair
+    word_budget: 100
+    citations: ["Clause 9.3.1"]
+    instructions: >-
+      Period under review, chair, attendees with roles, date(s) of
+      meeting(s), prior action-item status.
+  - id: status_of_prior_actions
+    title: 2. Status of Actions from Previous Management Reviews
+    word_budget: 150
+    citations: ["Clause 9.3.2(a)"]
+    instructions: >-
+      Summary of the status of actions from previous management
+      reviews.
+  - id: changes_affecting_aims
+    title: 3. Changes in External and Internal Issues Relevant to the AIMS
+    word_budget: 200
+    citations: ["Clause 9.3.2(b)", "Clause 4.1"]
+    instructions: >-
+      Changes in external and internal issues relevant to the AI
+      management system (incl. regulatory changes, new AI technologies
+      deployed, organisational restructuring).
+  - id: interested_party_needs
+    title: 4. Changes in Needs of Interested Parties
+    word_budget: 150
+    citations: ["Clause 9.3.2(c)", "Clause 4.2"]
+    instructions: >-
+      Changes in needs and expectations of interested parties that are
+      relevant to the AIMS.
+  - id: performance_information
+    title: 5. Information on AIMS Performance
+    word_budget: 300
+    citations: ["Clause 9.3.2(d)"]
+    instructions: >-
+      Covering trends in: nonconformities and corrective actions;
+      monitoring and measurement results; audit results; fulfilment
+      of AI objectives; risk-treatment effectiveness; incidents;
+      feedback from interested parties.
+  - id: resources_adequacy
+    title: 6. Adequacy of Resources
+    word_budget: 150
+    citations: ["Clause 9.3.2(e)"]
+    instructions: >-
+      Adequacy of resources for the AIMS including personnel,
+      infrastructure, tooling and training.
+  - id: effectiveness_of_actions
+    title: 7. Effectiveness of Actions Taken to Address Risks and Opportunities
+    word_budget: 150
+    citations: ["Clause 9.3.2(f)"]
+    instructions: >-
+      The effectiveness of actions taken to address risks and
+      opportunities.
+  - id: improvement_opportunities
+    title: 8. Opportunities for Continual Improvement
+    word_budget: 150
+    citations: ["Clause 9.3.2(g)", "Clause 10.1"]
+    instructions: >-
+      Opportunities for improvement.
+  - id: review_outputs
+    title: 9. Review Outputs and Decisions
+    word_budget: 250
+    citations: ["Clause 9.3.3"]
+    instructions: >-
+      Decisions on continual improvement opportunities, changes
+      needed to the AIMS, resource needs, and the actions assigned
+      with owners and due dates.
+  - id: sign_off
+    title: 10. Sign-Off
+    word_budget: 80
+    instructions: Top management signatory, date, next review period.

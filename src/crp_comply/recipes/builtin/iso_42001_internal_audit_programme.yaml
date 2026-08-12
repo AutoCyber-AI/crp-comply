@@ -1,0 +1,103 @@
+recipe_id: iso_42001_internal_audit_programme
+title: ISO/IEC 42001 — Internal Audit Programme (Clause 9.2.2)
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 9.2.2 requires the organisation to plan, establish,
+  implement and maintain an audit programme(s), including the
+  frequency, methods, responsibilities, planning requirements and
+  reporting. This recipe produces the internal audit programme.
+required_inputs:
+  - organisation
+  - aims_scope
+  - audit_year
+ckf_queries:
+  - "previous audit findings and nonconformities"
+  - "changes to the AIMS since last audit"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, internal_audit, clause_9_2_2, performance_evaluation]
+output_format: both
+output_artefacts:
+  - Internal Audit Programme (Clause 9.2.2)
+applicability:
+  purpose: >-
+    Clause 9.2.2 requires a planned programme of internal audits
+    giving top management objective evidence that the AIMS conforms
+    to ISO 42001 and is effectively implemented.
+  triggers:
+    - "Annually"
+    - "Before certification or recertification audits"
+    - "In response to significant nonconformity or incident"
+  deadline: "At least annually"
+  actors: [any]
+  applies_when: ["iso_42001_certified"]
+  not_applicable_when: []
+  ask_when_unknown:
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: programme_objective
+    title: 1. Programme Objective and Scope
+    word_budget: 200
+    citations: ["Clause 9.2.1", "Clause 9.2.2(a)"]
+    instructions: >-
+      State the objective — to provide information on whether the
+      AIMS conforms to the organisation's own requirements and to
+      ISO/IEC 42001, and is effectively implemented and maintained.
+      State the coverage across AIMS clauses and Annex A controls.
+  - id: audit_criteria_and_scope_per_audit
+    title: 2. Audit Criteria and Scope per Individual Audit
+    word_budget: 200
+    citations: ["Clause 9.2.2(b)"]
+    instructions: >-
+      For each audit: criteria (ISO 42001 clauses, Annex A controls,
+      internal procedures), scope (processes, systems, sites), and
+      methods (interviews, evidence review, sampling).
+  - id: frequency_and_schedule
+    title: 3. Frequency and Schedule
+    word_budget: 200
+    citations: ["Clause 9.2.2(c)"]
+    instructions: >-
+      Establish the audit frequency by area (risk-based), the annual
+      schedule, and consideration of the importance of the processes
+      and changes affecting the AIMS.
+  - id: auditor_selection
+    title: 4. Auditor Selection and Independence
+    word_budget: 150
+    citations: ["Clause 9.2.2(c)"]
+    instructions: >-
+      Select auditors and conduct audits to ensure objectivity and
+      impartiality (auditors do not audit their own work).
+  - id: reporting
+    title: 5. Reporting
+    word_budget: 150
+    citations: ["Clause 9.2.2(d)"]
+    instructions: >-
+      Require that results of audits are reported to relevant
+      management, retained as documented information, and fed into
+      the management review (Clause 9.3).
+  - id: nonconformity_handling
+    title: 6. Nonconformity Handling
+    word_budget: 150
+    citations: ["Clause 10.2"]
+    instructions: >-
+      Cross-reference the iso_42001_nonconformity_corrective_action
+      recipe for handling findings.
+  - id: programme_resources
+    title: 7. Programme Resources and Budget
+    word_budget: 100
+    instructions: >-
+      Budget, personnel, tooling, and training requirements.
+  - id: sign_off
+    title: 8. Programme Sign-Off
+    word_budget: 80
+    instructions: Audit programme owner, top-management sponsor, date, next review.

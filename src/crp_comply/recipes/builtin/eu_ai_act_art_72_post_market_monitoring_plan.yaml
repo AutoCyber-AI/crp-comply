@@ -1,0 +1,123 @@
+recipe_id: eu_ai_act_art_72_post_market_monitoring_plan
+title: EU AI Act — Post-Market Monitoring Plan (Art. 72)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of high-risk AI systems must establish and document a
+  post-market monitoring system proportionate to the nature of the
+  technologies and the risks of the high-risk AI system, and have a
+  post-market monitoring plan (Art 72) as part of the technical
+  documentation per Annex IV.
+required_inputs:
+  - provider
+  - system_id
+  - intended_purpose
+ckf_queries:
+  - "known issues and incidents for this system"
+  - "telemetry and feedback channels"
+  - "deployment footprint and deployer contacts"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, post_market_monitoring, art72, high_risk, lifecycle]
+output_format: both
+output_artefacts:
+  - Post-Market Monitoring Plan (Art. 72)
+applicability:
+  purpose: >-
+    Providers must actively collect and analyse performance data for
+    placed-on-market high-risk AI systems to detect drift, emerging
+    risks, and conditions that require corrective action.
+  triggers:
+    - "Before placing a high-risk AI system on the market"
+    - "Ongoing throughout the system's commercial lifetime"
+  deadline: "Before placement on market; maintained throughout lifecycle"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: objectives_and_scope
+    title: 1. Objectives and Scope of the Post-Market Monitoring System
+    word_budget: 200
+    citations: ["Article 72(1)", "Article 72(2)"]
+    instructions: >-
+      State the objective — to evaluate continuous compliance with
+      Chapter III §2 throughout the lifetime and to actively, and
+      systematically, collect, document and analyse relevant data
+      provided by deployers or collected through other sources on the
+      performance of the system.
+  - id: data_sources
+    title: 2. Data Sources and Collection Methods
+    word_budget: 300
+    citations: ["Article 72(1)"]
+    instructions: >-
+      Describe the data sources (system telemetry, deployer reports,
+      user complaints, Art 26(5) deployer monitoring feeds, public
+      incident reports, research/bug-bounty) and collection methods,
+      including privacy safeguards for personal data.
+  - id: metrics_and_thresholds
+    title: 3. Metrics, Thresholds and Review Cadence
+    word_budget: 250
+    citations: ["Article 72(2)"]
+    instructions: >-
+      Define the metrics monitored (accuracy/robustness drift,
+      incident rate by severity, complaint volume, oversight-override
+      rate), their thresholds, and the review cadence.
+  - id: data_analysis_and_trend_detection
+    title: 4. Data Analysis and Trend Detection
+    word_budget: 200
+    citations: ["Article 72(2)"]
+    instructions: >-
+      Describe the analytical techniques used to detect trends
+      affecting continuous compliance and the role of AI risk
+      management in the analysis (tie-in to Art 9).
+  - id: incident_detection_and_linkage
+    title: 5. Incident Detection and Linkage to Art 73
+    word_budget: 200
+    citations: ["Article 72(2)", "Article 73"]
+    instructions: >-
+      Describe how detected issues are triaged and how serious
+      incidents are handed off to the Art 73 reporting process (link
+      to the eu_ai_act_art_73_serious_incident_report recipe).
+  - id: feedback_to_risk_management
+    title: 6. Feedback into Risk Management and Updates
+    word_budget: 200
+    citations: ["Article 9(2)(c)"]
+    instructions: >-
+      Describe how findings feed back into the risk management
+      system (Art 9), including the conditions under which corrective
+      actions or updates are deployed.
+  - id: documentation_and_retention
+    title: 7. Documentation, Reporting and Retention
+    word_budget: 150
+    citations: ["Article 72(1)", "Annex IV(8)"]
+    instructions: >-
+      Retention periods, reporting templates, and how the plan lives
+      inside the Annex IV technical documentation.
+  - id: sign_off
+    title: 8. Sign-Off and Next Review
+    word_budget: 80
+    instructions: Signatory, date, next review trigger.

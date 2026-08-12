@@ -1,0 +1,23 @@
+case_id: nist_rmf_govern_function
+task: |
+  We're a US-based SaaS company that deploys ML-based recommendations
+  to consumers. Outline the NIST AI RMF GOVERN function controls we
+  must demonstrate, including roles, accountability, and policy
+  artefacts.
+system_id: rec-engine-v4
+customer_id: acme-saas-us
+expected_risk_level: limited
+expected_citations:
+  - GOVERN
+  - NIST
+must_contain:
+  - GOVERN
+  - accountability
+must_not_contain:
+  - not applicable
+expected_tools:
+  - query_regulation
+tags:
+  - nist
+  - govern
+  - policy

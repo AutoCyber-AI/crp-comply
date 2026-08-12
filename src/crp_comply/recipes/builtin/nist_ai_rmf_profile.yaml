@@ -1,0 +1,146 @@
+recipe_id: nist_ai_rmf_profile
+title: NIST AI Risk Management Framework — Organisational Profile
+regulation: NIST AI 600-1 / AI RMF 1.0
+version: "1.0"
+description: >-
+  A NIST AI RMF Profile documents how the organisation applies the four
+  Govern / Map / Measure / Manage functions to a specific AI use case
+  or portfolio, including the categories and subcategories that are
+  in-scope, the target outcomes, and the current maturity level.
+required_inputs:
+  - organisation
+  - use_case
+ckf_queries:
+  - "prior NIST AI RMF assessments for this customer"
+  - "known AI system risks and mitigations"
+  - "incident history touching AI systems"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - classify_ai_act_risk
+tags:
+  - nist
+  - ai_rmf
+  - profile
+output_format: both
+output_artefacts:
+  - Organisational Profile
+applicability:
+  purpose: >-
+    A NIST AI RMF Profile tailors the Govern/Map/Measure/Manage
+    functions to the organisation's AI use-case and stakeholder
+    commitments. Widely used as an enterprise-grade baseline and as
+    complementary evidence alongside EU AI Act / ISO 42001.
+  triggers:
+    - "Adopting NIST AI RMF as a governance framework"
+    - "Annual profile refresh"
+    - "US federal or sectoral procurement requirements"
+  deadline: "As required by adopting organisation or customer"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    sector:
+      question: "Which sector does the system primarily operate in \u2014 health, finance, employment,\
+  \ education, law enforcement, migration, or other?"
+      context: "Several Annex III rows are sector-keyed."
+      priority: medium
+      fact_key: sector
+      citation: "EU AI Act Annex III"
+      answer_type: choice
+      options: [health, finance, employment, education, law_enforcement, migration, public_services, other]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: profile_context
+    title: 1. Profile Context
+    word_budget: 200
+    instructions: >-
+      Identify the organisation, the AI use case or portfolio the
+      profile covers, the intended users and affected parties, and the
+      decision-making authority. Name the profile type (Use-Case,
+      Sectoral, or Organisational) per the NIST AI RMF Playbook.
+  - id: govern
+    title: 2. Govern Function
+    word_budget: 400
+    citations:
+      - GOVERN 1
+      - GOVERN 2
+      - GOVERN 3
+      - GOVERN 4
+      - GOVERN 5
+      - GOVERN 6
+    instructions: >-
+      Describe the governance structures, policies, accountability
+      arrangements, and workforce competencies in place. Address each
+      GOVERN category with (a) the target outcome, (b) the current
+      state, and (c) any gaps or planned actions. Reference existing
+      board-level AI oversight, risk appetite statements, and third-
+      party risk management procedures where relevant.
+  - id: map
+    title: 3. Map Function
+    word_budget: 400
+    citations:
+      - MAP 1
+      - MAP 2
+      - MAP 3
+      - MAP 4
+      - MAP 5
+    instructions: >-
+      Establish the context and categorise the AI system. Cover
+      intended purpose, deployment context, actors and roles,
+      benefit / cost framing, and the likelihood × impact profile of
+      identified risks. Link to any EU AI Act risk classification and
+      ISO 42001 risk register entries already captured for this system.
+  - id: measure
+    title: 4. Measure Function
+    word_budget: 400
+    citations:
+      - MEASURE 1
+      - MEASURE 2
+      - MEASURE 3
+      - MEASURE 4
+    instructions: >-
+      Describe the metrics, evaluation methodologies, and test-and-
+      evaluation regime applied — including trustworthiness
+      characteristics (valid and reliable, safe, secure and resilient,
+      accountable and transparent, explainable and interpretable,
+      privacy-enhanced, fair with harmful bias managed). Note red-
+      teaming and human-subject evaluation arrangements where used.
+  - id: manage
+    title: 5. Manage Function
+    word_budget: 400
+    citations:
+      - MANAGE 1
+      - MANAGE 2
+      - MANAGE 3
+      - MANAGE 4
+    instructions: >-
+      Document how risks are prioritised, treated, monitored, and
+      communicated to affected parties. Cover incident response, the
+      decommissioning / retirement procedure, and change management
+      triggers. Reference the response plan for severe harm scenarios.
+  - id: maturity_and_roadmap
+    title: 6. Current Maturity and Roadmap
+    word_budget: 300
+    instructions: >-
+      Score each of the four functions on a four-level maturity scale
+      (Ad hoc / Repeatable / Defined / Optimised) based on the evidence
+      in sections 2–5. Identify the two highest-priority improvements
+      for the next 12 months and who owns them.

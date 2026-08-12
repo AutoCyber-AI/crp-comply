@@ -1,0 +1,21 @@
+case_id: gdpr_art37_dpo_required
+task: |
+  We're a public-sector body in Germany processing biometric data of
+  citizens for an identity-verification service. Are we required to
+  appoint a Data Protection Officer?
+system_id: id-verify-v1
+customer_id: berlin-gov
+expected_risk_level: high
+expected_citations:
+  - Article 37
+must_contain:
+  - Data Protection Officer
+  - public authority
+must_not_contain:
+  - not required
+expected_tools:
+  - check_dpo_required
+tags:
+  - gdpr
+  - dpo
+  - public_sector

@@ -1,0 +1,170 @@
+recipe_id: eu_ai_act_art_27_fria
+title: EU AI Act — Fundamental Rights Impact Assessment (Art. 27)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Deployers of high-risk AI systems listed in Annex III that are bodies
+  governed by public law, private entities providing public services,
+  or deployers of credit-scoring / life-and-health-insurance systems
+  must conduct a Fundamental Rights Impact Assessment before first
+  deployment per Article 27 of the EU AI Act.
+required_inputs:
+  - deployer
+  - system_id
+  - intended_purpose
+ckf_queries:
+  - "prior FRIA outcomes for this deployer"
+  - "identified affected groups and prior incidents"
+  - "AI system Annex III classification and risk level"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - classify_ai_act_risk
+  - recall_facts
+  - lookup_article
+  - lookup_annex
+tags:
+  - ai_act
+  - fria
+  - art27
+  - high_risk
+output_format: both
+output_artefacts:
+  - Fundamental Rights Impact Assessment (FRIA) report
+  - FRIA notification record to market surveillance authority
+applicability:
+  purpose: >-
+    Demonstrate that before first deployment of a high-risk AI system
+    listed in Annex III, the deployer has assessed the impact on the
+    fundamental rights of the natural persons that may be affected,
+    and has defined mitigations, governance and a notification plan.
+  triggers:
+    - "Before first deployment of a high-risk system listed in Annex III"
+    - "Upon material change to the system, context or affected groups"
+    - "Upon request of the market surveillance authority"
+  deadline: "Prior to putting the system into use (Art 27(1))"
+  actors: [deployer]
+  applies_when:
+    - "actor=deployer"
+    - "is_high_risk"
+    - "organisation_type=public_body|private_public_service|credit_scoring|life_health_insurance"
+  not_applicable_when:
+    - "actor=provider"
+    - "actor=importer"
+    - "actor=distributor"
+    - "system_category=minimal_risk"
+    - "system_category=limited_risk"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer or distributor?"
+      context: "Art. 27 obligations land on deployers specifically; providers don't owe a FRIA."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 27(1)"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 + Annex III)?"
+      context: "FRIA is only required for Annex III high-risk systems."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    organisation_type:
+      question: "Which category best describes your organisation: a public body, a private entity providing a public service, a credit-scoring or life-and-health-insurance provider, or something else?"
+      context: "Only these deployer categories owe a FRIA under Art. 27(1)."
+      priority: high
+      fact_key: organisation_type
+      citation: "EU AI Act Art. 27(1)"
+      answer_type: choice
+      options: [public_body, private_public_service, credit_scoring, life_health_insurance, general, sme]
+sections:
+  - id: deployer_and_system
+    title: 1. Deployer and System Description
+    word_budget: 250
+    citations:
+      - Article 27(1)(a)
+      - Article 27(1)(b)
+    instructions: >-
+      Identify the deployer, confirm the category under Art. 27(1) that
+      triggers the FRIA obligation (public-law body, public-services
+      provider, credit-scoring, life/health insurance), describe the
+      high-risk AI system by reference to its Annex III row, and
+      summarise its intended purpose as declared by the provider.
+  - id: use_period_and_frequency
+    title: 2. Period and Frequency of Use
+    word_budget: 150
+    citations:
+      - Article 27(1)(a)
+    instructions: >-
+      State the planned period over which the system will be used and
+      the expected frequency (one-off, periodic, continuous) — this is
+      a mandatory FRIA element under Art. 27(1)(a).
+  - id: affected_persons
+    title: 3. Categories of Natural Persons and Groups Likely to Be Affected
+    word_budget: 250
+    citations:
+      - Article 27(1)(c)
+    instructions: >-
+      Enumerate the categories of natural persons or groups likely to
+      be affected by the system's use in the specific context. Include
+      vulnerable groups (Art. 27(1)(d)) with particular attention to
+      children, persons with disabilities, minorities, and those in
+      vulnerable economic circumstances.
+    applicability:
+      required: true
+  - id: specific_risks_of_harm
+    title: 4. Specific Risks of Harm to Affected Persons
+    word_budget: 400
+    citations:
+      - Article 27(1)(d)
+      - Charter of Fundamental Rights
+    instructions: >-
+      Identify the specific risks of harm — with reference to the
+      relevant Charter of Fundamental Rights of the EU articles —
+      that are likely to impact the categories of persons identified
+      in Section 3. Address at minimum: human dignity, non-
+      discrimination, data protection, access to services, effective
+      remedy, and (where applicable) rights of the child.
+  - id: human_oversight
+    title: 5. Implementation of Human Oversight Measures
+    word_budget: 250
+    citations:
+      - Article 27(1)(e)
+      - Article 14
+    instructions: >-
+      Describe the human oversight measures — both those the provider
+      built into the system per Article 14 and the deployer-specific
+      arrangements per Article 26(2). Name the roles involved, the
+      escalation path, and the competence / training requirements.
+  - id: measures_if_risks_materialise
+    title: 6. Measures if the Identified Risks Materialise
+    word_budget: 300
+    citations:
+      - Article 27(1)(f)
+      - Article 26(5)
+    instructions: >-
+      State the concrete measures to be taken if any of the risks in
+      Section 4 materialise, including internal governance arrangements
+      (escalation to management), complaints mechanisms for affected
+      persons, cooperation with authorities, and when deployment must
+      be paused per Article 26(5).
+  - id: notification_and_record
+    title: 7. Notification to Market Surveillance Authority and Record-Keeping
+    word_budget: 200
+    citations:
+      - Article 27(3)
+      - Article 27(5)
+    instructions: >-
+      Describe how the deployer will notify the market surveillance
+      authority of the FRIA results (Article 27(3)), and how the
+      FRIA record and any updates upon material change will be
+      maintained to demonstrate ongoing compliance (Article 27(5)).
+  - id: conclusion_and_sign_off
+    title: 8. Conclusion and Sign-Off
+    word_budget: 150
+    instructions: >-
+      Summarise the overall residual-risk determination, the date of
+      the FRIA, the person(s) accountable, and the trigger conditions
+      for the next FRIA refresh (material change to the system,
+      context, or affected groups).

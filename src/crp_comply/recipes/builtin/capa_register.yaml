@@ -1,0 +1,94 @@
+recipe_id: capa_register
+title: Corrective and Preventive Action (CAPA) Register
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 10.2 requires the organisation to react to nonconformities,
+  evaluate actions, implement needed actions and evaluate the
+  effectiveness of corrective actions. This recipe produces a CAPA
+  register for the AI management system.
+required_inputs:
+  - organisation
+  - aims_scope
+ckf_queries:
+  - "prior nonconformities and corrective actions"
+  - "audit findings and management review actions"
+  - "effectiveness evidence for closed CAPAs"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, capa, corrective_action, clause_10_2]
+output_format: both
+output_artefacts:
+  - Corrective and Preventive Action (CAPA) Register
+applicability:
+  purpose: >-
+    Tracks nonconformities, root causes, corrective and preventive
+    actions, ownership and effectiveness reviews in line with
+    Clause 10.2.
+  triggers:
+    - "Nonconformity identified (audit, incident, monitoring)"
+    - "Management review action"
+    - "Preventive action identified from risk review"
+  deadline: "Actioned in a timeframe proportionate to the risk"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: capa_process
+    title: 1. CAPA Process and Responsibilities
+    word_budget: 200
+    citations: ["Clause 10.2"]
+    instructions: >-
+      Describe the CAPA process, including how nonconformities are
+      reported, logged, investigated, actioned and closed, and the
+      roles accountable for each step.
+  - id: nonconformities
+    title: 2. Identified Nonconformities
+    word_budget: 300
+    citations: ["Clause 10.2(a)"]
+    instructions: >-
+      List identified nonconformities with reference to source (audit,
+      incident, monitoring, complaint), description, date and initial
+      impact assessment.
+  - id: root_causes
+    title: 3. Root-Cause Analysis
+    word_budget: 250
+    citations: ["Clause 10.2(b)"]
+    instructions: >-
+      For each nonconformity record the root-cause analysis method used
+      and the determined root cause(s).
+  - id: corrective_actions
+    title: 4. Corrective and Preventive Actions
+    word_budget: 300
+    citations: ["Clause 10.2(c)", "Clause 10.2(d)"]
+    instructions: >-
+      Define the corrective actions taken or planned, preventive
+      actions where applicable, owner and due date. Ensure actions are
+      proportionate to the effects of the nonconformity.
+  - id: verification
+    title: 5. Verification and Effectiveness Review
+    word_budget: 200
+    citations: ["Clause 10.2(e)", "Clause 10.2(f)"]
+    instructions: >-
+      Record how the effectiveness of actions is verified, evidence of
+      completion, and whether any further action or systemic change is
+      required.

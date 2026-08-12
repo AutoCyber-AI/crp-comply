@@ -1,0 +1,135 @@
+recipe_id: iso_42001_ai_system_impact_assessment
+title: ISO/IEC 42001 — AI System Impact Assessment (Clauses 6.1.4 / 8.4)
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 6.1.4 requires the organisation to define and apply a
+  process to assess potential consequences of the development,
+  provision or use of an AI system for individuals, groups of
+  individuals, and society. Clause 8.4 requires the AISIA to be
+  kept updated. This recipe produces the AISIA.
+required_inputs:
+  - organisation
+  - system_id
+  - intended_purpose
+  - deployment_context
+ckf_queries:
+  - "stakeholder map and affected groups"
+  - "known societal harms of similar systems"
+  - "links to FRIA and DPIA where applicable"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - classify_ai_act_risk
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, aisia, impact_assessment, clause_6_1_4, clause_8_4]
+output_format: both
+output_artefacts:
+  - AI System Impact Assessment (Clauses 6.1.4 / 8.4)
+applicability:
+  purpose: >-
+    Clause 6.1.4 uniquely requires organisations to assess impacts on
+    individuals, groups and society — not only the organisation. This
+    is distinct from a FRIA (deployer-only, Art 27) and from a DPIA
+    (personal data, GDPR Art 35).
+  triggers:
+    - "Initial AIMS implementation"
+    - "New AI system introduction"
+    - "Material change to system, context, or affected groups"
+  deadline: "Before deployment; refreshed at least annually (Clause 8.4)"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    processes_personal_data:
+      question: "Does the system process personal data as defined by GDPR Art. 4(1)?"
+      context: "Triggers GDPR Art. 30 ROPA and potentially Art. 35 DPIA."
+      priority: high
+      fact_key: processes_personal_data
+      citation: "GDPR Art. 4(1), Art. 30, Art. 35"
+      answer_type: bool
+    has_children_users:
+      question: "Could the system be used by or significantly affect minors?"
+      context: "Art. 9(9) and Art. 27(1)(d) require extra safeguards for children."
+      priority: high
+      fact_key: has_children_users
+      citation: "EU AI Act Art. 9(9), Art. 27(1)(d)"
+      answer_type: bool
+sections:
+  - id: context_and_intended_use
+    title: 1. Context and Intended Use
+    word_budget: 200
+    citations: ["Clause 6.1.4", "Clause 4.1"]
+    instructions: >-
+      Describe the context, intended purpose and foreseeable uses of
+      the AI system (incl. reasonably foreseeable misuse).
+  - id: stakeholders_and_affected_parties
+    title: 2. Stakeholders and Affected Persons / Groups
+    word_budget: 250
+    citations: ["Clause 6.1.4", "Clause 4.2"]
+    instructions: >-
+      Identify individuals, groups of individuals and societal
+      groupings potentially affected, with particular attention to
+      vulnerable populations.
+  - id: impact_categories
+    title: 3. Impact Categories
+    word_budget: 350
+    citations: ["Clause 6.1.4"]
+    instructions: >-
+      Analyse potential impacts across at minimum: fundamental rights
+      (dignity, non-discrimination, privacy, freedom of expression,
+      access to services), physical/psychological safety, economic
+      wellbeing, environmental impact, social cohesion, and democratic
+      process. Distinguish positive vs adverse impacts.
+  - id: severity_likelihood_and_reversibility
+    title: 4. Severity, Likelihood and Reversibility
+    word_budget: 200
+    citations: ["Clause 6.1.4"]
+    instructions: >-
+      For each adverse impact, estimate severity, likelihood, and
+      reversibility, using the same scales as the AI Risk Assessment.
+  - id: mitigations_and_controls
+    title: 5. Mitigations and Linked Controls
+    word_budget: 250
+    citations: ["Annex A"]
+    instructions: >-
+      For each significant adverse impact, list the mitigations and
+      cross-reference Annex A controls and/or external obligations
+      (EU AI Act Arts 9-15, GDPR, sectoral law).
+  - id: links_to_other_assessments
+    title: 6. Cross-References to FRIA, DPIA, Risk Assessment
+    word_budget: 150
+    citations: ["Clause 6.1.2"]
+    instructions: >-
+      Where the organisation is a deployer under EU AI Act Art 27,
+      cross-reference the FRIA (eu_ai_act_art_27_fria). Where GDPR
+      Art 35 applies, cross-reference the DPIA (gdpr_art_35_dpia).
+  - id: review_cadence
+    title: 7. Review and Update Cadence
+    word_budget: 150
+    citations: ["Clause 8.4"]
+    instructions: >-
+      Define the cadence for keeping the AISIA updated (material
+      change, new deployment context, new finding from monitoring).
+  - id: sign_off
+    title: 8. Sign-Off
+    word_budget: 80
+    instructions: Assessor, reviewer, approver, date, next review.

@@ -1,0 +1,172 @@
+recipe_id: eu_ai_act_art_5_prohibited_practices_assessment
+title: EU AI Act — Prohibited Practices Self-Assessment (Art. 5)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Article 5 prohibits eight categories of AI practice in the Union.
+  Placing on the market, putting into service, or using any such
+  system is an outright offence punishable by up to 7% of global
+  turnover. This recipe produces a documented self-assessment
+  demonstrating the system is NOT a prohibited practice — the
+  gate-check every provider and deployer must clear first.
+required_inputs:
+  - system_id
+  - intended_purpose
+  - actor
+ckf_queries:
+  - "prior classification results for this system"
+  - "list of use-cases evaluated to date"
+tools_allowed:
+  - classify_ai_act_risk
+  - lookup_article
+  - recall_facts
+tags: [ai_act, art5, prohibited, gate_check, universal]
+output_format: both
+output_artefacts:
+  - Prohibited Practices Self-Assessment (Art. 5)
+applicability:
+  purpose: >-
+    Prohibited-practice screening is the first filter: if a system
+    falls under Art. 5, no amount of downstream compliance work
+    can save it. Every provider and deployer should be able to
+    produce this assessment on demand.
+  triggers:
+    - "Before any new AI system is released, procured or deployed"
+    - "On material change to intended purpose"
+    - "Periodic revalidation (at least annually)"
+  deadline: "Art. 5 has applied since 2 February 2025 — prohibition in force"
+  actors: [provider, deployer, importer, distributor]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    system_category:
+      question: "How is the system classified \u2014 high_risk, limited_risk, minimal_risk, prohibited,\
+  \ gpai, or gpai_systemic?"
+      context: "Risk category gates the obligation set; prohibited and minimal_risk exit most pipelines."
+      priority: high
+      fact_key: system_category
+      citation: "EU AI Act Art. 5, 6, 50; Annex III"
+      answer_type: choice
+      options: [high_risk, limited_risk, minimal_risk, prohibited, gpai, gpai_systemic]
+    is_biometric_categorisation:
+      question: "Does the system perform biometric categorisation of natural persons?"
+      context: "Art. 50(3) disclosure plus Art. 5 prohibitions for sensitive inferences."
+      priority: high
+      fact_key: is_biometric_categorisation
+      citation: "EU AI Act Art. 50(3), Art. 5(1)(g)"
+      answer_type: bool
+    is_emotion_recognition:
+      question: "Does the system perform emotion recognition on natural persons?"
+      context: "Art. 50(3) requires informing exposed natural persons; workplace / education use\
+  \ is restricted (Art. 5(1)(f))."
+      priority: high
+      fact_key: is_emotion_recognition
+      citation: "EU AI Act Art. 50(3), Art. 5(1)(f)"
+      answer_type: bool
+    uses_biometrics:
+      question: "Does the system use biometric data for identification or categorisation?"
+      context: "Biometric processing has specific prohibitions (Art. 5) and transparency duties (Art.\
+  \ 50)."
+      priority: high
+      fact_key: uses_biometrics
+      citation: "EU AI Act Art. 5, Art. 50(3); GDPR Art. 9"
+      answer_type: bool
+sections:
+  - id: system_description
+    title: 1. System and Intended Purpose
+    word_budget: 200
+    citations: ["Article 5"]
+    applicability:
+      required: true
+    instructions: >-
+      Summarise the system, its intended purpose, modalities
+      (inputs/outputs), and deployment context. Keep to facts;
+      no marketing language.
+  - id: subliminal_manipulation
+    title: 2. Subliminal / Manipulative / Deceptive Techniques — Art. 5(1)(a)
+    word_budget: 200
+    citations: ["Article 5(1)(a)"]
+    instructions: >-
+      Does the system use subliminal, purposefully manipulative, or
+      deceptive techniques that materially distort behaviour and
+      cause significant harm? State No/Yes with reasoning.
+  - id: vulnerability_exploitation
+    title: 3. Exploitation of Vulnerabilities — Art. 5(1)(b)
+    word_budget: 150
+    citations: ["Article 5(1)(b)"]
+    instructions: >-
+      Does the system exploit vulnerabilities of a person or
+      specific group (age, disability, socio-economic situation)
+      to distort behaviour causing significant harm?
+  - id: social_scoring
+    title: 4. Social Scoring — Art. 5(1)(c)
+    word_budget: 150
+    citations: ["Article 5(1)(c)"]
+    instructions: >-
+      Does the system evaluate or classify natural persons over
+      time based on social behaviour or personality characteristics,
+      producing detrimental or unfavourable treatment unrelated to
+      the context or disproportionate?
+  - id: criminal_risk_prediction
+    title: 5. Individual Criminal Risk Prediction — Art. 5(1)(d)
+    word_budget: 150
+    citations: ["Article 5(1)(d)"]
+    instructions: >-
+      Does the system predict the risk of a natural person
+      committing a criminal offence based solely on profiling or
+      personality traits? (Support to human assessment based on
+      objective facts is permitted.)
+  - id: facial_scraping
+    title: 6. Untargeted Facial-Image Scraping — Art. 5(1)(e)
+    word_budget: 150
+    citations: ["Article 5(1)(e)"]
+    instructions: >-
+      Does the system create or expand facial-recognition
+      databases through untargeted scraping from the internet or
+      CCTV footage?
+  - id: emotion_recognition_workplace_education
+    title: 7. Emotion Recognition in Workplace / Education — Art. 5(1)(f)
+    word_budget: 150
+    citations: ["Article 5(1)(f)"]
+    instructions: >-
+      Is emotion recognition used in workplaces or educational
+      institutions (outside medical/safety reasons)?
+  - id: biometric_categorisation_sensitive
+    title: 8. Biometric Categorisation of Sensitive Attributes — Art. 5(1)(g)
+    word_budget: 150
+    citations: ["Article 5(1)(g)"]
+    instructions: >-
+      Does the system biometrically categorise natural persons to
+      infer race, political opinions, trade-union membership,
+      religious or philosophical beliefs, sex life, or sexual
+      orientation?
+  - id: rt_biometric_identification
+    title: 9. Real-Time Remote Biometric Identification in Public Spaces — Art. 5(1)(h)
+    word_budget: 200
+    citations: ["Article 5(1)(h)", "Article 5(2)"]
+    instructions: >-
+      Does the system enable real-time remote biometric
+      identification in publicly-accessible spaces for law
+      enforcement? If yes and an exception is claimed (Art 5(2)),
+      cite the judicial authorisation and fundamental-rights
+      impact assessment.
+  - id: verdict_and_signoff
+    title: 10. Overall Verdict and Sign-off
+    word_budget: 150
+    citations: ["Article 5"]
+    applicability:
+      required: true
+    instructions: >-
+      Conclude PROHIBITED / NOT PROHIBITED with named decision
+      owner, date, and review trigger. If PROHIBITED, state that
+      the system must not be released / must be withdrawn.

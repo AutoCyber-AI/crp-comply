@@ -1,0 +1,123 @@
+recipe_id: iso_42001_statement_of_applicability
+title: ISO/IEC 42001 Statement of Applicability
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  ISO/IEC 42001 requires the organisation to document which Annex A
+  controls apply to its AI management system, justify inclusions and
+  exclusions, and link each applicable control to its current
+  implementation evidence. This recipe produces that Statement of
+  Applicability (SoA) in the structure expected by accredited auditors.
+required_inputs:
+  - organisation
+  - scope
+  - ai_systems
+ckf_queries:
+  - "ISO 42001 applicability statements for this customer"
+  - "prior control gap assessments and remediation"
+  - "AI system inventory and risk classifications"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags:
+  - iso42001
+  - soa
+output_format: both
+output_artefacts:
+  - ISO/IEC 42001 Statement of Applicability
+applicability:
+  purpose: >-
+    The Statement of Applicability records the organisation's decision
+    on every Annex A control — included or excluded, justification,
+    and implementation status. It is a mandatory output of ISO 42001
+    certification.
+  triggers:
+    - "After risk treatment planning"
+    - "On Annex A control review cycle"
+  deadline: "Before Stage 2 audit; maintained throughout"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: introduction
+    title: 1. Introduction and Scope
+    word_budget: 200
+    citations:
+      - Clause 4.3
+    instructions: >-
+      State the scope of the AI management system exactly as approved by
+      top management (ISO/IEC 42001 Clause 4.3). Name the organisation,
+      list in-scope AI systems by identifier, and note any intentional
+      exclusions with justification.
+  - id: methodology
+    title: 2. Methodology for Determining Applicability
+    word_budget: 250
+    citations:
+      - Clause 6.1.3
+      - Clause 6.1.4
+    instructions: >-
+      Explain how Annex A controls were evaluated against the AI risk
+      assessment (Clause 6.1.2) and opportunities analysis. Reference
+      ISO 23894 risk methodology where used. Describe the
+      include / exclude / modify decision rule and who signed off.
+  - id: applicable_controls
+    title: 3. Applicable Annex A Controls
+    word_budget: 900
+    citations:
+      - Annex A
+    instructions: >-
+      For every Annex A control group (A.2 through A.10) list each
+      control as APPLICABLE or NOT APPLICABLE. For each APPLICABLE
+      control provide (a) the justification tied to at least one
+      identified AI risk or obligation, (b) the implementation status
+      (Implemented / Partially implemented / Planned), and (c) a
+      reference to the evidence artefact (policy, procedure, log, or
+      prior audit finding). Use a compact bullet layout, one line per
+      control.
+  - id: excluded_controls
+    title: 4. Excluded Controls with Justification
+    word_budget: 300
+    citations:
+      - Clause 6.1.3
+    instructions: >-
+      List every Annex A control flagged NOT APPLICABLE above with a
+      concise justification referencing the scope statement (Section 1)
+      or a documented AI system characteristic. Excluding a control
+      without justification is a non-conformity.
+  - id: evidence_mapping
+    title: 5. Evidence Mapping Summary
+    word_budget: 250
+    instructions: >-
+      Provide a short tabulation mapping applicable controls to evidence
+      artefacts stored in the organisation's document control system.
+      At least one evidence reference per applicable control is
+      mandatory for certification readiness.
+  - id: approval
+    title: 6. Approval and Revision Control
+    word_budget: 120
+    citations:
+      - Clause 7.5
+    instructions: >-
+      Record the document owner, approving authority (top management),
+      approval date, next scheduled review date, and revision history.
+      Referenced under the ISO 42001 documented information clause.

@@ -1,0 +1,95 @@
+recipe_id: context_analysis
+title: Organisational Context and Interested Parties Analysis
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 4.1 requires the organisation to determine external and internal
+  issues relevant to its purpose and strategic direction, and Clause 4.2
+  requires identification of interested parties and their requirements.
+  This recipe documents that context analysis for the AI management system.
+required_inputs:
+  - organisation
+  - aims_scope
+ckf_queries:
+  - "organisational context and strategic objectives"
+  - "interested parties and compliance obligations"
+  - "prior internal and external issue registers"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, context, clause_4_1, clause_4_2, aims]
+output_format: both
+output_artefacts:
+  - Organisational Context and Interested Parties Analysis
+applicability:
+  purpose: >-
+    Establishes the context of the AI management system and the needs and
+    expectations of interested parties, forming the foundation for scope,
+    risk assessment and policy.
+  triggers:
+    - "Initial AIMS implementation"
+    - "Annual management review"
+    - "Significant change in organisational context or strategy"
+  deadline: "Defined before AIMS scope statement and risk assessment"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: organisational_context
+    title: 1. Organisational Context
+    word_budget: 250
+    citations: ["Clause 4.1"]
+    instructions: >-
+      Summarise the organisation, its purpose, strategic direction and the
+      AI management system boundary. Identify how AI aligns with business
+      objectives and which parts of the organisation are in scope.
+  - id: internal_and_external_issues
+    title: 2. Internal and External Issues
+    word_budget: 300
+    citations: ["Clause 4.1(b)", "Clause 4.1(c)"]
+    instructions: >-
+      List the internal issues (culture, capabilities, governance, data
+      maturity) and external issues (market, regulatory, technological,
+      societal) that affect the AIMS and its ability to achieve intended
+      outcomes.
+  - id: interested_parties
+    title: 3. Interested Parties and Their Requirements
+    word_budget: 300
+    citations: ["Clause 4.2"]
+    instructions: >-
+      Identify interested parties (regulators, customers, employees,
+      affected individuals, investors, partners) and list their relevant
+      needs and expectations, including legal, regulatory and contractual
+      requirements.
+  - id: scope_boundaries
+    title: 4. Scope and Boundaries
+    word_budget: 200
+    citations: ["Clause 4.3"]
+    instructions: >-
+      Cross-reference the approved AIMS scope statement. Note any
+      exclusions and the justification for each exclusion.
+  - id: review_cadence
+    title: 5. Review and Update Cadence
+    word_budget: 150
+    citations: ["Clause 4.1", "Clause 9.3"]
+    instructions: >-
+      State how often the context analysis is reviewed, the trigger events
+      for ad-hoc updates, and the accountable role.

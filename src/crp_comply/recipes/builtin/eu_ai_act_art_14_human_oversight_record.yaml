@@ -1,0 +1,127 @@
+recipe_id: eu_ai_act_art_14_human_oversight_record
+title: EU AI Act — Human Oversight Design Record (Art. 14)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Article 14 requires high-risk AI systems to be designed and
+  developed so that they can be effectively overseen by natural
+  persons during use. This recipe documents how human oversight is
+  built into and operated around the system.
+required_inputs:
+  - provider
+  - system_id
+  - intended_purpose
+ckf_queries:
+  - "oversight roles and training for this system"
+  - "automation bias mitigations"
+  - "stop / intervene mechanisms"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, human_oversight, art14, high_risk]
+output_format: both
+output_artefacts:
+  - Human Oversight Design Record (Art. 14)
+applicability:
+  purpose: >-
+    Document how the high-risk AI system is designed and supported so
+    that natural persons can effectively oversee it during use, avoid
+    automation bias, and intervene when necessary.
+  triggers:
+    - "Before placement on market"
+    - "Upon design change affecting oversight capabilities"
+  deadline: "Before placement on market"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: oversight_objective
+    title: 1. Oversight Objective
+    word_budget: 150
+    citations: ["Article 14(1)", "Article 14(2)"]
+    instructions: >-
+      State the objective — preventing or minimising risks to health,
+      safety and fundamental rights that may emerge when the system
+      is used in accordance with its intended purpose or under
+      reasonably foreseeable misuse, in particular where such risks
+      persist despite other Chapter III §2 requirements.
+  - id: built_in_measures
+    title: 2. Measures Built into the System
+    word_budget: 300
+    citations: ["Article 14(3)(a)"]
+    instructions: >-
+      Describe the oversight measures identified and built into the
+      high-risk AI system by the provider before it is placed on the
+      market or put into service (e.g. confidence scores, hold-for-
+      review thresholds, adversarial alerts).
+  - id: deployer_measures
+    title: 3. Measures Identified for the Deployer to Implement
+    word_budget: 250
+    citations: ["Article 14(3)(b)"]
+    instructions: >-
+      Describe the measures the provider has identified for
+      implementation by the deployer, and the information to be
+      provided to the deployer to enable them.
+  - id: oversight_capabilities
+    title: 4. Capabilities Enabled in the Overseers
+    word_budget: 400
+    citations: ["Article 14(4)"]
+    instructions: >-
+      Confirm the measures enable the natural persons to whom
+      oversight is assigned to — as appropriate and proportionate —
+      (a) properly understand the relevant capacities and limitations;
+      (b) remain aware of the possible tendency of automatically
+      relying or over-relying on output (automation bias);
+      (c) correctly interpret the system's output; (d) decide, in any
+      particular situation, not to use the high-risk AI system or
+      otherwise disregard, override or reverse the output; (e) intervene
+      on the operation of the high-risk AI system or interrupt the
+      system through a 'stop' button or a similar procedure.
+  - id: biometric_two_person_rule
+    title: 5. Biometric-Identification Two-Person Rule (if applicable)
+    word_budget: 150
+    citations: ["Article 14(5)"]
+    instructions: >-
+      Where the system is a remote biometric identification system
+      under Annex III point 1(a), state whether verification and
+      confirmation by at least two natural persons with the necessary
+      competence, training and authority is required, and the
+      exceptions (law-enforcement scenarios under Union / Member State
+      law).
+  - id: training_and_competence
+    title: 6. Training, Competence and Authority
+    word_budget: 200
+    citations: ["Article 14(4)"]
+    instructions: >-
+      State the competence and training requirements for the assigned
+      overseers, their authority within the organisation, and how
+      their independence from the deployment line is preserved.
+  - id: sign_off
+    title: 7. Sign-Off and Review Triggers
+    word_budget: 80
+    instructions: >-
+      Signatory, date, and triggers for review (material change,
+      oversight failure incident, new deployer context).

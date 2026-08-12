@@ -1,0 +1,22 @@
+case_id: ai_act_biometric_categorisation_prohibited
+task: |
+  A retail customer wants to deploy a camera system in their stores that
+  infers shoppers' political opinions from facial-expression analysis to
+  personalise in-store advertising. Is this lawful under the EU AI Act?
+system_id: ad-targeting-v1
+customer_id: acme-retail
+expected_risk_level: unacceptable
+expected_citations:
+  - Article 5
+must_contain:
+  - prohibited
+  - biometric
+must_not_contain:
+  - allowed
+  - permitted
+expected_tools:
+  - classify_ai_act_risk
+tags:
+  - ai_act
+  - prohibited_practice
+  - biometrics

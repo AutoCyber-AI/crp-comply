@@ -1,0 +1,18 @@
+# Railway service descriptor for the search sidecar.
+# This file tells Railway how to build/run the *sidecar* service
+# when you point a Railway service's "Root Directory" at
+# services/crp-comply-search.
+#
+# See ../../docs/RAILWAY_SEARCH_SIDECAR.md for the recommended
+# two-services-one-repo deployment.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python -m crp_comply_search"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

@@ -1,0 +1,162 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crp-comply"
+version = "0.2.0"
+description = "CRP Comply — AI Governance & EU AI Act Compliance Platform"
+readme = "README.md"
+license = "Elastic-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Constantinos Vidiniotis", email = "contact@crprotocol.io" },
+]
+keywords = ["ai-governance", "eu-ai-act", "compliance", "dpia", "crp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    # ``[full]`` pulls in CRP's optional ML / graph / crypto deps:
+    # hnswlib (HNSW semantic CKF index), igraph + leidenalg (Leiden
+    # community detection), blake3 (FactIntegrityChain), cryptography
+    # (AES-256-GCM ``client.export_state`` seal), spacy (UIE Stage 2
+    # statistical extraction), prometheus-client, httpx, etc. Without
+    # ``[full]`` the SDK silently degrades CKF retrieval to brute-force
+    # scans and disables Leiden community detection — see CRP_AUDIT_3.
+    # CRPv5 upgrade (CRPV5_UPGRADE_REPORT.md): re-based on the positioned loop
+    # (dispatch_positioned / run_positioned, TCF, CSO). Requires crprotocol 5.x.
+    # Requires crprotocol 5.1+ for github_app.py list_repos(), TCF, CSO, and
+    # the positioned loop fixes used in this release.
+    "crprotocol[full]>=5.1,<6",
+    "click>=8.0,<9",
+    "fastapi>=0.100,<1",
+    "uvicorn[standard]>=0.20,<1",
+    "python-jose[cryptography]>=3.3,<4",
+    "passlib[bcrypt]>=1.7,<2",
+    # python-multipart >=0.0.26 fixes CVE-2026-40347 (DoS via crafted form).
+    "python-multipart>=0.0.26",
+    "httpx>=0.24,<1",
+    "jinja2>=3.1,<4",
+    "stripe>=8.0",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9,<3",
+    "redis>=5.0,<6",
+    "python-dotenv>=1.0",
+    "webauthn>=2.0,<3",
+    # numpy is a base dep because ``crp_comply.agent.rag`` (imported at
+    # module load time by ``crp_comply.api.app`` via ``agent.__init__``)
+    # does ``import numpy as np`` at the top of ``embedder.py`` and
+    # ``index.py``. ``sentence-transformers`` stays in the ``rag``
+    # extra because it's only touched inside ``Embedder.encode()``.
+    # Without this line, plain ``pip install .`` produces an image that
+    # crashes on uvicorn startup with ModuleNotFoundError: numpy
+    # (see Railway deploy failure from commit 0c29222e).
+    "numpy>=1.24,<3",
+    # boto3 is needed by ``python -m crp_comply backup-nightly`` to
+    # upload the nightly DR archive to S3-compatible buckets
+    # (Cloudflare R2, AWS S3, Backblaze B2 via S3 API). Pulling it into
+    # the base deps avoids needing awscli in the Docker image.
+    "boto3>=1.34,<2",
+    # PyYAML drives static config: agent triage patterns
+    # (src/crp_comply/agent/triage_patterns.yaml) and, in 7.8, the
+    # web-search trust-tier profiles. It is already pulled in
+    # transitively by transformers/huggingface_hub but we list it
+    # explicitly so a slim image (no ML extras) still gets it.
+    "pyyaml>=6.0,<7",
+]
+
+[project.optional-dependencies]
+pdf = ["weasyprint>=60,<70"]
+agent = [
+    "pdfplumber>=0.10,<1",
+    "beautifulsoup4>=4.12,<5",
+    # lxml >=6.1.0 fixes CVE-2026-41066.
+    "lxml>=6.1,<7",
+    "numpy>=1.24,<3",
+    "sentence-transformers>=2.2,<4",
+]
+rag = [
+    "numpy>=1.24,<3",
+    "sentence-transformers>=2.2,<4",
+]
+ml = [
+    # Stage 3 of the CRP extraction pipeline (NER) loads a GLiNER model.
+    # Pinned to the latest patch series with an upper bound so a future
+    # major release can't break our Dockerfile pre-warm step.
+    "gliner>=0.2,<1",
+    # Sentence-Transformers is required by the dense embedder and by
+    # GLiNER's underlying model card resolution.
+    "sentence-transformers>=2.2,<4",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "pytest-asyncio>=0.21",
+    "ruff",
+    "bandit",
+    "pip-audit",
+    "httpx>=0.24",
+    "pdfplumber>=0.10,<1",
+    "beautifulsoup4>=4.12,<5",
+    "lxml>=6.1,<7",
+    "numpy>=1.24,<3",
+    "sentence-transformers>=2.2,<4",
+]
+
+[project.urls]
+Homepage = "https://crprotocol.io/products/comply/"
+Documentation = "https://crprotocol.io/products/comply/"
+Repository = "https://github.com/AutoCyber-AI/crp-comply"
+Issues = "https://github.com/AutoCyber-AI/crp-comply/issues"
+
+[project.scripts]
+crp-comply = "crp_comply.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/crp_comply", "crp_shared"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint.per-file-ignores]
+# Conditional / ordered imports kept after security comments by design.
+"src/crp_comply/api/agent.py" = ["E402"]
+"src/crp_comply/api/routes.py" = ["E402", "F821"]
+# `Path` is only used in string-form annotations under `# type: ignore`.
+"src/crp_comply/notifications.py" = ["F821"]
+# Single-letter loop variable in CLI display code; cosmetic only.
+"src/crp_comply/cli.py" = ["E741"]
+# Phase 4 corpus tests follow the existing repo convention of inserting src/
+# into sys.path before imports so they run both in CI and ad-hoc.
+"tests/test_corpus_*.py" = ["E402"]
+"tests/test_gdpr_expert.py" = ["E402"]
+"tests/test_slm_profile.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "strict"
+markers = [
+    "slow: marks tests that take noticeably longer (deselect with -m 'not slow')",
+]
+filterwarnings = [
+    # Known-harmless upstream noise during fact extraction. Sources:
+    # gliner (sentence truncation), huggingface_hub (resume_download
+    # deprecation), transformers (sentencepiece byte-fallback,
+    # truncate-with-no-max-length), swig-generated bindings.
+    "ignore:Sentence of length \\d+ has been truncated.*:UserWarning",
+    "ignore:.*resume_download.*deprecated.*:FutureWarning",
+    "ignore:The sentencepiece tokenizer that you are converting.*:UserWarning",
+    "ignore:Asking to truncate to max_length but no maximum length.*:UserWarning",
+    "ignore:builtin type Swig.*has no __module__ attribute:DeprecationWarning",
+    "ignore:builtin type swigvarlink.*:DeprecationWarning",
+    "ignore:`torch.jit.script` is deprecated.*:DeprecationWarning",
+]

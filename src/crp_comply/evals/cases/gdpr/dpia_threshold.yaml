@@ -1,0 +1,23 @@
+case_id: gdpr_art35_dpia_threshold
+task: |
+  We're rolling out an AI-driven employee productivity monitor that
+  scores keyboard, mouse, and webcam-attentiveness signals for office
+  staff in the EU. Does GDPR require a DPIA, and if so, which factors
+  push it above the threshold?
+system_id: prod-monitor-v0
+customer_id: acme-corp
+expected_risk_level: high
+expected_citations:
+  - Article 35
+must_contain:
+  - DPIA
+  - systematic monitoring
+must_not_contain:
+  - not required
+  - optional
+expected_tools:
+  - check_dpia_required
+tags:
+  - gdpr
+  - dpia
+  - workplace

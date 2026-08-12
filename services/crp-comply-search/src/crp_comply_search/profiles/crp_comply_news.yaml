@@ -1,0 +1,75 @@
+name: crp-comply-news
+version: 1
+description: >
+  News/enforcement profile: boosts wire services and legal-news
+  publishers for time-sensitive intents (enforcement actions,
+  freshly-tabled regulation, court rulings). Authorities still T1;
+  reputable legal/news media promoted from T3 to T2.
+default_freshness: week
+
+tiers:
+  1:  # T1 — official authorities (still authoritative even for news)
+    weight: 1.0
+    domains:
+      - eur-lex.europa.eu
+      - ec.europa.eu
+      - europa.eu
+      - edpb.europa.eu
+      - edps.europa.eu
+      - enisa.europa.eu
+      - ico.org.uk
+      - cnil.fr
+      - garanteprivacy.it
+      - aepd.es
+      - bfdi.bund.de
+      - nist.gov
+      - iso.org
+      - gov.uk
+      - cisa.gov
+      - ftc.gov
+      - curia.europa.eu
+      - echr.coe.int
+  2:  # T2 — wire services + reputable legal/news (boosted vs default)
+    weight: 0.9
+    domains:
+      - reuters.com
+      - bloomberg.com
+      - ft.com
+      - apnews.com
+      - politico.eu
+      - lawfaremedia.org
+      - lawfareblog.com
+      - jdsupra.com
+      - lexology.com
+      - law360.com
+      - thelawreviews.co.uk
+      - whitecase.com
+      - hoganlovells.com
+      - dlapiper.com
+      - cliffordchance.com
+  3:  # T3 — analysis blogs and academia
+    weight: 0.7
+    domains:
+      - iapp.org
+      - privacylaws.com
+      - papers.ssrn.com
+      - arxiv.org
+      - acm.org
+      - ieee.org
+  4:  # T4 — generic
+    weight: 0.5
+    domains: []
+
+blocked:
+  - reddit.com
+  - twitter.com
+  - x.com
+  - medium.com
+  - substack.com
+  - facebook.com
+  - linkedin.com
+  - tiktok.com
+  - quora.com
+  - pinterest.com
+  - tumblr.com
+  - wikipedia.org

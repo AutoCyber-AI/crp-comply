@@ -1,0 +1,91 @@
+# Railway configuration for CRP Comply.
+#
+# IMPORTANT — VOLUME PERSISTENCE
+# ------------------------------
+# Railway does NOT mount volumes automatically from this file. You must create
+# the volume manually in the Railway dashboard and attach it to the service.
+#
+# Required setup (one-time, in the Railway dashboard):
+#
+#   1. Open your CRP Comply service → Settings → Volumes.
+#   2. Click "New Volume".
+#   3. Name:       crp-comply-data
+#   4. Mount path: /app/data
+#   5. Size:       1 GB minimum (10 GB recommended for production)
+#   6. Save — Railway will trigger a redeploy.
+#
+# After the first deploy following volume attachment, inspect the logs for
+# the line:
+#
+#     volume probe: PERSISTENT OK — last boot ...
+#
+# If instead you see "first-boot" on every redeploy, the volume is NOT
+# attached and every deploy is wiping customer data. Fix immediately.
+#
+# Required environment variables (set in Railway dashboard → Variables):
+#
+#   CRP_COMPLY_JWT_SECRET                   32+ random hex chars, used for
+#                                            JWT signing AND evidence-pack HMAC
+#   CRP_COMPLY_DATA_DIR                     /app/data (must match the volume mount)
+#   CRP_COMPLY_PERSISTENCE_STORE            file (Redis is fine for cache/CSO,
+#                                            but durable state must live on the
+#                                            attached volume, not in ephemeral Redis)
+#   CLERK_SECRET_KEY                        your Clerk backend key
+#   VITE_CLERK_PUBLISHABLE_KEY              your Clerk frontend key (build arg)
+#   STRIPE_SECRET_KEY                       <YOUR_STRIPE_SECRET_KEY> (production)
+#   STRIPE_WEBHOOK_SECRET                   <YOUR_STRIPE_WEBHOOK_SECRET>
+#
+# Optional retention tuning (defaults shown):
+#
+#   CRP_COMPLY_REPORT_RETENTION_DAYS=180
+#   CRP_COMPLY_EVIDENCE_RETENTION_DAYS=365
+#   CRP_COMPLY_RETENTION_INTERVAL_SECONDS=86400
+#   CRP_COMPLY_RETENTION_ENABLED=true
+#
+# Optional web-search sidecar (Phase 7.15.b). When unset the agent runs
+# corpus-only — perfectly safe but the agent cannot call web_search /
+# web_research / vendor_profile / compare_documents:
+#
+#   CRP_COMPLY_SEARCH_URL=https://crp-comply-search.internal:8080
+#   CRP_COMPLY_SEARCH_API_KEY=<bearer token>
+#
+# Optional CRP agentic dispatch mode (GAP 4).  Controls whether the
+# ComplianceAgent delegates task execution to CRP's §22 native cognitive
+# loop (crp.Client.dispatch_agentic / dispatch_with_tools etc.) instead
+# of the default iterative tool loop.
+#
+# IMPORTANT: The default (empty / unset) keeps the iterative tool loop
+# because that's the only path where the full domain-tool registry
+# (query_regulation, classify_ai_act_risk, store_fact, recall_facts …)
+# is active.  The CRP-native paths bypass these tools and are best for
+# free-form Q&A deployments on simple 1–2 step tasks.
+#
+# Supported values:
+#   agentic          — CRP §22 8-phase cognitive loop (analyse→plan→…→curate)
+#   with_tools       — CRP pull-mode tool relay (CRP_CONTEXT_TOOLS)
+#   stream_augmented — sentence-by-sentence injection loop
+#   plain            — basic single-shot push-mode dispatch
+#
+# Leave unset (default) to use the iterative domain-tool loop which is
+# mandatory for EU AI Act / GDPR compliance reports.  Set to "agentic"
+# only for free-form Q&A deployments:
+#
+#   CRP_COMPLY_AGENT_DISPATCH_MODE=agentic
+#
+# ────────────────────────────────────────────────────────────────────────────
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Let the container's ENTRYPOINT (docker-entrypoint.sh) run — it fixes volume
+# ownership before dropping privileges and launching uvicorn.
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+healthcheckPath = "/api/v1/health"
+healthcheckTimeout = 30
+
+# Uncomment to opt in to zero-downtime deploys (Railway Pro plan):
+# numReplicas = 1
+# region = "eu-west1"

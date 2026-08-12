@@ -1,0 +1,25 @@
+case_id: nist_rmf_generative_profile
+task: |
+  Map our internal generative-AI assistant (used by employees for
+  drafting customer emails) to the NIST AI RMF Generative AI Profile.
+  Surface the GOVERN, MAP, MEASURE, and MANAGE actions most relevant to
+  this use case.
+system_id: email-assistant-v0
+customer_id: acme-corp
+expected_risk_level: limited
+expected_citations:
+  - GOVERN
+  - MAP
+  - MEASURE
+  - MANAGE
+must_contain:
+  - NIST
+  - generative
+must_not_contain:
+  - not applicable
+expected_tools:
+  - query_regulation
+tags:
+  - nist
+  - generative
+  - profile

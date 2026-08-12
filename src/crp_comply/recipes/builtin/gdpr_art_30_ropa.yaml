@@ -1,0 +1,132 @@
+recipe_id: gdpr_art_30_ropa
+title: GDPR — Record of Processing Activities (Art. 30)
+regulation: GDPR — Regulation (EU) 2016/679
+version: "1.0"
+description: >-
+  Controllers and processors must maintain a written record of
+  processing activities covering the items listed in Art. 30(1) and
+  Art. 30(2). For AI systems, the RoPA entry is also the hinge
+  artefact that feeds the DPIA (Art. 35), the AI-Act FRIA (Art. 27),
+  and the data-governance file (AI Act Art. 10).
+required_inputs:
+  - controller
+  - system_id
+  - processing_purpose
+ckf_queries:
+  - "existing data inventory for this system"
+  - "joint-controllership arrangements if any"
+tools_allowed:
+  - recall_facts
+  - lookup_article
+tags: [gdpr, art30, ropa, data_protection, universal]
+output_format: both
+output_artefacts:
+  - Record of Processing Activities (Art. 30)
+applicability:
+  purpose: >-
+    The RoPA is the foundational data-protection artefact;
+    regulators request it first. For AI systems it also provides
+    the dataset lineage that Art. 10 (AI Act) and Art. 35 (DPIA)
+    both rely on.
+  triggers:
+    - "Before any new processing activity begins"
+    - "On material change to purpose, data, recipients or transfers"
+    - "On request from a supervisory authority"
+  deadline: "Maintained continuously; available on request"
+  actors: [controller, processor]
+  applies_when:
+    - "processes_personal_data"
+  not_applicable_when:
+    - "!processes_personal_data"
+  ask_when_unknown:
+    processes_personal_data:
+      question: "Does the system process personal data as defined by GDPR Art. 4(1)?"
+      context: "Triggers GDPR Art. 30 ROPA and potentially Art. 35 DPIA."
+      priority: high
+      fact_key: processes_personal_data
+      citation: "GDPR Art. 4(1), Art. 30, Art. 35"
+      answer_type: bool
+sections:
+  - id: controller_identification
+    title: 1. Controller / Joint-Controller / Processor Identification
+    word_budget: 200
+    citations: ["Article 30(1)(a)", "Article 30(2)(a)"]
+    applicability:
+      required: true
+    instructions: >-
+      Name and contact of the controller, joint controllers where
+      applicable, DPO, and — for processors — the controllers on
+      whose behalf processing is performed.
+  - id: purposes_and_legal_basis
+    title: 2. Purposes and Legal Basis
+    word_budget: 250
+    citations: ["Article 30(1)(b)", "Article 6", "Article 9"]
+    applicability:
+      required: true
+    instructions: >-
+      Purposes of the processing, the Art. 6 legal basis for each
+      purpose, and Art. 9(2) condition where special-category data
+      are involved.
+  - id: data_subjects_and_categories
+    title: 3. Categories of Data Subjects and Personal Data
+    word_budget: 250
+    citations: ["Article 30(1)(c)"]
+    applicability:
+      required: true
+    instructions: >-
+      Data-subject categories (employees, customers, visitors,
+      etc.) and personal-data categories (identifiers, contact,
+      behavioural, derived features from the AI system, etc.).
+  - id: recipients
+    title: 4. Categories of Recipients
+    word_budget: 150
+    citations: ["Article 30(1)(d)"]
+    instructions: >-
+      Internal recipients, processors, sub-processors, and any
+      third parties (including model providers for AI systems).
+  - id: third_country_transfers
+    title: 5. International Transfers and Safeguards
+    word_budget: 200
+    citations: ["Article 30(1)(e)", "Chapter V"]
+    applicability:
+      skip_when: ["!has_international_transfers"]
+      skip_rationale: >-
+        Skipped because no transfers to third countries or
+        international organisations take place. If this changes,
+        this section must be re-generated.
+    instructions: >-
+      Third countries / international organisations, adequacy
+      decision or Art. 46 safeguard used (SCCs, BCRs), and
+      documentation of the transfer-impact assessment where
+      applicable.
+  - id: retention_periods
+    title: 6. Envisaged Retention Periods
+    word_budget: 150
+    citations: ["Article 30(1)(f)"]
+    instructions: >-
+      Retention periods per data category; criteria where a
+      precise period cannot be stated.
+  - id: technical_organisational_measures
+    title: 7. Technical and Organisational Security Measures
+    word_budget: 250
+    citations: ["Article 30(1)(g)", "Article 32"]
+    applicability:
+      required: true
+    instructions: >-
+      Summary of the Art. 32 measures appropriate to the risk
+      (pseudonymisation, encryption, access control, logging,
+      resilience, testing).
+  - id: ai_specific_lineage
+    title: 8. AI-Specific Dataset Lineage (cross-reference to AI Act Art. 10)
+    word_budget: 200
+    citations: ["AI Act Article 10"]
+    applicability:
+      applies_when: ["is_high_risk"]
+      skip_rationale: >-
+        Skipped because the system is not a high-risk AI system;
+        AI Act Art. 10 data-governance cross-references are not
+        required.
+    instructions: >-
+      Dataset identifiers, sources, curation and labelling steps,
+      and references to the Art. 10 data-governance file so the
+      RoPA entry aligns with the AI Act evidence.

@@ -1,0 +1,23 @@
+case_id: iso42001_statement_of_applicability
+task: |
+  We're preparing for an ISO/IEC 42001:2023 audit. Walk us through what
+  a Statement of Applicability must contain, and which Annex A controls
+  are typically in-scope for an organisation that develops a customer-
+  facing chatbot built on a third-party LLM.
+system_id: chatbot-v1
+customer_id: acme-saas
+expected_risk_level: limited
+expected_citations:
+  - Annex A
+  - 42001
+must_contain:
+  - Statement of Applicability
+  - Annex A
+must_not_contain:
+  - not applicable to chatbots
+expected_tools:
+  - search_iso42001
+tags:
+  - iso42001
+  - soa
+  - audit

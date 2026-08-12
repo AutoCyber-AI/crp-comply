@@ -1,0 +1,132 @@
+recipe_id: eu_ai_act_art_53_gpai_technical_documentation
+title: EU AI Act — GPAI Provider Technical Documentation (Art. 53, Annex XI)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of general-purpose AI models (including GPAI with
+  systemic risk) must draw up and keep up-to-date technical
+  documentation of the model per Annex XI, and make available
+  information to downstream providers who integrate the model into
+  their AI systems per Annex XII.
+required_inputs:
+  - provider
+  - model_id
+  - model_family
+ckf_queries:
+  - "training-data provenance and lawfulness assessment"
+  - "computational resources used for training"
+  - "evaluation results and red-team findings"
+tools_allowed:
+  - recall_facts
+  - lookup_article
+  - lookup_annex
+tags: [ai_act, art53, gpai, annex_xi, annex_xii]
+output_format: both
+output_artefacts:
+  - GPAI Provider Technical Documentation (Art. 53, Annex XI)
+applicability:
+  purpose: >-
+    Article 53 is the cornerstone obligation for GPAI-model
+    providers: without this documentation, downstream integrators
+    cannot meet their own Art. 16 duties, and the provider cannot
+    satisfy supervisory requests from the AI Office.
+  triggers:
+    - "Before placing a GPAI model on the Union market"
+    - "On significant model update"
+    - "Upon AI Office request"
+  deadline: "From 2 August 2025 (Art. 53 application date)"
+  actors: [provider, gpai_provider]
+  applies_when:
+    - "is_gpai"
+  not_applicable_when:
+    - "!is_gpai"
+  ask_when_unknown:
+    is_gpai:
+      question: "Is this a general-purpose AI model (GPAI) under the EU AI Act (Art. 3(63))?"
+      context: "GPAI obligations in Chapter V apply regardless of downstream use."
+      priority: high
+      fact_key: is_gpai
+      citation: "EU AI Act Art. 3(63), Art. 51\u201355"
+      answer_type: bool
+sections:
+  - id: model_identification
+    title: 1. Model Identification — Annex XI §1
+    word_budget: 250
+    citations: ["Annex XI Section 1(1)"]
+    applicability:
+      required: true
+    instructions: >-
+      Name, version, release date, architecture family, parameter
+      count, input/output modalities, context window, licence, and
+      any derivative-restriction terms.
+  - id: intended_tasks_and_integration
+    title: 2. Intended Tasks and Acceptable-Integration Envelope
+    word_budget: 300
+    citations: ["Annex XI Section 1(1)(a)", "Annex XI Section 1(1)(b)"]
+    instructions: >-
+      Describe the tasks the model is intended to perform, the
+      types of AI systems it can be integrated into, acceptable
+      use policy, and known unacceptable uses.
+  - id: training_data_and_governance
+    title: 3. Training, Testing and Validation Data
+    word_budget: 400
+    citations: ["Annex XI Section 1(2)(c)", "Article 53(1)(d)"]
+    applicability:
+      required: true
+    instructions: >-
+      Sufficiently detailed summary of the content used for
+      training (type, provenance, curation, lawfulness under
+      copyright and data-protection law). Reference the public
+      summary required by Art. 53(1)(d) using the Commission
+      template.
+  - id: compute_and_energy
+    title: 4. Computational Resources and Energy Consumption
+    word_budget: 200
+    citations: ["Annex XI Section 1(2)(d)"]
+    instructions: >-
+      Training-time compute (FLOPs / GPU-hours), datacentre
+      regions, estimated energy consumption, and methodology.
+  - id: evaluation_and_testing
+    title: 5. Evaluation, Benchmarks and Adversarial Testing
+    word_budget: 300
+    citations: ["Annex XI Section 2"]
+    instructions: >-
+      Internal and external evaluation methodologies, benchmark
+      results, red-team findings, and any standardised evaluation
+      (e.g. Commission-designated benchmarks).
+  - id: information_for_downstream
+    title: 6. Information Made Available to Downstream Providers — Annex XII
+    word_budget: 300
+    citations: ["Article 53(1)(b)", "Annex XII"]
+    applicability:
+      required: true
+    instructions: >-
+      Public model card or developer documentation covering
+      capabilities, limitations, licensing, and integration
+      guidance sufficient for downstream providers to meet Art. 16.
+  - id: copyright_policy
+    title: 7. Copyright and Text-and-Data-Mining Opt-Out Policy
+    word_budget: 200
+    citations: ["Article 53(1)(c)"]
+    applicability:
+      required: true
+    instructions: >-
+      Policy to respect Union copyright law, including the TDM
+      reservation under Art. 4(3) of Directive (EU) 2019/790,
+      state-of-the-art technology used to identify opt-outs, and
+      governance of rightsholder disputes.
+  - id: systemic_risk_addendum
+    title: 8. Systemic-Risk Addendum — Art. 55 Cross-Reference
+    word_budget: 200
+    citations: ["Article 51", "Article 55"]
+    applicability:
+      applies_when: ["is_gpai_systemic"]
+      skip_rationale: >-
+        Skipped because the model is not classified as a GPAI
+        model with systemic risk (Art. 51). The Art. 55 systemic
+        obligations (red-teaming, risk assessment, incident
+        reporting) therefore do not apply.
+    instructions: >-
+      Cross-reference the systemic-risk mitigation plan, model
+      evaluation against systemic risks, cybersecurity measures,
+      and serious-incident reporting process under Art. 55.

@@ -1,0 +1,25 @@
+case_id: ai_act_medical_triage_high_risk
+task: |
+  We're piloting an AI triage assistant in an EU hospital that suggests
+  the urgency tier (red/orange/green) for incoming emergency-room
+  patients. A nurse always reviews the suggestion before acting. What
+  EU AI Act obligations apply, and which deliverables must we produce
+  before going live?
+system_id: triage-bot-v0
+customer_id: acme-hospital
+expected_risk_level: high
+expected_citations:
+  - Annex III
+  - Article 14
+must_contain:
+  - high-risk
+  - human oversight
+must_not_contain:
+  - prohibited
+  - Article 5
+expected_tools:
+  - classify_ai_act_risk
+tags:
+  - ai_act
+  - high_risk
+  - healthcare

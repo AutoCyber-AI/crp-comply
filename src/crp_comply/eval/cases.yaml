@@ -1,0 +1,205 @@
+# CRP Comply deterministic evaluation cases (Round 18).
+# These cases exercise the core classification and reporting primitives with
+# known inputs so the harness can assert exact or bounded outcomes without a
+# live LLM. New cases should be deterministic — no stochastic LLM calls.
+
+meta:
+  name: CRP Comply Core Evaluation
+  version: "1.0"
+  pass_threshold: 0.95
+
+cases:
+  # ── EU AI Act risk classification ─────────────────────────────────────────
+  - id: euai-general-purpose-default
+    name: General-purpose AI defaults to limited risk
+    task: risk_assessment
+    input:
+      category: general_purpose
+    expect:
+      risk_level: limited
+
+  - id: euai-context-management-minimal
+    name: Context management system is minimal risk
+    task: risk_assessment
+    input:
+      category: context_management
+    expect:
+      risk_level: minimal
+
+  - id: euai-biometric-high-risk
+    name: Biometric system is high risk
+    task: risk_assessment
+    input:
+      category: biometric
+    expect:
+      risk_level: high
+
+  - id: euai-critical-infrastructure-high-risk
+    name: Critical infrastructure system is high risk
+    task: risk_assessment
+    input:
+      category: critical_infrastructure
+    expect:
+      risk_level: high
+
+  - id: euai-employment-high-risk
+    name: Employment scoring system is high risk
+    task: risk_assessment
+    input:
+      category: employment
+    expect:
+      risk_level: high
+
+  - id: euai-education-high-risk
+    name: Education scoring system is high risk
+    task: risk_assessment
+    input:
+      category: education
+    expect:
+      risk_level: high
+
+  - id: euai-law-enforcement-high-risk
+    name: Law enforcement system is high risk
+    task: risk_assessment
+    input:
+      category: law_enforcement
+    expect:
+      risk_level: high
+
+  - id: euai-healthcare-high-risk
+    name: Healthcare system is high risk
+    task: risk_assessment
+    input:
+      category: healthcare
+    expect:
+      risk_level: high
+
+  - id: euai-financial-high-risk
+    name: Financial scoring system is high risk
+    task: risk_assessment
+    input:
+      category: financial
+    expect:
+      risk_level: high
+
+  - id: euai-decision-support-limited
+    name: Decision support without rights impact is limited risk
+    task: risk_assessment
+    input:
+      category: decision_support
+    expect:
+      risk_level: limited
+
+  - id: euai-general-purpose-with-rights-high-risk
+    name: General-purpose system affecting fundamental rights is high risk
+    task: risk_assessment
+    input:
+      category: general_purpose
+      affects_fundamental_rights: true
+      safety_critical: true
+    expect:
+      risk_level: high
+
+  - id: euai-automated-decision-limited
+    name: Automated decision with no personal data is minimal risk
+    task: risk_assessment
+    input:
+      category: automated_decision
+      processes_personal_data: false
+      makes_automated_decisions: true
+    expect:
+      risk_level: minimal
+
+  # ── Compliance reports ────────────────────────────────────────────────────
+  - id: report-includes-eu-ai-act
+    name: Compliance report covers EU AI Act
+    task: compliance_report
+    input: {}
+    expect:
+      frameworks:
+        - eu_ai_act
+      min_score: 0
+      min_controls: 1
+
+  - id: report-includes-iso42001
+    name: Compliance report covers ISO 42001
+    task: compliance_report
+    input: {}
+    expect:
+      frameworks:
+        - iso_42001
+      min_score: 0
+      min_controls: 1
+
+  - id: report-score-positive
+    name: Compliance report produces a non-negative score
+    task: compliance_report
+    input: {}
+    expect:
+      min_score: 0
+      max_score: 100
+      min_controls: 1
+
+  # ── GDPR / DPIA ───────────────────────────────────────────────────────────
+  - id: dpia-required-for-personal-data
+    name: DPIA requires consultation when processing personal data
+    task: dpia
+    input:
+      system_name: HR Hiring Assistant
+      data_subjects: employees
+      processes_personal_data: true
+      makes_automated_decisions: true
+      profiles_individuals: true
+    expect:
+      consultation_required: true
+
+  - id: dpia-not-required-for-public-data
+    name: DPIA is not required for public non-personal data
+    task: dpia
+    input:
+      system_name: Public Stat Bot
+      data_subjects: none
+      processes_personal_data: false
+      makes_automated_decisions: false
+      profiles_individuals: false
+    expect:
+      dpia_required: false
+
+  # ── Technical documentation / transparency ────────────────────────────────
+  - id: technical-docs-has-required-sections
+    name: Technical documentation contains required EU AI Act sections
+    task: technical_documentation
+    input: {}
+    expect:
+      required_sections:
+        - system
+        - intended_purpose
+        - risk_classification
+
+  - id: transparency-has-declaration
+    name: Transparency declaration is non-empty
+    task: transparency_declaration
+    input: {}
+    expect:
+      min_keys: 1
+
+  # ── Cross-framework bundles ───────────────────────────────────────────────
+  - id: high-risk-report-has-mitigations
+    name: High-risk classification produces mitigations
+    task: risk_assessment
+    input:
+      category: healthcare
+      affects_fundamental_rights: true
+    expect:
+      risk_level: high
+      min_mitigations: 1
+
+  - id: high-risk-report-has-residual-risks
+    name: High-risk classification produces residual risks
+    task: risk_assessment
+    input:
+      category: financial
+      affects_fundamental_rights: true
+    expect:
+      risk_level: high
+      min_residual_risks: 1

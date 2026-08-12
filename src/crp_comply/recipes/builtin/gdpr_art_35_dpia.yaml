@@ -1,0 +1,128 @@
+recipe_id: gdpr_art_35_dpia
+title: GDPR — Data Protection Impact Assessment (Art. 35)
+regulation: Regulation (EU) 2016/679 (GDPR)
+version: "1.0"
+description: >-
+  Article 35 GDPR requires a Data Protection Impact Assessment where
+  processing is likely to result in a high risk to the rights and
+  freedoms of natural persons, in particular when using new
+  technologies. AI deployments frequently trigger this requirement
+  and AI Act Art 26(9) explicitly cross-references DPIA obligations.
+required_inputs:
+  - controller
+  - processing_operation
+  - system_id
+  - data_categories
+ckf_queries:
+  - "prior DPIA outcomes for similar processing"
+  - "EDPB guidance relevant to the processing"
+  - "FRIA findings where applicable"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [gdpr, dpia, art35, privacy, data_protection]
+output_format: both
+output_artefacts:
+  - Data Protection Impact Assessment (Art. 35)
+applicability:
+  purpose: >-
+    Demonstrate compliance with Article 35 GDPR when processing is
+    likely to result in a high risk to the rights and freedoms of
+    natural persons — typical for AI systems that use personal data,
+    automated decision-making, or profiling.
+  triggers:
+    - "Before commencing a new processing operation likely to pose high risk"
+    - "When using new technologies (AI)"
+    - "For systematic and extensive profiling or automated decision-making"
+    - "For large-scale special-category data processing"
+  deadline: "Prior to the start of processing (Art 35(1))"
+  actors: [controller]
+  applies_when:
+    - "processes_personal_data"
+  not_applicable_when:
+    - "!processes_personal_data"
+  ask_when_unknown:
+    processes_personal_data:
+      question: "Does the system process personal data as defined by GDPR Art. 4(1)?"
+      context: "DPIA is only required when personal data is processed."
+      priority: high
+      fact_key: processes_personal_data
+      citation: "GDPR Art. 35(1); Art. 4(1)"
+      answer_type: bool
+    processes_special_category_data:
+      question: "Does the system process special-category data (health, biometrics, political opinions, etc.)?"
+      context: "Special-category processing raises the risk threshold under Art. 35(3)(b) and Art. 9."
+      priority: medium
+      fact_key: processes_special_category_data
+      citation: "GDPR Art. 9; Art. 35(3)(b)"
+      answer_type: bool
+    automated_decision_making:
+      question: "Does the system produce decisions with legal or similarly significant effects on individuals (Art. 22 GDPR / Art. 86 AI Act)?"
+      context: "Automated decision-making is a presumptive DPIA trigger under Art. 35(3)(a)."
+      priority: medium
+      fact_key: automated_decision_making
+      citation: "GDPR Art. 35(3)(a); Art. 22"
+      answer_type: bool
+sections:
+  - id: processing_description
+    title: 1. Systematic Description of the Processing
+    word_budget: 400
+    citations: ["Article 35(7)(a)"]
+    instructions: >-
+      A systematic description of the envisaged processing operations
+      and the purposes of the processing, including, where applicable,
+      the legitimate interest pursued by the controller; data
+      categories, sources, flows, retention periods, recipients, and
+      any international transfers.
+  - id: necessity_and_proportionality
+    title: 2. Necessity and Proportionality
+    word_budget: 300
+    citations: ["Article 35(7)(b)", "Article 5", "Article 6"]
+    instructions: >-
+      An assessment of the necessity and proportionality of the
+      processing in relation to the purposes, including the legal
+      basis (Art 6), lawfulness of any special-category processing
+      (Art 9), data-minimisation, storage-limitation and accuracy.
+  - id: risks_to_rights_and_freedoms
+    title: 3. Assessment of Risks to the Rights and Freedoms of Data Subjects
+    word_budget: 400
+    citations: ["Article 35(7)(c)", "Recital 75"]
+    instructions: >-
+      Assess risks of discrimination, identity theft or fraud,
+      financial loss, damage to reputation, loss of confidentiality
+      of data protected by professional secrecy, unauthorised
+      reversal of pseudonymisation, other significant economic or
+      social disadvantage; loss of control over personal data; or
+      prevention of rights exercise. For AI include automated
+      decision-making / profiling risks per Art 22 and EDPB WP251.
+  - id: measures
+    title: 4. Measures to Address the Risks
+    word_budget: 300
+    citations: ["Article 35(7)(d)", "Article 25", "Article 32"]
+    instructions: >-
+      The measures envisaged to address the risks, including
+      safeguards, security measures, and mechanisms to ensure the
+      protection of personal data and demonstrate compliance
+      (DPbD&D Art 25, Art 32 security).
+  - id: consultation_with_dpo_and_data_subjects
+    title: 5. Consultation with DPO and, Where Appropriate, Data Subjects
+    word_budget: 150
+    citations: ["Article 35(2)", "Article 35(9)"]
+    instructions: >-
+      Record advice of the DPO and, where appropriate, the views of
+      data subjects or their representatives.
+  - id: prior_consultation_trigger
+    title: 6. Prior Consultation Trigger (Art 36)
+    word_budget: 150
+    citations: ["Article 36"]
+    instructions: >-
+      State whether the residual high risk triggers prior consultation
+      of the supervisory authority per Art 36 and, if so, the plan.
+  - id: outcome_and_sign_off
+    title: 7. Outcome, Residual Risk Acceptance and Sign-Off
+    word_budget: 150
+    instructions: >-
+      Outcome (proceed / amend / do not proceed), residual-risk
+      acceptance by the controller, signatories, date, review cadence.

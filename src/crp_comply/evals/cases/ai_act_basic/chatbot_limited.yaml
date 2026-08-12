@@ -1,0 +1,21 @@
+case_id: ai_act_chatbot_limited_risk
+task: |
+  We operate a customer-service chatbot on our e-commerce site. It
+  answers product questions and helps track orders. No biometric data,
+  no employment decisions, no critical infrastructure. Classify under
+  EU AI Act and list obligations.
+system_id: helpbot-v1
+customer_id: acme-shop
+expected_risk_level: limited
+expected_citations:
+  - Article 50
+must_contain:
+  - transparency
+  - chatbot
+must_not_contain:
+  - high-risk
+  - prohibited
+tags:
+  - ai_act
+  - limited_risk
+  - chatbot

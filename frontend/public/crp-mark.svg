@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="CRP Comply">
+  <!--
+    CRP Comply mark — a yellow lower-case "C" whose negative space
+    cradles a classical scales-of-justice icon. Designed to render
+    equally well on light and dark backgrounds because the mark uses
+    only the brand yellow (#D4E84A) for every stroke + fill.
+  -->
+  <title>CRP Comply</title>
+
+  <!-- Outer C (thick arc, opening at the right) -->
+  <path
+    d="M 128 24
+       A 104 104 0 1 0 128 232
+       L 128 198
+       A 70 70 0 1 1 128 58
+       Z"
+    fill="#D4E84A"
+  />
+
+  <!-- ═════════ Scales of justice ═════════ -->
+  <g fill="none" stroke="#D4E84A" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Central column -->
+    <line x1="128" y1="82" x2="128" y2="176" stroke-width="7"/>
+    <!-- Top anchor / pommel -->
+    <circle cx="128" cy="80" r="6" fill="#D4E84A" stroke="none"/>
+    <!-- Beam -->
+    <line x1="80" y1="108" x2="176" y2="108" stroke-width="7"/>
+    <!-- Beam hanger knobs -->
+    <circle cx="80" cy="108" r="4.5" fill="#D4E84A" stroke="none"/>
+    <circle cx="176" cy="108" r="4.5" fill="#D4E84A" stroke="none"/>
+    <!-- Base platform -->
+    <line x1="100" y1="176" x2="156" y2="176" stroke-width="7"/>
+    <line x1="108" y1="184" x2="148" y2="184" stroke-width="5"/>
+
+    <!-- Left pan chains -->
+    <line x1="80" y1="110" x2="64" y2="138" stroke-width="3.5"/>
+    <line x1="80" y1="110" x2="96" y2="138" stroke-width="3.5"/>
+    <!-- Right pan chains -->
+    <line x1="176" y1="110" x2="160" y2="138" stroke-width="3.5"/>
+    <line x1="176" y1="110" x2="192" y2="138" stroke-width="3.5"/>
+  </g>
+
+  <!-- Pans (bowls) — filled so they read clearly at small sizes -->
+  <path
+    d="M 58 138
+       Q 80 158 102 138
+       L 96 138
+       Q 80 150 64 138
+       Z"
+    fill="#D4E84A"
+  />
+  <path
+    d="M 154 138
+       Q 176 158 198 138
+       L 192 138
+       Q 176 150 160 138
+       Z"
+    fill="#D4E84A"
+  />
+</svg>

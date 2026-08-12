@@ -1,0 +1,249 @@
+# Triage pattern set for crp_comply.agent.triage
+#
+# Purpose: deterministic O(1) intent / complexity classification
+# **before** the planner LLM runs. See PHASE_7_LANGUAGE_AGENT_LOOP.md
+# §14.4 (the source spec) and §21 7.1 (the no-bypass checklist).
+#
+# Each entry is anchored as a substring/regex match against the
+# lower-cased query. The first matching pattern wins; order matters,
+# so the most specific patterns sit at the top.
+#
+# Required keys:
+#   id          — stable identifier (also used as `reasoning` fragment)
+#   regex       — Python regex, fullmatch=False, IGNORECASE
+#   intent      — one of: define | cite | scope | compare |
+#                 produce_artefact | audit_existing
+#   complexity  — one of: trivial | simple | moderate | complex |
+#                 comprehensive
+#   lane        — one of: cache | fast | slow
+#                 (cache lane is only set programmatically when an
+#                 actual cache hit exists; YAML never sets `cache`.)
+#   confidence  — 0.0–1.0 baseline confidence for this pattern
+#
+# No user input is concatenated into a regex at runtime — patterns
+# are static at module-load (PHASE_7 §21 7.1).
+
+patterns:
+
+  # ── cite / reference (TRIVIAL) ─────────────────────────────────
+  - id: cite_article
+    regex: "(cite|reference|find|show|quote)\\s+(article|annex|recital|section|clause)\\s+(\\d|[ivxlc]+\\b)"
+    intent: cite
+    complexity: trivial
+    lane: fast
+    confidence: 0.95
+
+  - id: what_does_article_say
+    regex: "what does (article|annex|recital|section)\\s+\\d"
+    intent: cite
+    complexity: trivial
+    lane: fast
+    confidence: 0.92
+
+  - id: text_of_article
+    regex: "(text|wording) of (article|annex|recital)\\s+\\d"
+    intent: cite
+    complexity: trivial
+    lane: fast
+    confidence: 0.92
+
+  # ── define (SIMPLE) ────────────────────────────────────────────
+  - id: define_term
+    regex: "(define|definition of|what is|what does .* mean by)\\s+"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.9
+
+  - id: regulation_says_about
+    regex: "(what|how|where) does (the )?(gdpr|eu ai act|ai act|nis2|dora|iso 42001|iso 22989|nist ai rmf|uk ai whitepaper|edpb|oecd) (say|treat|define|cover|address|require)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.9
+
+  - id: meaning_of_term
+    regex: "(meaning|gist|summary) of\\s+"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.85
+
+  # ── scope (MODERATE) ───────────────────────────────────────────
+  - id: am_i_in_scope
+    regex: "am i (in scope|subject to|covered by|caught by|required to comply|obligated)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.9
+
+  - id: are_we_in_scope
+    regex: "(are we|is (my|our) (company|organisation|organization|firm|business)) (in scope|subject to|covered by|required)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.9
+
+  - id: applies_to
+    regex: "(does|do) (the )?(gdpr|ai act|nis2|dora) apply to"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.88
+
+  - id: in_scope_of
+    regex: "(in scope of|fall under|fall within) (the )?(gdpr|ai act|nis2|dora)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.85
+
+  # ── compare (COMPLEX) ──────────────────────────────────────────
+  - id: compare_vs
+    regex: "\\b(vs\\.?|versus)\\b"
+    intent: compare
+    complexity: complex
+    lane: slow
+    confidence: 0.85
+
+  - id: difference_between
+    regex: "(difference|differences|distinction|distinguish) (between|among)"
+    intent: compare
+    complexity: complex
+    lane: slow
+    confidence: 0.88
+
+  - id: compare_regs
+    regex: "(compare|contrast)\\s+(gdpr|ai act|nis2|dora|iso 42001|nist ai rmf)"
+    intent: compare
+    complexity: complex
+    lane: slow
+    confidence: 0.9
+
+  - id: how_does_compare
+    regex: "how (does|do) (the )?(gdpr|ai act|nis2) (compare|differ)"
+    intent: compare
+    complexity: complex
+    lane: slow
+    confidence: 0.88
+
+  # ── produce_artefact (COMPREHENSIVE) ───────────────────────────
+  - id: generate_artefact
+    regex: "(generate|produce|draft|create|write)\\s+(a |an |the )?(dpia|annex iv|conformity declaration|risk assessment|incident report|breach notification|soa|statement of applicability|policy|procedure|sccs|standard contractual clauses|tia|transfer impact assessment|legitimate interests assessment|lia|ai impact assessment|aiia|model card|system card|technical documentation)"
+    intent: produce_artefact
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.95
+
+  - id: build_me_a
+    regex: "(build|prepare|put together)\\s+(a |an |the )?(dpia|annex iv|conformity declaration|risk assessment|policy|procedure)"
+    intent: produce_artefact
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.92
+
+  - id: i_need_a
+    regex: "i need (a |an |the )?(dpia|annex iv|risk assessment|breach notification|policy|procedure|sccs|tia|aiia|model card)"
+    intent: produce_artefact
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.88
+
+  # ── audit_existing (COMPREHENSIVE) ─────────────────────────────
+  - id: audit_review
+    regex: "(audit|review|assess|evaluate|gap.analy[sz]e|gap analysis on)\\s+(my|our|this|the)\\s+(dpia|annex iv|policy|procedure|risk assessment|controls|programme|program|implementation)"
+    intent: audit_existing
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.92
+
+  - id: check_existing
+    regex: "(check|verify|validate)\\s+(my|our|this|the)\\s+(dpia|policy|procedure|annex iv)"
+    intent: audit_existing
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.88
+
+  - id: are_we_compliant
+    regex: "(are we|am i) (compliant|compliant with)"
+    intent: audit_existing
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.88
+
+  - id: gap_analysis
+    regex: "(do|run|perform)\\s+(a )?gap analysis"
+    intent: audit_existing
+    complexity: comprehensive
+    lane: slow
+    confidence: 0.9
+
+  # ── obligations / requirements (MODERATE) ──────────────────────
+  - id: what_are_obligations
+    regex: "what (are|is) (my|our|the) (obligation|obligations|requirement|requirements|duty|duties)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.85
+
+  - id: what_must_we_do
+    regex: "what (must|do we have to|do i have to|should we|should i) (do|comply|implement)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.82
+
+  - id: how_to_comply
+    regex: "how (do|to) (we |i )?(comply|conform|meet)\\s+with"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.85
+
+  # ── deadlines / timelines (SIMPLE) ─────────────────────────────
+  - id: deadline
+    regex: "(deadline|by when|when must|when do we have|effective date|enters into force)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.85
+
+  # ── penalty / fine (SIMPLE) ────────────────────────────────────
+  - id: penalty_fine
+    regex: "(penalty|penalties|fine|fines|sanction|sanctions)\\s+(for|under)\\s+(the )?(gdpr|ai act|nis2|dora)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.85
+
+  # ── lawful basis / Article 6 (SIMPLE) ──────────────────────────
+  - id: lawful_basis
+    regex: "(lawful basis|legal basis|article 6|legitimate interest|legitimate interests)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.85
+
+  # ── data subject rights (SIMPLE) ───────────────────────────────
+  - id: dsr
+    regex: "(data subject right|dsar|right to (access|erasure|portability|object|rectification)|subject access request)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.85
+
+  # ── high-risk AI classification (MODERATE) ─────────────────────
+  - id: high_risk_ai
+    regex: "(high.risk ai|annex iii|prohibited ai|gpai|general.purpose ai)"
+    intent: scope
+    complexity: moderate
+    lane: slow
+    confidence: 0.85
+
+  # ── controllers vs processors (SIMPLE) ─────────────────────────
+  - id: controller_processor
+    regex: "(controller|processor|joint controller|sub.?processor)\\s+(definition|role|under|in)"
+    intent: define
+    complexity: simple
+    lane: fast
+    confidence: 0.82

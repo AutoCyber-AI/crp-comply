@@ -1,0 +1,132 @@
+recipe_id: eu_ai_act_art_10_data_governance
+title: EU AI Act — Data and Data Governance (Art. 10)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of high-risk AI systems that use techniques involving the
+  training of models with data must ensure training, validation and
+  testing data sets meet the quality criteria of Article 10. This
+  recipe produces the Data Governance and Quality Statement.
+required_inputs:
+  - provider
+  - system_id
+  - training_data_sources
+  - intended_purpose
+ckf_queries:
+  - "prior data governance decisions for this system"
+  - "known bias findings in training data"
+  - "data provenance and lawful-basis declarations"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, data_governance, art10, high_risk, data_quality]
+output_format: both
+output_artefacts:
+  - Data and Data Governance (Art. 10)
+applicability:
+  purpose: >-
+    High-risk AI systems trained on data must meet Art 10 quality and
+    governance criteria. This statement evidences the provider's
+    practices, bias examinations, and any special-category processing.
+  triggers:
+    - "Before training a high-risk AI system"
+    - "Upon dataset refresh or substantial modification"
+  deadline: "Prior to placing the system on the market"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: data_governance_practices
+    title: 1. Data Governance and Management Practices
+    word_budget: 300
+    citations: ["Article 10(2)"]
+    instructions: >-
+      Describe the data-governance and management practices applied to
+      training, validation and testing datasets, covering: design
+      choices, data-collection processes and origin, purpose of the
+      original collection (for personal data), pre-processing
+      operations (annotation, labelling, cleaning, updating, enrichment
+      and aggregation), formulation of assumptions, and prior
+      assessment of availability, quantity and suitability.
+  - id: bias_examination
+    title: 2. Examination for Bias
+    word_budget: 300
+    citations: ["Article 10(2)(f)", "Article 10(2)(g)"]
+    instructions: >-
+      Describe the examination of datasets for possible biases likely
+      to affect health, safety or fundamental rights, or to lead to
+      prohibited discrimination. Describe the mitigations adopted.
+  - id: representativeness_and_errors
+    title: 3. Representativeness, Relevance, Error Checks
+    word_budget: 250
+    citations: ["Article 10(3)"]
+    instructions: >-
+      Training, validation and testing datasets shall be relevant,
+      sufficiently representative, and to the best extent possible
+      free of errors and complete in view of the intended purpose.
+      Describe the checks performed and any remedial actions.
+  - id: statistical_properties
+    title: 4. Statistical Properties and Characteristics
+    word_budget: 200
+    citations: ["Article 10(3)"]
+    instructions: >-
+      Record the statistical properties of the datasets, including
+      those concerning the persons or groups on which the high-risk
+      AI system is intended to be used.
+  - id: geographical_behavioural_context
+    title: 5. Geographical, Behavioural or Functional Setting
+    word_budget: 200
+    citations: ["Article 10(4)"]
+    instructions: >-
+      To the extent required by the intended purpose, datasets take
+      into account the characteristics or elements particular to the
+      specific geographical, contextual, behavioural or functional
+      setting within which the system is intended to be used.
+  - id: special_categories
+    title: 6. Processing of Special Categories of Personal Data
+    word_budget: 250
+    citations: ["Article 10(5)", "Article 10(6)"]
+    instructions: >-
+      Where strictly necessary for bias detection and correction, the
+      processing of special-category data under Art 10(5) is permitted
+      subject to safeguards (pseudonymisation, access controls,
+      documentation). Record those safeguards or state that no such
+      processing occurs.
+  - id: data_quality_kpis
+    title: 7. Data Quality KPIs and Review Cadence
+    word_budget: 150
+    citations: ["Article 10(2)(c)", "Article 10(3)"]
+    instructions: >-
+      Declare the measurable data-quality KPIs (completeness, label
+      quality, duplication, freshness), their thresholds, and the
+      review cadence tying into Art 72 post-market monitoring.
+  - id: sign_off
+    title: 8. Sign-Off and Evidence Index
+    word_budget: 100
+    instructions: >-
+      Name the accountable signatory (Data Governance Lead / DPO),
+      date, and reference the Annex-IV evidence index entries that
+      carry the underlying dataset cards and experiment logs.

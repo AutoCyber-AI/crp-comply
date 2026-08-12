@@ -1,0 +1,127 @@
+recipe_id: eu_ai_act_art_73_serious_incident_report
+title: EU AI Act — Serious Incident Report (Art. 73)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of high-risk AI systems placed on the Union market shall
+  report any serious incident to the market surveillance authorities
+  of the Member States where that incident occurred. This recipe
+  produces the serious-incident report consistent with Article 73.
+required_inputs:
+  - provider
+  - system_id
+  - incident_reference
+  - member_states_affected
+ckf_queries:
+  - "incident timeline and evidence"
+  - "affected deployers and users"
+  - "prior incidents of the same class"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, incident_reporting, art73, high_risk, post_market]
+output_format: both
+output_artefacts:
+  - Serious Incident Report (Art. 73)
+applicability:
+  purpose: >-
+    When a serious incident occurs with a high-risk AI system on the
+    market, the provider must report it to the market surveillance
+    authorities within strict deadlines. This recipe produces the
+    report package.
+  triggers:
+    - "Upon becoming aware of a serious incident (Art 3(49))"
+  deadline: "≤ 15 days (general); ≤ 2 days (widespread/infrastructure); ≤ 10 days (death)"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+sections:
+  - id: incident_classification
+    title: 1. Incident Classification
+    word_budget: 200
+    citations: ["Article 3(49)", "Article 73(1)"]
+    instructions: >-
+      Classify the incident against the Art 3(49) definition — death
+      or serious harm to a person; serious and irreversible
+      disruption of the management / operation of critical
+      infrastructure; infringement of Union law intended to protect
+      fundamental rights; or serious harm to property or the
+      environment.
+  - id: timing_obligations
+    title: 2. Timing of the Report
+    word_budget: 200
+    citations: ["Article 73(2)", "Article 73(3)", "Article 73(4)"]
+    instructions: >-
+      Confirm the timing: initial report immediately after the
+      provider has established a causal link or reasonable likelihood
+      of such a link, and not later than 15 days after becoming
+      aware of the incident; within 2 days for widespread
+      infringements or critical-infrastructure incidents; within 10
+      days for events resulting in death.
+  - id: incident_description
+    title: 3. Description of the Incident
+    word_budget: 400
+    citations: ["Article 73(1)"]
+    instructions: >-
+      Provide the factual description: date/time, location(s),
+      deployer involved, users affected, system version, inputs and
+      outputs relevant to the event, nature and severity of the harm.
+  - id: causal_analysis
+    title: 4. Causal Analysis and Contributing Factors
+    word_budget: 300
+    citations: ["Article 73(6)"]
+    instructions: >-
+      Provide the necessary investigation and the causal analysis,
+      including contributing factors (data, model, integration,
+      operator, environmental). State whether the provider has
+      established a causal link or reasonable likelihood of a link
+      between the system and the incident.
+  - id: corrective_actions
+    title: 5. Corrective Actions Taken and Planned
+    word_budget: 250
+    citations: ["Article 73(6)", "Article 20"]
+    instructions: >-
+      Describe immediate containment, deployer notifications, any
+      suspension of use, and the corrective actions per Art 20.
+  - id: authority_coordination
+    title: 6. Coordination with Authorities
+    word_budget: 150
+    citations: ["Article 73(7)", "Article 73(8)"]
+    instructions: >-
+      Identify the market surveillance authorities notified and
+      coordinate with other relevant authorities (e.g. sectoral or
+      data-protection supervisory authorities) where applicable.
+  - id: records_and_links
+    title: 7. Records, Evidence Index, and Cross-References
+    word_budget: 150
+    instructions: >-
+      List the evidence preserved (logs, Art 12 records, model
+      snapshots, testing reports) and cross-reference any FRIA,
+      Annex IV tech-docs updates, and post-market-monitoring entries.
+  - id: sign_off
+    title: 8. Signatory and Submission Log
+    word_budget: 80
+    instructions: Signatory, date, submission IDs per authority.

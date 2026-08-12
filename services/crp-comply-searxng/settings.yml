@@ -1,0 +1,228 @@
+# crp-comply-searxng settings.
+#
+# This file is the single source of truth for engine selection,
+# safety, and output format. It is checked into git and shipped
+# into the image via Dockerfile COPY. No environment variable
+# overrides this file — auditors see exactly what shipped.
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "crp-comply-searxng"
+  privacypolicy_url: ""
+  donation_url: ""
+  contact_url: ""
+  enable_metrics: true   # /stats for Prometheus scraping by main API.
+
+brand:
+  new_issue_url: ""
+  docs_url: ""
+  public_instances: ""
+  wiki_url: ""
+  issue_url: ""
+
+search:
+  safe_search: 1
+  autocomplete: "duckduckgo"
+  default_lang: "en"
+  ban_time_on_fail: 5
+  max_ban_time_on_fail: 120
+  formats:
+    - html
+    - json     # JSON enabled — only crp-comply-search calls us, on the private network.
+  max_page: 5
+
+server:
+  # Bind on the Railway private network only. The Railway service
+  # MUST NOT have public networking enabled.
+  bind_address: "0.0.0.0"
+  port: 8080
+  secret_key: "change-me-at-deploy-time"  # overridden by SEARXNG_SECRET_KEY env var
+  base_url: ""  # auto-detected; empty string means SearXNG uses the request Host header
+  image_proxy: false
+  http_protocol_version: "1.0"
+  method: "POST"
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
+
+ui:
+  static_use_hash: true
+  default_locale: "en"
+  query_in_title: false
+  infinite_scroll: false
+  center_alignment: false
+  default_theme: "simple"
+  theme_args:
+    simple_style: "auto"
+  search_on_category_select: false
+  hotkeys: "default"
+  url_formatting: "pretty"
+
+outgoing:
+  request_timeout: 6.0
+  max_request_timeout: 12.0
+  pool_connections: 100
+  pool_maxsize: 20
+  enable_http2: true
+
+valkey:
+  url: false  # overridden at runtime by SEARXNG_REDIS_URL env var; SearXNG 2026.x uses 'valkey' key
+
+# ---------- Plugins ----------
+# Stock plugins we explicitly enable / disable.
+enabled_plugins:
+  - "Hash plugin"
+  - "Tracker URL remover"
+  - "Hostnames plugin"
+  - "Unit converter plugin"
+  - "CRP Query Router"
+  - "CRP Learning Reranker"
+
+disabled_plugins:
+  - "Self Information"
+  - "Search on category select"
+
+hostnames:
+  # Compliance-grade hostnames policy: hard-block social/UGC noise.
+  remove:
+    - '(.*\.)?reddit\.com$'
+    - '(.*\.)?twitter\.com$'
+    - '(.*\.)?x\.com$'
+    - '(.*\.)?facebook\.com$'
+    - '(.*\.)?instagram\.com$'
+    - '(.*\.)?tiktok\.com$'
+    - '(.*\.)?pinterest\..*$'
+    - '(.*\.)?quora\.com$'
+    - '(.*\.)?medium\.com$'
+    - '(.*\.)?substack\.com$'
+  high_priority:
+    - '(.*\.)?eur-lex\.europa\.eu$'
+    - '(.*\.)?europa\.eu$'
+    - '(.*\.)?edpb\.europa\.eu$'
+    - '(.*\.)?ico\.org\.uk$'
+    - '(.*\.)?cnil\.fr$'
+    - '(.*\.)?aepd\.es$'
+    - '(.*\.)?garanteprivacy\.it$'
+    - '(.*\.)?bfdi\.bund\.de$'
+    - '(.*\.)?gov\.uk$'
+    - '(.*\.)?nist\.gov$'
+    - '(.*\.)?cisa\.gov$'
+    - '(.*\.)?iso\.org$'
+    - '(.*\.)?bailii\.org$'
+    - '(.*\.)?curia\.europa\.eu$'
+
+# ---------- Engines ----------
+# Lean curated list. No image / video / files / music / social engines.
+engines:
+  # General web.
+  - name: bing
+    disabled: false
+    timeout: 6.0
+  - name: duckduckgo
+    disabled: false
+    timeout: 6.0
+  - name: mojeek
+    disabled: false
+    timeout: 6.0
+  - name: brave
+    disabled: false
+    timeout: 6.0
+    # No API key — uses brave's HTML interface; safe to leave on.
+
+  # Reference / structured.
+  - name: wikipedia
+    disabled: false
+  # wikidata: query.wikidata.org returns HTTP 403 to Railway's egress IPs
+  # (rate-banned shared cloud range), which causes engine init to fail and
+  # spam the logs. Wikipedia covers the same lookup surface for compliance
+  # queries — keep wikidata off until we can route through a proxy.
+  - name: wikidata
+    disabled: true
+  - name: arxiv
+    disabled: false
+    categories: ["science", "compliance"]
+  - name: pubmed
+    disabled: false
+    categories: ["science", "compliance"]
+  - name: crossref
+    disabled: false
+    categories: ["science", "compliance"]
+  - name: github
+    disabled: false
+    categories: ["it", "compliance"]
+  - name: stackoverflow
+    disabled: false
+    categories: ["it"]
+
+  # CRP custom engines (authority sources).
+  # Engine names must not contain underscores (SearXNG 2026.x rule).
+  # engine: field references the flat filename under searx/engines/.
+  - name: eur-lex
+    engine: crp_eur_lex
+    shortcut: eul
+    categories: ["compliance", "case_law", "regulation_text"]
+    timeout: 8.0
+    disabled: false
+
+  - name: edpb
+    engine: crp_edpb
+    shortcut: edpb
+    categories: ["compliance", "guidance"]
+    timeout: 8.0
+    disabled: false
+
+  - name: bailii
+    engine: crp_bailii
+    shortcut: bail
+    categories: ["compliance", "case_law"]
+    timeout: 8.0
+    disabled: false
+
+  - name: curia
+    engine: crp_curia
+    shortcut: cur
+    categories: ["compliance", "case_law"]
+    timeout: 8.0
+    disabled: false
+
+  # Disable default engines we never want active.
+  # ahmia + torch are Tor-only (.onion) — they spam init errors when the
+  # container has no Tor proxy, which is by design. Explicitly off so
+  # `use_default_settings: true` doesn't silently re-enable them.
+  - name: ahmia
+    disabled: true
+  - name: torch
+    disabled: true
+
+categories_as_tabs:
+  general:
+  compliance:
+  science:
+  it:
+
+# ---------- CRP Agent extension ----------
+# Read by our two custom plugins. Versioned so we can invalidate
+# the learning reranker when the policy changes.
+crp_agent:
+  policy_version: 1
+  router:
+    # Intent → preferred engine ordering. The router plugin reads this
+    # plus runtime feedback to decide which engines fire per request.
+    intents:
+      regulation_text: ["eur-lex", curia, bing, duckduckgo, mojeek]
+      case_law:        [curia, bailii, "eur-lex", bing]
+      guidance:        [edpb, "eur-lex", bing, duckduckgo]
+      enforcement:     [edpb, bing, duckduckgo, mojeek]
+      news:            [bing, duckduckgo, mojeek, brave]
+      vendor:          [bing, duckduckgo, github, crossref]
+      general:         [bing, duckduckgo, mojeek, wikipedia]
+    # Per-intent engine fan-out budget.
+    max_engines_per_query: 4
+  reranker:
+    feedback_db: "/var/lib/searxng-crp/feedback.sqlite"
+    decay_half_life_days: 14
+    min_observations: 3

@@ -1,0 +1,85 @@
+name: crp-comply-official
+version: 1
+description: >
+  Default trust-tier profile for compliance and regulatory queries.
+  Boosts official authorities (EU institutions, national DPAs,
+  NIST/ISO/standards bodies, government publications); blocks
+  social-media noise.
+default_freshness: any
+
+tiers:
+  1:  # T1 — official authorities (boost)
+    weight: 1.0
+    domains:
+      - eur-lex.europa.eu
+      - ec.europa.eu
+      - europa.eu
+      - edpb.europa.eu
+      - edps.europa.eu
+      - enisa.europa.eu
+      - ico.org.uk
+      - cnil.fr
+      - garanteprivacy.it
+      - aepd.es
+      - bfdi.bund.de
+      - datenschutz.de
+      - datatilsynet.dk
+      - datatilsynet.no
+      - cnpd.public.lu
+      - dataprotection.ie
+      - knowyourdata.gov
+      - nist.gov
+      - csrc.nist.gov
+      - iso.org
+      - oecd.org
+      - coe.int
+      - un.org
+      - gov.uk
+      - cisa.gov
+      - ftc.gov
+      - whitehouse.gov
+      - ncsc.gov.uk
+      - ofcom.org.uk
+      - icao.int
+  2:  # T2 — vendor primary docs (mid)
+    weight: 0.85
+    domains:
+      - microsoft.com
+      - openai.com
+      - anthropic.com
+      - google.com/policies
+      - aws.amazon.com/compliance
+      - cloud.google.com/security
+      - meta.com
+      - apple.com/legal
+  3:  # T3 — reputable analysis (low boost)
+    weight: 0.75
+    domains:
+      - arxiv.org
+      - acm.org
+      - ieee.org
+      - nature.com
+      - sciencedirect.com
+      - papers.ssrn.com
+      - github.com
+      - law.cornell.edu
+      - eur-lex.europa.eu/eli
+  4:  # T4 — generic (neutral)
+    weight: 0.5
+    domains: []
+
+blocked:
+  - reddit.com
+  - twitter.com
+  - x.com
+  - medium.com
+  - substack.com
+  - facebook.com
+  - linkedin.com
+  - tiktok.com
+  - quora.com
+  - pinterest.com
+  - tumblr.com
+  - youtube.com  # transcripts unverifiable
+  - wikipedia.org
+  - wikiwand.com

@@ -1,0 +1,23 @@
+case_id: gdpr_art22_automated_loan_decision
+task: |
+  We run an EU consumer-lending platform. Loans up to €5k are decided
+  fully automatically by a credit-scoring model, with no human review
+  unless the applicant complains. What are our GDPR obligations and
+  what must we put in the privacy notice?
+system_id: loan-decisioner-v2
+customer_id: acme-finance
+expected_risk_level: high
+expected_citations:
+  - Article 22
+  - Article 13
+must_contain:
+  - automated decision
+  - human intervention
+must_not_contain:
+  - not regulated
+expected_tools:
+  - lookup_gdpr
+tags:
+  - gdpr
+  - automated_decision
+  - finance

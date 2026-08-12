@@ -1,0 +1,18 @@
+case_id: ai_act_social_scoring_prohibited
+task: |
+  A government agency wants to deploy a general-purpose social scoring
+  system that ranks citizens by trustworthiness based on their online
+  behaviour. Advise on EU AI Act classification.
+system_id: social-score-v1
+customer_id: gov-xx
+expected_risk_level: unacceptable
+expected_citations:
+  - Article 5
+must_contain:
+  - prohibited
+  - social scoring
+must_not_contain:
+  - high-risk classification acceptable
+tags:
+  - ai_act
+  - prohibited

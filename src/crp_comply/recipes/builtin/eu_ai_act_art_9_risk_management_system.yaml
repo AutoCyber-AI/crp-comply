@@ -1,0 +1,150 @@
+recipe_id: eu_ai_act_art_9_risk_management_system
+title: EU AI Act — Risk Management System (Art. 9)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers of high-risk AI systems must establish, implement, document
+  and maintain a risk management system that runs throughout the entire
+  lifecycle of the system per Article 9. This recipe produces the
+  end-to-end RMS file: identification, estimation, evaluation, and
+  adoption of risk-management measures, plus the testing regime.
+required_inputs:
+  - provider
+  - system_id
+  - intended_purpose
+  - annex_iii_row
+ckf_queries:
+  - "prior risk assessments for this system"
+  - "known-hazard list for domain and deployment context"
+  - "residual risks accepted on previous version"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - classify_ai_act_risk
+  - recall_facts
+  - lookup_article
+  - lookup_annex
+tags: [ai_act, risk_management, art9, high_risk, lifecycle]
+output_format: both
+output_artefacts:
+  - Risk Management System (Art. 9)
+applicability:
+  purpose: >-
+    A continuous, iterative Risk Management System is the core
+    safety artefact that underpins every other Chapter III §2
+    requirement. Providers cannot place a high-risk AI system on the
+    market without it.
+  triggers:
+    - "Throughout the entire lifecycle of a high-risk AI system"
+    - "Upon material change, new incident, or post-market finding"
+  deadline: "Before market placement; reviewed throughout lifecycle"
+  actors: [provider]
+  applies_when:
+    - "actor=provider"
+    - "is_high_risk"
+  not_applicable_when:
+    - "actor=deployer"
+    - "actor=distributor"
+    - "actor=importer"
+    - "system_category=minimal_risk"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    system_category:
+      question: "How is the system classified \u2014 high_risk, limited_risk, minimal_risk, prohibited,\
+  \ gpai, or gpai_systemic?"
+      context: "Risk category gates the obligation set; prohibited and minimal_risk exit most pipelines."
+      priority: high
+      fact_key: system_category
+      citation: "EU AI Act Art. 5, 6, 50; Annex III"
+      answer_type: choice
+      options: [high_risk, limited_risk, minimal_risk, prohibited, gpai, gpai_systemic]
+sections:
+  - id: rms_scope_and_lifecycle
+    title: 1. RMS Scope and Lifecycle Integration
+    word_budget: 250
+    citations: ["Article 9(1)", "Article 9(2)"]
+    instructions: >-
+      State that the risk management system is a continuous, iterative
+      process running through the entire lifecycle (design, data
+      preparation, training, verification, deployment, post-market).
+      Name the owner, review cadence, and integration with the QMS
+      (Art 17) and the post-market monitoring plan (Art 72).
+  - id: hazard_identification
+    title: 2. Identification of Known and Reasonably Foreseeable Risks
+    word_budget: 350
+    citations: ["Article 9(2)(a)"]
+    instructions: >-
+      Enumerate the known and reasonably foreseeable risks the system
+      may pose to health, safety or fundamental rights when used in
+      accordance with its intended purpose. Cover data, algorithmic,
+      operational, integration, and misuse-risk categories.
+  - id: risks_under_misuse
+    title: 3. Risks under Reasonably Foreseeable Misuse
+    word_budget: 200
+    citations: ["Article 9(2)(b)", "Article 9(2)(c)"]
+    instructions: >-
+      Identify risks that may emerge when the system is used outside
+      its intended purpose in reasonably foreseeable ways, including
+      evaluation of data gathered from post-market monitoring.
+  - id: risk_estimation_and_evaluation
+    title: 4. Risk Estimation and Evaluation
+    word_budget: 300
+    citations: ["Article 9(2)(c)", "Article 9(3)"]
+    instructions: >-
+      Describe the estimation and evaluation methodology (likelihood ×
+      severity; qualitative and/or quantitative scales). Only risks
+      that can reasonably be mitigated or eliminated through design or
+      provision of adequate technical information are to be addressed.
+  - id: risk_management_measures
+    title: 5. Risk Management Measures Adopted
+    word_budget: 400
+    citations: ["Article 9(5)", "Article 9(6)"]
+    instructions: >-
+      Describe the risk-management measures adopted. In order: (a)
+      elimination or reduction through design; (b) mitigation &
+      control; (c) provision of required information and, where
+      appropriate, training to deployers. Link each measure to
+      Articles 10–15 where it also serves those requirements.
+  - id: testing_regime
+    title: 6. Testing Regime
+    word_budget: 300
+    citations: ["Article 9(6)", "Article 9(7)", "Article 9(8)"]
+    instructions: >-
+      Document the testing procedures used to identify the most
+      appropriate measures. Specify metrics, probabilistic thresholds,
+      test datasets, and whether any testing in real-world conditions
+      under Art 60 was performed. Confirm tests were performed prior
+      to placing on the market.
+  - id: vulnerable_group_consideration
+    title: 7. Consideration of Vulnerable Groups and Children
+    word_budget: 200
+    citations: ["Article 9(9)"]
+    instructions: >-
+      Where the system is likely to be accessed by or have an impact
+      on persons under 18 or other vulnerable groups, state the
+      specific measures taken in the risk management system to protect
+      them.
+  - id: residual_risks_and_sign_off
+    title: 8. Residual Risks, Sign-Off, and Review Triggers
+    word_budget: 200
+    citations: ["Article 9(5)", "Article 9(2)"]
+    instructions: >-
+      Record the residual risks judged acceptable, the accountable
+      signatory, the date, and the trigger conditions for the next
+      RMS review (material change, new incident, post-market finding).

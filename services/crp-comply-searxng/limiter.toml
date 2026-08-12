@@ -1,0 +1,31 @@
+# Politeness limiter. Because crp-comply-searxng is private and only
+# called by crp-comply-search on Railway's internal network, we keep
+# the per-IP limit generous; the per-engine politeness windows still
+# apply to outgoing requests so we don't hammer upstream search engines.
+#
+# [real_ip] block removed — deprecated in SearXNG 2026.x.
+# Replaced by botdetection.trusted_proxies / ipv4_prefix / ipv6_prefix.
+
+[botdetection]
+# All callers arrive through Railway's internal network — single hop.
+trusted_proxies = ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "fd00::/8", "fe80::/10"]
+ipv4_prefix = 32
+ipv6_prefix = 56
+
+[botdetection.ip_limit]
+# Effectively disabled for the trusted private caller.
+filter_link_local = false
+link_token = false
+
+[botdetection.ip_lists]
+# crp-comply-search reaches us through Railway's internal DNS. We accept
+# all RFC1918 + Railway internal ranges here; the Railway service itself
+# MUST NOT enable public networking.
+pass_ip = [
+  "10.0.0.0/8",
+  "172.16.0.0/12",
+  "192.168.0.0/16",
+  "fd00::/8",
+  "fe80::/10",
+]
+block_ip = []

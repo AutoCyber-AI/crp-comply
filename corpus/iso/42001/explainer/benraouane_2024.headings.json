@@ -1,0 +1,1135 @@
+{
+  "source_file": "benraouane_2024.md",
+  "source_kind": "third-party-commentary",
+  "copyright": "© 2024 Sid Ahmed Benraouane. Published by Routledge / Taylor & Francis Group, LLC. ISBN 978-1-032-73397-5. This index contains structural headings only — no book prose. Do NOT reproduce body text; cite by section path only.",
+  "heading_count": 161,
+  "headings": [
+    {
+      "level": 1,
+      "title": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems",
+      "line": 1,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems",
+      "hash": "997e02253d22"
+    },
+    {
+      "level": 3,
+      "title": "Understanding Generative AI",
+      "line": 125,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems > Understanding Generative AI",
+      "hash": "0d8bd6bbdbe2"
+    },
+    {
+      "level": 3,
+      "title": "The Promise and Perils of Generative AI",
+      "line": 193,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems > Understanding Generative AI > The Promise and Perils of Generative AI",
+      "hash": "d3365c5a5ed8"
+    },
+    {
+      "level": 3,
+      "title": "Responsible Development and Deployment",
+      "line": 203,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems > Understanding Generative AI > Responsible Development and Deployment",
+      "hash": "ae1f960c1483"
+    },
+    {
+      "level": 3,
+      "title": "The Generative AI Era",
+      "line": 235,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems > Understanding Generative AI > The Generative AI Era",
+      "hash": "c4791b586fcc"
+    },
+    {
+      "level": 3,
+      "title": "Conclusion",
+      "line": 261,
+      "section_path": "AI Management System Certification According to the ISO/IEC 42001 Standard---How to Audit, Certify, and Build Responsible AI Systems > Understanding Generative AI > Conclusion",
+      "hash": "89db2ad881f2"
+    },
+    {
+      "level": 1,
+      "title": "Table of Contents",
+      "line": 297,
+      "section_path": "Table of Contents",
+      "hash": "a9360e0212a4"
+    },
+    {
+      "level": 1,
+      "title": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation",
+      "line": 555,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation",
+      "hash": "a938ea092d93"
+    },
+    {
+      "level": 2,
+      "title": "Chapter 1: Artificial Intelligence: A Transformational Technology",
+      "line": 565,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology",
+      "hash": "1a4bd40d6983"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 589,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Definition of AI",
+      "line": 599,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Definition of AI",
+      "hash": "199062c80eff"
+    },
+    {
+      "level": 3,
+      "title": "Different Types of AI",
+      "line": 613,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Different Types of AI",
+      "hash": "3506ced9f93d"
+    },
+    {
+      "level": 3,
+      "title": "Artificial Narrow Intelligence (ANI)",
+      "line": 621,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Artificial Narrow Intelligence (ANI)",
+      "hash": "23dd93751f2d"
+    },
+    {
+      "level": 3,
+      "title": "Artificial General Intelligence (AGI)",
+      "line": 627,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Artificial General Intelligence (AGI)",
+      "hash": "8ad3af570f41"
+    },
+    {
+      "level": 3,
+      "title": "Artificial Super Intelligence (ASI)",
+      "line": 631,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 1: Artificial Intelligence: A Transformational Technology > Artificial Super Intelligence (ASI)",
+      "hash": "1f8400e939a1"
+    },
+    {
+      "level": 2,
+      "title": "Chapter 2: Generative AI: A \"Spark from AGI\"",
+      "line": 635,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\"",
+      "hash": "dd7b189e9122"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 661,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "What Is Generative AI",
+      "line": 665,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > What Is Generative AI",
+      "hash": "89cb8b1a21cc"
+    },
+    {
+      "level": 3,
+      "title": "Generative AI Added Value and Economic Sectors Impacted",
+      "line": 688,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Added Value and Economic Sectors Impacted",
+      "hash": "5059a9f1818f"
+    },
+    {
+      "level": 3,
+      "title": "Generative AI Harm, Risk, and Cost",
+      "line": 710,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost",
+      "hash": "eb7854461817"
+    },
+    {
+      "level": 4,
+      "title": "Emerging (and Unknown) Abilities",
+      "line": 714,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost > Emerging (and Unknown) Abilities",
+      "hash": "c6e184c94b22"
+    },
+    {
+      "level": 4,
+      "title": "Harmful Content",
+      "line": 718,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost > Harmful Content",
+      "hash": "2623fe2e3733"
+    },
+    {
+      "level": 4,
+      "title": "Privacy and Data Protection",
+      "line": 722,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost > Privacy and Data Protection",
+      "hash": "7454f2f3120a"
+    },
+    {
+      "level": 4,
+      "title": "Cybersecurity Threat",
+      "line": 726,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost > Cybersecurity Threat",
+      "hash": "252e10d5d08d"
+    },
+    {
+      "level": 4,
+      "title": "Hallucinations",
+      "line": 730,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 2: Generative AI: A \"Spark from AGI\" > Generative AI Harm, Risk, and Cost > Hallucinations",
+      "hash": "51e5f9cee928"
+    },
+    {
+      "level": 2,
+      "title": "Chapter 3: Economic Impact of Artificial Intelligence",
+      "line": 759,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence",
+      "hash": "561c1704e45c"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 787,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Economic Sectors That Will Be Impacted by AI",
+      "line": 801,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI",
+      "hash": "ad54be7622a6"
+    },
+    {
+      "level": 4,
+      "title": "The Manufacturing Sector",
+      "line": 805,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > The Manufacturing Sector",
+      "hash": "a84a413d1a33"
+    },
+    {
+      "level": 4,
+      "title": "The Finance Sector",
+      "line": 809,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > The Finance Sector",
+      "hash": "7fe54907fbff"
+    },
+    {
+      "level": 4,
+      "title": "The Transportation Industry",
+      "line": 813,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > The Transportation Industry",
+      "hash": "56b78a11f993"
+    },
+    {
+      "level": 4,
+      "title": "National Security and Law Enforcement Sector",
+      "line": 817,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > National Security and Law Enforcement Sector",
+      "hash": "815dc515e840"
+    },
+    {
+      "level": 4,
+      "title": "The Healthcare Sector",
+      "line": 823,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > The Healthcare Sector",
+      "hash": "823d4c682d67"
+    },
+    {
+      "level": 4,
+      "title": "The Cybersecurity Sector",
+      "line": 827,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Economic Sectors That Will Be Impacted by AI > The Cybersecurity Sector",
+      "hash": "a814bf6a84ab"
+    },
+    {
+      "level": 3,
+      "title": "Strategy Implications: The Current State of AI Adoption",
+      "line": 835,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Strategy Implications: The Current State of AI Adoption",
+      "hash": "9a9d8fa6ca7d"
+    },
+    {
+      "level": 4,
+      "title": "AI in Automation: RPA",
+      "line": 841,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Strategy Implications: The Current State of AI Adoption > AI in Automation: RPA",
+      "hash": "f2534cf84ea0"
+    },
+    {
+      "level": 4,
+      "title": "AI in Prediction: Gaining Cognitive Insight",
+      "line": 847,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Strategy Implications: The Current State of AI Adoption > AI in Prediction: Gaining Cognitive Insight",
+      "hash": "793c9562207d"
+    },
+    {
+      "level": 4,
+      "title": "AI and Cognitive Engagement: Enhancing Customer Relationship Management",
+      "line": 857,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Strategy Implications: The Current State of AI Adoption > AI and Cognitive Engagement: Enhancing Customer Relationship Management",
+      "hash": "3376a475ca74"
+    },
+    {
+      "level": 3,
+      "title": "AI and Robotics",
+      "line": 863,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > AI and Robotics",
+      "hash": "ea153994423c"
+    },
+    {
+      "level": 4,
+      "title": "Industrial Robotics and AI",
+      "line": 873,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > AI and Robotics > Industrial Robotics and AI",
+      "hash": "bb4b761404a1"
+    },
+    {
+      "level": 4,
+      "title": "Medical Robots",
+      "line": 877,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > AI and Robotics > Medical Robots",
+      "hash": "53919973b9d2"
+    },
+    {
+      "level": 4,
+      "title": "Military Robots and AI",
+      "line": 881,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > AI and Robotics > Military Robots and AI",
+      "hash": "38fa3817a9d6"
+    },
+    {
+      "level": 3,
+      "title": "Impact of Automation on Society: How Will Society React to AI and Automation?",
+      "line": 912,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Impact of Automation on Society: How Will Society React to AI and Automation?",
+      "hash": "b025645e7c0b"
+    },
+    {
+      "level": 4,
+      "title": "Scenario One: Society Will Accept AI",
+      "line": 920,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Impact of Automation on Society: How Will Society React to AI and Automation? > Scenario One: Society Will Accept AI",
+      "hash": "11d9ac34b6ef"
+    },
+    {
+      "level": 4,
+      "title": "Scenario Two: Society Will Reject AI",
+      "line": 924,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Impact of Automation on Society: How Will Society React to AI and Automation? > Scenario Two: Society Will Reject AI",
+      "hash": "ec05e856f359"
+    },
+    {
+      "level": 4,
+      "title": "Scenario Three: Society Will Accept Automation",
+      "line": 928,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > Impact of Automation on Society: How Will Society React to AI and Automation? > Scenario Three: Society Will Accept Automation",
+      "hash": "3496b27b5e13"
+    },
+    {
+      "level": 3,
+      "title": "The Jobs AI Will Create",
+      "line": 932,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > The Jobs AI Will Create",
+      "hash": "879213581efa"
+    },
+    {
+      "level": 4,
+      "title": "Trainer",
+      "line": 938,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > The Jobs AI Will Create > Trainer",
+      "hash": "9f085ee951ec"
+    },
+    {
+      "level": 4,
+      "title": "Explainer",
+      "line": 942,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > The Jobs AI Will Create > Explainer",
+      "hash": "cccedca5062f"
+    },
+    {
+      "level": 4,
+      "title": "Sustainer",
+      "line": 946,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > The Jobs AI Will Create > Sustainer",
+      "hash": "fcf609d8a59c"
+    },
+    {
+      "level": 4,
+      "title": "Countries' AI National Strategy",
+      "line": 952,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 3: Economic Impact of Artificial Intelligence > The Jobs AI Will Create > Countries' AI National Strategy",
+      "hash": "a9d30e53312a"
+    },
+    {
+      "level": 2,
+      "title": "Chapter 4: Digital Transformation: How to Prepare Your Organization for Change",
+      "line": 958,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change",
+      "hash": "c34b50535357"
+    },
+    {
+      "level": 3,
+      "title": "Overview",
+      "line": 960,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Overview",
+      "hash": "d4b1ea5708dd"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 984,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Digital Transformation Framework",
+      "line": 996,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework",
+      "hash": "bcb04d166955"
+    },
+    {
+      "level": 4,
+      "title": "Leadership Commitment: Building Digital Leadership",
+      "line": 1013,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Leadership Commitment: Building Digital Leadership",
+      "hash": "b6971cba1e7c"
+    },
+    {
+      "level": 5,
+      "title": "Toolbox 5 The New Skills of the New Digital World",
+      "line": 1035,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Leadership Commitment: Building Digital Leadership > Toolbox 5 The New Skills of the New Digital World",
+      "hash": "e7437c74eae5"
+    },
+    {
+      "level": 4,
+      "title": "Reskilling and Upskilling",
+      "line": 1051,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Reskilling and Upskilling",
+      "hash": "099788f7b749"
+    },
+    {
+      "level": 4,
+      "title": "Teach Critical Thinking Skills",
+      "line": 1059,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Teach Critical Thinking Skills",
+      "hash": "e6880f45027f"
+    },
+    {
+      "level": 4,
+      "title": "Teach Innovation",
+      "line": 1065,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Teach Innovation",
+      "hash": "1e361a6667e9"
+    },
+    {
+      "level": 4,
+      "title": "Build a Customer-Centricity Capability",
+      "line": 1083,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Build a Customer-Centricity Capability",
+      "hash": "46c11e8befbc"
+    },
+    {
+      "level": 4,
+      "title": "Build an Enterprise Agility",
+      "line": 1107,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Build an Enterprise Agility",
+      "hash": "5a98e9cb9a26"
+    },
+    {
+      "level": 4,
+      "title": "Self-Directed Team to Manage Collaboration",
+      "line": 1119,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Self-Directed Team to Manage Collaboration",
+      "hash": "6d7ff4e65731"
+    },
+    {
+      "level": 4,
+      "title": "Agile Process: Review Your Decision-Making Process",
+      "line": 1129,
+      "section_path": "Part 1: Artificial Intelligence and Generative AI---Forces behind the Digital Transformation > Chapter 4: Digital Transformation: How to Prepare Your Organization for Change > Digital Transformation Framework > Agile Process: Review Your Decision-Making Process",
+      "hash": "49b17d80b776"
+    },
+    {
+      "level": 1,
+      "title": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System",
+      "line": 1139,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System",
+      "hash": "4d73f49ad7a1"
+    },
+    {
+      "level": 2,
+      "title": "Introduction",
+      "line": 1143,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Overview",
+      "line": 1189,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Overview",
+      "hash": "d4b1ea5708dd"
+    },
+    {
+      "level": 3,
+      "title": "Introduction: Why Context Analysis Is Crucial to AI Management System?",
+      "line": 1213,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction: Why Context Analysis Is Crucial to AI Management System?",
+      "hash": "9cb18bdc64c1"
+    },
+    {
+      "level": 3,
+      "title": "What to Include in the Context Analysis",
+      "line": 1272,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > What to Include in the Context Analysis",
+      "hash": "518693f6e28e"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 1736,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "AI Policy: Characteristics and Components",
+      "line": 1850,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Policy: Characteristics and Components",
+      "hash": "fa23b98c0efc"
+    },
+    {
+      "level": 3,
+      "title": "What Should Be in the AI Policy?",
+      "line": 1858,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > What Should Be in the AI Policy?",
+      "hash": "f2a2821d9210"
+    },
+    {
+      "level": 4,
+      "title": "A Statement on the Scope of the Policy, Its Purpose, and What the Policy Intends to Achieve",
+      "line": 1862,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > What Should Be in the AI Policy? > A Statement on the Scope of the Policy, Its Purpose, and What the Policy Intends to Achieve",
+      "hash": "9486b4eb1ccb"
+    },
+    {
+      "level": 4,
+      "title": "Guidelines on the Use of AI in the Organization",
+      "line": 1866,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > What Should Be in the AI Policy? > Guidelines on the Use of AI in the Organization",
+      "hash": "9fe269473e86"
+    },
+    {
+      "level": 4,
+      "title": "Show How AI Management System Integrates with Other Management Systems",
+      "line": 1870,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > What Should Be in the AI Policy? > Show How AI Management System Integrates with Other Management Systems",
+      "hash": "4c1aa47a0c8e"
+    },
+    {
+      "level": 3,
+      "title": "Define the Roles and Responsibilities",
+      "line": 1874,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Define the Roles and Responsibilities",
+      "hash": "8717b1dfefbb"
+    },
+    {
+      "level": 3,
+      "title": "How Do You Create an AI Policy?",
+      "line": 1924,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy?",
+      "hash": "acc7e9950ca1"
+    },
+    {
+      "level": 4,
+      "title": "Form the Team",
+      "line": 1928,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy? > Form the Team",
+      "hash": "7ac244c4da42"
+    },
+    {
+      "level": 4,
+      "title": "Engage with Stakeholders",
+      "line": 1932,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy? > Engage with Stakeholders",
+      "hash": "26e267feca78"
+    },
+    {
+      "level": 4,
+      "title": "Conduct Discovery Sessions and Workshop Meetings with Different Stakeholders",
+      "line": 1936,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy? > Conduct Discovery Sessions and Workshop Meetings with Different Stakeholders",
+      "hash": "cfe6ffdfc668"
+    },
+    {
+      "level": 4,
+      "title": "Review the Laws, Regulations, and Ethical Framework",
+      "line": 1940,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy? > Review the Laws, Regulations, and Ethical Framework",
+      "hash": "9ee94c80aa70"
+    },
+    {
+      "level": 5,
+      "title": "Toolbox 17 How to Gauge Your Leadership Engagement? Ask the Following Five Questions",
+      "line": 1954,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > How Do You Create an AI Policy? > Review the Laws, Regulations, and Ethical Framework > Toolbox 17 How to Gauge Your Leadership Engagement? Ask the Following Five Questions",
+      "hash": "cbc99906a937"
+    },
+    {
+      "level": 3,
+      "title": "AI Strategy",
+      "line": 1968,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy",
+      "hash": "0a08ebd756bd"
+    },
+    {
+      "level": 4,
+      "title": "Step 1: Develop AI Use Case",
+      "line": 1972,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 1: Develop AI Use Case",
+      "hash": "9734f672b354"
+    },
+    {
+      "level": 5,
+      "title": "Enhancing Customer Satisfaction",
+      "line": 1974,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 1: Develop AI Use Case > Enhancing Customer Satisfaction",
+      "hash": "6505dda249f1"
+    },
+    {
+      "level": 5,
+      "title": "Agile and Data-Driven Decision-Making Process",
+      "line": 1978,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 1: Develop AI Use Case > Agile and Data-Driven Decision-Making Process",
+      "hash": "20badc630a66"
+    },
+    {
+      "level": 5,
+      "title": "Creating Efficiencies",
+      "line": 1982,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 1: Develop AI Use Case > Creating Efficiencies",
+      "hash": "6f2eb4c32e5d"
+    },
+    {
+      "level": 5,
+      "title": "Improving Productivity",
+      "line": 1986,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 1: Develop AI Use Case > Improving Productivity",
+      "hash": "bd8368e288a6"
+    },
+    {
+      "level": 4,
+      "title": "Step 2: Assess the Competitive Landscape",
+      "line": 1990,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 2: Assess the Competitive Landscape",
+      "hash": "79cca4a10ef3"
+    },
+    {
+      "level": 4,
+      "title": "Step 3: Reorganize Internally",
+      "line": 2002,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 3: Reorganize Internally",
+      "hash": "f4d92e5f585c"
+    },
+    {
+      "level": 5,
+      "title": "Build and Update the Current Technology Infrastructure to Empower the AI Management System",
+      "line": 2006,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 3: Reorganize Internally > Build and Update the Current Technology Infrastructure to Empower the AI Management System",
+      "hash": "b496ac25b0a2"
+    },
+    {
+      "level": 5,
+      "title": "Design a Data Strategy",
+      "line": 2010,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 3: Reorganize Internally > Design a Data Strategy",
+      "hash": "d3b7e74eed2e"
+    },
+    {
+      "level": 5,
+      "title": "Talent Strategy",
+      "line": 2014,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 3: Reorganize Internally > Talent Strategy",
+      "hash": "47575f045382"
+    },
+    {
+      "level": 5,
+      "title": "Toolbox 18 Five Questions to Ask about AI Strategy",
+      "line": 2018,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Strategy > Step 3: Reorganize Internally > Toolbox 18 Five Questions to Ask about AI Strategy",
+      "hash": "5463a4c03ed9"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 2097,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "AI Risk Management, Risk Treatment, and Impact Assessment",
+      "line": 2109,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management, Risk Treatment, and Impact Assessment",
+      "hash": "68b4deee0860"
+    },
+    {
+      "level": 4,
+      "title": "The Concept of Risk",
+      "line": 2113,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management, Risk Treatment, and Impact Assessment > The Concept of Risk",
+      "hash": "ae80bdeec52a"
+    },
+    {
+      "level": 4,
+      "title": "The Concept of Risk Assessment (Clause 6.1.2) {#the-concept-of-risk-assessment-clause-6.1.2}",
+      "line": 2117,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management, Risk Treatment, and Impact Assessment > The Concept of Risk Assessment (Clause 6.1.2) {#the-concept-of-risk-assessment-clause-6.1.2}",
+      "hash": "ac077b78f804"
+    },
+    {
+      "level": 4,
+      "title": "The Concept of Risk Treatment (Clause 6.1.3) {#the-concept-of-risk-treatment-clause-6.1.3}",
+      "line": 2121,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management, Risk Treatment, and Impact Assessment > The Concept of Risk Treatment (Clause 6.1.3) {#the-concept-of-risk-treatment-clause-6.1.3}",
+      "hash": "3b6c42c559ac"
+    },
+    {
+      "level": 4,
+      "title": "The Concept of Impact Assessment (Clause 6.1.4) {#the-concept-of-impact-assessment-clause-6.1.4}",
+      "line": 2125,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management, Risk Treatment, and Impact Assessment > The Concept of Impact Assessment (Clause 6.1.4) {#the-concept-of-impact-assessment-clause-6.1.4}",
+      "hash": "ddb3fa5d9668"
+    },
+    {
+      "level": 3,
+      "title": "A Typology of Risks",
+      "line": 2142,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks",
+      "hash": "791fb450f58d"
+    },
+    {
+      "level": 4,
+      "title": "Performance Risk",
+      "line": 2148,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > Performance Risk",
+      "hash": "50ff5f935356"
+    },
+    {
+      "level": 4,
+      "title": "Security Risk",
+      "line": 2152,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > Security Risk",
+      "hash": "b8b1bd37834c"
+    },
+    {
+      "level": 4,
+      "title": "Enterprise Risk",
+      "line": 2156,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > Enterprise Risk",
+      "hash": "e202e7f4a324"
+    },
+    {
+      "level": 4,
+      "title": "Reputational Risk",
+      "line": 2160,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > Reputational Risk",
+      "hash": "5a371218f81e"
+    },
+    {
+      "level": 4,
+      "title": "Legal and Regulatory Risk",
+      "line": 2164,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > Legal and Regulatory Risk",
+      "hash": "72df6285e817"
+    },
+    {
+      "level": 4,
+      "title": "AI Scalability Risk",
+      "line": 2168,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > AI Scalability Risk",
+      "hash": "09d98ddc95b6"
+    },
+    {
+      "level": 4,
+      "title": "The Black Box Risk",
+      "line": 2172,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > A Typology of Risks > The Black Box Risk",
+      "hash": "04fff7201625"
+    },
+    {
+      "level": 3,
+      "title": "AI Risk Management Planning: Principles, Framework, and Process",
+      "line": 2195,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Planning: Principles, Framework, and Process",
+      "hash": "b9d5aa31ca3b"
+    },
+    {
+      "level": 4,
+      "title": "AI Risk Framework: A Requirement to Certification",
+      "line": 2211,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Planning: Principles, Framework, and Process > AI Risk Framework: A Requirement to Certification",
+      "hash": "830d136c38e6"
+    },
+    {
+      "level": 3,
+      "title": "AI Risk Management Foundations",
+      "line": 2221,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations",
+      "hash": "5a96a5197c9d"
+    },
+    {
+      "level": 5,
+      "title": "AI Risk Should Be Integrated into the Enterprise Risk Management System",
+      "line": 2225,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System",
+      "hash": "b37cccea5e2a"
+    },
+    {
+      "level": 5,
+      "title": "Embrace a Wholistic Perspective",
+      "line": 2239,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Embrace a Wholistic Perspective",
+      "hash": "88d94d06e53e"
+    },
+    {
+      "level": 5,
+      "title": "Customize Your Approach",
+      "line": 2253,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Customize Your Approach",
+      "hash": "0ab7f45c0983"
+    },
+    {
+      "level": 5,
+      "title": "Be Inclusive of Your Stakeholders' View",
+      "line": 2269,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Be Inclusive of Your Stakeholders' View",
+      "hash": "6a051cddc79c"
+    },
+    {
+      "level": 5,
+      "title": "Adopt an Agile Mindset",
+      "line": 2281,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Adopt an Agile Mindset",
+      "hash": "d0adf8aca070"
+    },
+    {
+      "level": 5,
+      "title": "Spell Out Your Assumptions",
+      "line": 2293,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Spell Out Your Assumptions",
+      "hash": "a8ae0b96c545"
+    },
+    {
+      "level": 5,
+      "title": "Pay Attention to the Cognitive Bias",
+      "line": 2305,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Pay Attention to the Cognitive Bias",
+      "hash": "f296a0a0b68d"
+    },
+    {
+      "level": 5,
+      "title": "Learn and Improve",
+      "line": 2317,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Risk Management Foundations > AI Risk Should Be Integrated into the Enterprise Risk Management System > Learn and Improve",
+      "hash": "f6f9e126733c"
+    },
+    {
+      "level": 3,
+      "title": "The Planning of Data Management Risk: An Imperative to AI Management System",
+      "line": 2333,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Data Management Risk: An Imperative to AI Management System",
+      "hash": "b7a19d093bb7"
+    },
+    {
+      "level": 3,
+      "title": "ISO Standard Data Quality Requirements",
+      "line": 2339,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > ISO Standard Data Quality Requirements",
+      "hash": "4a2116e074e0"
+    },
+    {
+      "level": 4,
+      "title": "Data Collection Phase",
+      "line": 2363,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > ISO Standard Data Quality Requirements > Data Collection Phase",
+      "hash": "ebd561e946c6"
+    },
+    {
+      "level": 4,
+      "title": "Data Preparation Phase",
+      "line": 2367,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > ISO Standard Data Quality Requirements > Data Preparation Phase",
+      "hash": "9a7a84034df8"
+    },
+    {
+      "level": 4,
+      "title": "Problem Framing Phase",
+      "line": 2371,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > ISO Standard Data Quality Requirements > Problem Framing Phase",
+      "hash": "3d2e42c39235"
+    },
+    {
+      "level": 3,
+      "title": "The Planning of Change: AI Management System Change Strategy",
+      "line": 2377,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy",
+      "hash": "cf70091af385"
+    },
+    {
+      "level": 4,
+      "title": "Create a Sense of Urgency",
+      "line": 2385,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Create a Sense of Urgency",
+      "hash": "530b9303797f"
+    },
+    {
+      "level": 4,
+      "title": "Build the Guiding Team",
+      "line": 2389,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Build the Guiding Team",
+      "hash": "e217f4e9cefb"
+    },
+    {
+      "level": 4,
+      "title": "Get the Right Vision",
+      "line": 2399,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Get the Right Vision",
+      "hash": "7d5e3e09a03f"
+    },
+    {
+      "level": 4,
+      "title": "Communicate for Buy-In",
+      "line": 2403,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Communicate for Buy-In",
+      "hash": "6776420066c6"
+    },
+    {
+      "level": 4,
+      "title": "Empower Teams",
+      "line": 2407,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Empower Teams",
+      "hash": "c13ebad4980c"
+    },
+    {
+      "level": 4,
+      "title": "Perseverance",
+      "line": 2421,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > The Planning of Change: AI Management System Change Strategy > Perseverance",
+      "hash": "4d6f86da7b33"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 2453,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Tangible Resources: The AI Infrastructure",
+      "line": 2475,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Tangible Resources: The AI Infrastructure",
+      "hash": "c69972abd7e1"
+    },
+    {
+      "level": 4,
+      "title": "Computing Performance",
+      "line": 2481,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Tangible Resources: The AI Infrastructure > Computing Performance",
+      "hash": "6e2c781806fc"
+    },
+    {
+      "level": 4,
+      "title": "Storage Capacity",
+      "line": 2485,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Tangible Resources: The AI Infrastructure > Storage Capacity",
+      "hash": "044432a09069"
+    },
+    {
+      "level": 4,
+      "title": "Networking Infrastructure",
+      "line": 2491,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Tangible Resources: The AI Infrastructure > Networking Infrastructure",
+      "hash": "12d1e68da452"
+    },
+    {
+      "level": 4,
+      "title": "Security",
+      "line": 2495,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Tangible Resources: The AI Infrastructure > Security",
+      "hash": "8f6fb4eb7f42"
+    },
+    {
+      "level": 3,
+      "title": "Intangible Resources: AI Competence Model",
+      "line": 2503,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Intangible Resources: AI Competence Model",
+      "hash": "723bde49f1cf"
+    },
+    {
+      "level": 4,
+      "title": "What Is a Competence Model?",
+      "line": 2509,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Intangible Resources: AI Competence Model > What Is a Competence Model?",
+      "hash": "d8d8b7a8da1e"
+    },
+    {
+      "level": 3,
+      "title": "Communication (Clause 7.4) {#communication-clause-7.4}",
+      "line": 2683,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Communication (Clause 7.4) {#communication-clause-7.4}",
+      "hash": "3da92ad9bdff"
+    },
+    {
+      "level": 4,
+      "title": "Encourage Face-to-Face Communication",
+      "line": 2689,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Communication (Clause 7.4) {#communication-clause-7.4} > Encourage Face-to-Face Communication",
+      "hash": "4bb54df6f37c"
+    },
+    {
+      "level": 4,
+      "title": "The Medium Is the Message",
+      "line": 2695,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Communication (Clause 7.4) {#communication-clause-7.4} > The Medium Is the Message",
+      "hash": "41182fcc1b96"
+    },
+    {
+      "level": 4,
+      "title": "Create Policy Champions",
+      "line": 2699,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Communication (Clause 7.4) {#communication-clause-7.4} > Create Policy Champions",
+      "hash": "4cb72bd2047a"
+    },
+    {
+      "level": 3,
+      "title": "Documented Information",
+      "line": 2703,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Documented Information",
+      "hash": "307f0f559095"
+    },
+    {
+      "level": 4,
+      "title": "Documented Information Required: What Needs to Be Documented",
+      "line": 2715,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Documented Information > Documented Information Required: What Needs to Be Documented",
+      "hash": "2683222c9f2f"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 2771,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 3044,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "AI Management System Evaluation and Assessment Requirements",
+      "line": 3058,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Management System Evaluation and Assessment Requirements",
+      "hash": "cb494e04fb62"
+    },
+    {
+      "level": 5,
+      "title": "AI Management System Assessment and Audit",
+      "line": 3070,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Management System Evaluation and Assessment Requirements > AI Management System Assessment and Audit",
+      "hash": "349b40447f22"
+    },
+    {
+      "level": 5,
+      "title": "The Scope of the Performance Evaluation",
+      "line": 3084,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Management System Evaluation and Assessment Requirements > AI Management System Assessment and Audit > The Scope of the Performance Evaluation",
+      "hash": "2ef0a2802d2c"
+    },
+    {
+      "level": 5,
+      "title": "Assessment Criteria, Metrics, KPIs",
+      "line": 3090,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Management System Evaluation and Assessment Requirements > AI Management System Assessment and Audit > Assessment Criteria, Metrics, KPIs",
+      "hash": "a577e366e14d"
+    },
+    {
+      "level": 5,
+      "title": "Large Language Models Audit",
+      "line": 3124,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > AI Management System Evaluation and Assessment Requirements > AI Management System Assessment and Audit > Large Language Models Audit",
+      "hash": "af5eda57b3c8"
+    },
+    {
+      "level": 3,
+      "title": "Set Up an Internal Audit Program",
+      "line": 3164,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Set Up an Internal Audit Program",
+      "hash": "a44326b92b0d"
+    },
+    {
+      "level": 3,
+      "title": "Management Review",
+      "line": 3194,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Management Review",
+      "hash": "bf8dd33e673d"
+    },
+    {
+      "level": 3,
+      "title": "Introduction",
+      "line": 3247,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Introduction",
+      "hash": "b605350bc002"
+    },
+    {
+      "level": 3,
+      "title": "Corrective Actions and Preventive Actions Framework",
+      "line": 3275,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Corrective Actions and Preventive Actions Framework",
+      "hash": "55d230893934"
+    },
+    {
+      "level": 3,
+      "title": "Corrective Actions",
+      "line": 3279,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Corrective Actions",
+      "hash": "8eec9f69b99a"
+    },
+    {
+      "level": 3,
+      "title": "Preventive Actions",
+      "line": 3287,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Preventive Actions",
+      "hash": "2c57ab83fc22"
+    },
+    {
+      "level": 3,
+      "title": "Continual Improvement: The PDCA Approach",
+      "line": 3291,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Introduction > Continual Improvement: The PDCA Approach",
+      "hash": "0e9b877cc251"
+    },
+    {
+      "level": 2,
+      "title": "Conclusion",
+      "line": 3341,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Conclusion",
+      "hash": "89db2ad881f2"
+    },
+    {
+      "level": 2,
+      "title": "Appendix---50 Most Important Terms in AI and ISO Standards",
+      "line": 3355,
+      "section_path": "Part 2: Artificial Intelligence Management System---How to Put in Place an AI Governance System > Appendix---50 Most Important Terms in AI and ISO Standards",
+      "hash": "66d5f717d80f"
+    }
+  ]
+}

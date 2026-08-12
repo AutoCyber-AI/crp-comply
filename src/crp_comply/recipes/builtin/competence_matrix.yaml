@@ -1,0 +1,95 @@
+recipe_id: competence_matrix
+title: AI Competence Matrix and Training Register
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 7.2 requires the organisation to ensure that persons doing work
+  under its control are competent, and Clause 7.3 requires awareness.
+  This recipe produces a competence matrix mapping roles to required
+  competencies, current status and training evidence.
+required_inputs:
+  - organisation
+  - aims_scope
+ckf_queries:
+  - "AI roles and responsibilities"
+  - "training records and competence evidence"
+  - "prior audit findings on competence and awareness"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, competence, training, clause_7_2, clause_7_3]
+output_format: both
+output_artefacts:
+  - AI Competence Matrix
+  - AI Training Register
+applicability:
+  purpose: >-
+    Demonstrates that the organisation has identified AI competence
+    requirements, assessed current competence, planned training and
+    retained evidence in line with Clause 7.2 and Clause 7.3.
+  triggers:
+    - "Initial AIMS implementation"
+    - "New AI role or significant change in responsibilities"
+    - "Annual competence review"
+  deadline: "Maintained and available at audit"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: roles_and_responsibilities
+    title: 1. Roles, Responsibilities and Authorities
+    word_budget: 200
+    citations: ["Clause 5.3"]
+    instructions: >-
+      List AI-related roles (e.g. AI system owner, data steward, risk
+      assessor, human overseer, internal auditor) and their authorities
+      within the AIMS.
+  - id: competence_requirements
+    title: 2. Competence Requirements by Role
+    word_budget: 300
+    citations: ["Clause 7.2"]
+    instructions: >-
+      For each role define the required competencies (technical, legal,
+      ethical, risk management, human oversight) and the criteria for
+      demonstrating competence.
+  - id: current_competence_and_gaps
+    title: 3. Current Competence and Gaps
+    word_budget: 300
+    citations: ["Clause 7.2(a)", "Clause 7.2(b)"]
+    instructions: >-
+      Assess current competence against requirements, identify gaps and
+      record the actions planned to close them (training, mentoring,
+      recruitment).
+  - id: awareness_programme
+    title: 4. Awareness Programme
+    word_budget: 200
+    citations: ["Clause 7.3"]
+    instructions: >-
+      Describe the awareness programme covering the AI policy, AIMS
+      objectives, benefits of improved performance, obligations and the
+      implications of not conforming.
+  - id: training_records
+    title: 5. Training Records and Evidence
+    word_budget: 150
+    citations: ["Clause 7.2(c)", "Clause 7.5"]
+    instructions: >-
+      Provide or reference the retained records of education, training,
+      qualifications and experience that demonstrate competence.

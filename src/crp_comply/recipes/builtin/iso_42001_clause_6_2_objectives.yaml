@@ -1,0 +1,93 @@
+recipe_id: iso_42001_clause_6_2_objectives
+title: ISO/IEC 42001 — AI Objectives and Planning (Clause 6.2)
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 6.2 requires the organisation to establish AI objectives at
+  relevant functions and levels, aligned with the AI policy (Clause
+  5.2), measurable where practicable, monitored, communicated and
+  updated. This recipe produces the documented objectives register
+  and planning artefact.
+required_inputs:
+  - organisation_name
+  - scope_of_aims
+ckf_queries:
+  - "current AI policy statement (Clause 5.2)"
+  - "prior period's AI objectives and outcomes"
+tools_allowed:
+  - recall_facts
+  - lookup_clause
+tags: [iso_42001, clause_6_2, objectives, aims, governance]
+output_format: both
+output_artefacts:
+  - AI Objectives and Planning (Clause 6.2)
+applicability:
+  purpose: >-
+    Measurable AI objectives translate the AI policy into an audit
+    trail. Absence of this artefact is a consistent finding in
+    certification audits.
+  triggers:
+    - "Initial AIMS deployment"
+    - "Annual management-review cycle"
+    - "Material change to AI policy or business strategy"
+  deadline: "Established before Stage 2 certification audit; reviewed annually"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: objectives_register
+    title: 1. AI Objectives Register
+    word_budget: 300
+    citations: ["Clause 6.2 a)", "Clause 6.2 b)", "Clause 6.2 c)"]
+    applicability:
+      required: true
+    instructions: >-
+      Tabulate each objective: owner, measurable target, baseline,
+      success criterion, linkage to the AI policy element it
+      supports, risk appetite.
+  - id: planning_to_achieve
+    title: 2. Planning to Achieve the Objectives
+    word_budget: 250
+    citations: ["Clause 6.2 d)", "Clause 6.2 e)", "Clause 6.2 f)", "Clause 6.2 g)"]
+    applicability:
+      required: true
+    instructions: >-
+      Per objective, document what will be done, resources
+      required, responsible party, due date, and how results will
+      be evaluated.
+  - id: communication_and_update
+    title: 3. Communication, Review and Update
+    word_budget: 200
+    citations: ["Clause 6.2", "Clause 7.4"]
+    instructions: >-
+      How objectives are communicated across functions, the
+      cadence of review, and the trigger conditions for update
+      (management-review output, incidents, regulatory change).
+  - id: evidence_and_records
+    title: 4. Evidence and Records Retained
+    word_budget: 150
+    citations: ["Clause 7.5"]
+    applicability:
+      required: true
+    instructions: >-
+      List the controlled documents that together constitute the
+      evidence (register file, minutes approving targets,
+      measurement dashboards).

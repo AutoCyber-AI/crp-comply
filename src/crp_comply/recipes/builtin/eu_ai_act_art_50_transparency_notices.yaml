@@ -1,0 +1,189 @@
+recipe_id: eu_ai_act_art_50_transparency_notices
+title: EU AI Act — Transparency Obligations for Certain AI Systems (Art. 50)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Article 50 imposes transparency obligations on providers and
+  deployers of certain AI systems regardless of high-risk status:
+  systems that interact with natural persons (chatbots), emotion-
+  recognition, biometric categorisation, synthetic content
+  generators, and deep-fakes. This recipe produces the user-facing
+  transparency notices and any associated disclosure record.
+required_inputs:
+  - provider_or_deployer
+  - system_id
+  - system_category   # chatbot | emotion_recognition | biometric_categorisation | synthetic_content | deepfake | ai_generated_text
+ckf_queries:
+  - "intended audience and language(s)"
+  - "prior disclosures for similar systems"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [ai_act, transparency, art50, chatbot, deepfake, synthetic_content]
+output_format: both
+output_artefacts:
+  - Transparency Obligations for Certain AI Systems (Art. 50)
+applicability:
+  purpose: >-
+    Some AI systems trigger user-facing transparency duties regardless
+    of high-risk status: chatbots, synthetic-content generators,
+    emotion recognition, biometric categorisation, and deep fakes.
+    This recipe produces the specific disclosures applicable to the
+    user's system.
+  triggers:
+    - "Deployment of a system that interacts with natural persons (chatbot)"
+    - "Generation or manipulation of synthetic audio/image/video/text"
+    - "Deployment of emotion-recognition or biometric categorisation"
+    - "Generation of deepfakes"
+  deadline: "Before first interaction or exposure of the natural person"
+  actors: [provider, deployer]
+  applies_when: []   # gated per-section; at least one Art 50 scenario must apply
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Are you the provider of the AI system or the deployer using it?"
+      context: "Art. 50 splits duties between providers (Art 50(2)) and deployers (Art 50(3)(4))."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 50"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor]
+sections:
+  - id: applicable_scenario
+    title: 1. Applicable Art 50 Scenario
+    word_budget: 150
+    citations: ["Article 50(1)", "Article 50(2)", "Article 50(3)", "Article 50(4)"]
+    instructions: >-
+      State which Art 50 scenario applies (chatbot / synthetic content
+      / emotion recognition / biometric categorisation / deep-fake /
+      AI-generated text of public interest) and the actor responsible
+      for the disclosure (provider and/or deployer).
+  - id: chatbot_disclosure
+    title: 2. Chatbot / Direct-Interaction Disclosure (Art 50(1))
+    word_budget: 150
+    citations: ["Article 50(1)"]
+    instructions: >-
+      If applicable, draft the disclosure informing natural persons
+      that they are interacting with an AI system, unless this is
+      obvious from the circumstances, delivered in a clear and
+      distinguishable manner at the latest at the time of the first
+      interaction.
+    applicability:
+      applies_when: ["is_chatbot"]
+      skip_rationale: >-
+        Skipped because your system does not interact directly with
+        natural persons as a conversational agent (Art 50(1) does not
+        apply). No chatbot disclosure is required.
+      ask_when_unknown:
+        is_chatbot:
+          question: "Does this system interact directly with people as a chatbot / conversational agent?"
+          context: "Art. 50(1) requires chatbot disclosure at first interaction."
+          priority: high
+          fact_key: is_chatbot
+          citation: "EU AI Act Art. 50(1)"
+          answer_type: bool
+  - id: synthetic_content_marking
+    title: 3. Synthetic Content Marking (Art 50(2))
+    word_budget: 200
+    citations: ["Article 50(2)"]
+    instructions: >-
+      Providers of AI systems generating synthetic audio, image, video
+      or text shall ensure outputs are marked in a machine-readable
+      format and detectable as artificially generated or manipulated.
+      Describe the marking / provenance technique (e.g. C2PA,
+      watermarking) and how it is maintained through standard pipelines.
+    applicability:
+      applies_when: ["generates_synthetic_content", "actor=provider"]
+      skip_rationale: >-
+        Skipped because you are not a provider of an AI system that
+        generates synthetic audio/image/video/text; the Art 50(2)
+        machine-readable marking obligation lies with providers of
+        such generative systems.
+      ask_when_unknown:
+        generates_synthetic_content:
+          question: "Does this system generate synthetic audio, images, video or text (e.g. GenAI output)?"
+          context: "Art. 50(2) requires providers to mark synthetic outputs as machine-detectable."
+          priority: high
+          fact_key: generates_synthetic_content
+          citation: "EU AI Act Art. 50(2)"
+          answer_type: bool
+  - id: emotion_or_biometric_disclosure
+    title: 4. Emotion-Recognition / Biometric Categorisation Notice (Art 50(3))
+    word_budget: 200
+    citations: ["Article 50(3)"]
+    instructions: >-
+      Deployers of emotion-recognition or biometric-categorisation
+      systems shall inform the natural persons exposed to the system
+      of its operation and shall process personal data in accordance
+      with GDPR. Draft the notice.
+    applicability:
+      skip_when: ["!is_emotion_recognition !is_biometric_categorisation"]
+      applies_when: []
+      skip_rationale: >-
+        Skipped because your system is neither an emotion-recognition
+        system nor a biometric categorisation system under Art 50(3).
+      ask_when_unknown:
+        is_emotion_recognition:
+          question: "Does this system perform emotion recognition on natural persons?"
+          context: "Art. 50(3) requires deployers to inform exposed persons."
+          priority: medium
+          fact_key: is_emotion_recognition
+          citation: "EU AI Act Art. 50(3)"
+          answer_type: bool
+        is_biometric_categorisation:
+          question: "Does this system categorise natural persons using biometric data?"
+          context: "Art. 50(3) covers biometric categorisation systems."
+          priority: medium
+          fact_key: is_biometric_categorisation
+          citation: "EU AI Act Art. 50(3)"
+          answer_type: bool
+  - id: deep_fake_disclosure
+    title: 5. Deep-Fake / Synthetic-Content Disclosure by Deployers (Art 50(4))
+    word_budget: 250
+    citations: ["Article 50(4)"]
+    instructions: >-
+      Deployers of an AI system that generates or manipulates image,
+      audio or video content constituting a deep fake shall disclose
+      that the content has been artificially generated or manipulated.
+      Describe the disclosure and any exceptions (use authorised by
+      law, evident artistic/satirical works with appropriate
+      safeguards). For AI-generated/manipulated text informing the
+      public on matters of public interest: disclose unless the
+      content has undergone human review with editorial responsibility.
+    applicability:
+      applies_when: ["is_deepfake_generator", "actor=deployer|provider"]
+      skip_rationale: >-
+        Skipped because your system does not generate or manipulate
+        deep-fake image/audio/video content, so the Art 50(4)
+        deployer disclosure is not triggered.
+      ask_when_unknown:
+        is_deepfake_generator:
+          question: "Can this system generate or manipulate deep-fake image, audio or video content?"
+          context: "Art. 50(4) deep-fake disclosure applies regardless of risk tier."
+          priority: high
+          fact_key: is_deepfake_generator
+          citation: "EU AI Act Art. 50(4)"
+          answer_type: bool
+  - id: accessibility_and_language
+    title: 6. Accessibility, Language and Timing
+    word_budget: 150
+    citations: ["Article 50(5)"]
+    instructions: >-
+      Information shall be provided in a clear and distinguishable
+      manner at the latest at the time of the first interaction or
+      exposure, conforming to applicable accessibility requirements.
+  - id: gpai_code_of_practice_alignment
+    title: 7. Alignment with Codes of Practice and Standards
+    word_budget: 100
+    citations: ["Article 50(7)"]
+    instructions: >-
+      Note alignment with codes of practice and harmonised standards
+      adopted at Union level for the marking / disclosure techniques.
+  - id: record_keeping
+    title: 8. Record-Keeping
+    word_budget: 100
+    instructions: >-
+      Retain a record of the disclosure templates, activation dates,
+      and version history for audit.

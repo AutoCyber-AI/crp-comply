@@ -1,0 +1,112 @@
+recipe_id: iso_42001_ai_policy
+title: ISO/IEC 42001 — AI Policy (Clause 5.2)
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 5.2 requires top management to establish, implement and
+  maintain an AI policy that is appropriate to the purpose of the
+  organisation, provides a framework for setting AI objectives,
+  includes a commitment to satisfy applicable requirements, and
+  includes a commitment to continual improvement of the AI management
+  system. This recipe produces the AI Policy.
+required_inputs:
+  - organisation
+  - aims_scope
+  - top_management_sponsor
+ckf_queries:
+  - "existing organisational policies (ISO 9001, ISO 27001, privacy)"
+  - "strategic AI objectives and stakeholder commitments"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, policy, clause_5_2, leadership]
+output_format: both
+output_artefacts:
+  - AI Policy (Clause 5.2)
+applicability:
+  purpose: >-
+    Clause 5.2 requires top management to establish and publish an AI
+    Policy framing the AIMS. It is the entry document for any ISO
+    42001 certification audit.
+  triggers:
+    - "Initial AIMS implementation"
+    - "Annual review or upon strategic change"
+  deadline: "Approved before Stage 1 audit"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: purpose_and_scope
+    title: 1. Purpose and Scope
+    word_budget: 150
+    citations: ["Clause 5.2"]
+    instructions: >-
+      State that the AI Policy applies to the AIMS and reflects the
+      purpose of the organisation, referencing the AIMS scope
+      statement (Clause 4.3).
+  - id: principles
+    title: 2. Guiding Principles
+    word_budget: 300
+    citations: ["Clause 5.2", "Clause 4.1"]
+    instructions: >-
+      Set out the organisation's AI principles — at a minimum
+      fairness, transparency, accountability, safety, privacy and
+      human oversight. Align principles with applicable external
+      frameworks (e.g. OECD AI Principles, EU AI Act, NIST AI RMF).
+  - id: objectives_framework
+    title: 3. Framework for Setting AI Objectives
+    word_budget: 200
+    citations: ["Clause 5.2(b)", "Clause 6.2"]
+    instructions: >-
+      Provide the framework for setting measurable AI objectives at
+      relevant functions and levels (link to Clause 6.2 objectives
+      register).
+  - id: compliance_commitment
+    title: 4. Commitment to Satisfy Applicable Requirements
+    word_budget: 150
+    citations: ["Clause 5.2(c)"]
+    instructions: >-
+      Commitment to comply with applicable regulatory, contractual
+      and internal requirements (incl. EU AI Act, GDPR, sector rules).
+  - id: continual_improvement
+    title: 5. Commitment to Continual Improvement
+    word_budget: 100
+    citations: ["Clause 5.2(d)", "Clause 10.1"]
+    instructions: >-
+      Commitment to continual improvement of the AIMS.
+  - id: communication_and_availability
+    title: 6. Communication and Availability
+    word_budget: 150
+    citations: ["Clause 5.2(e)", "Clause 5.2(f)"]
+    instructions: >-
+      State that the policy is available as documented information,
+      communicated within the organisation, and available to
+      interested parties as appropriate.
+  - id: roles_and_review
+    title: 7. Responsibilities and Review
+    word_budget: 150
+    citations: ["Clause 5.2", "Clause 5.3"]
+    instructions: >-
+      Identify the policy owner, the review cadence (minimum annual
+      and upon significant change), and the sign-off authority (top
+      management).

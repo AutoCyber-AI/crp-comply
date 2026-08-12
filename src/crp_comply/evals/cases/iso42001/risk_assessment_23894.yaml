@@ -1,0 +1,23 @@
+case_id: iso42001_risk_assessment_23894
+task: |
+  Using ISO/IEC 23894 methodology, draft the structure of an AI risk
+  assessment for a fraud-detection model deployed by an EU payments
+  processor. List the required risk categories and the linkage back to
+  ISO/IEC 42001 Clause 6.1.
+system_id: fraud-model-v3
+customer_id: acme-pay
+expected_risk_level: high
+expected_citations:
+  - 23894
+  - Clause 6.1
+must_contain:
+  - risk assessment
+  - 23894
+must_not_contain:
+  - not relevant
+expected_tools:
+  - search_iso42001
+tags:
+  - iso42001
+  - iso23894
+  - risk

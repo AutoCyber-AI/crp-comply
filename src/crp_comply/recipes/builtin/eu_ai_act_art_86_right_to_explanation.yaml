@@ -1,0 +1,134 @@
+recipe_id: eu_ai_act_art_86_right_to_explanation
+title: EU AI Act — Right to Explanation of Individual Decisions (Art. 86)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Any affected person subject to a decision taken by the deployer on
+  the basis of the output from a high-risk AI system listed in Annex
+  III (excluding the specific exemptions in Art. 86(1)) has the
+  right to obtain from the deployer clear and meaningful explanations
+  of the role of the AI system in the decision-making procedure and
+  of the main elements of the decision taken. This recipe produces
+  the deployer's standard-operating-procedure for handling such
+  explanation requests.
+required_inputs:
+  - deployer
+  - system_id
+  - decision_context
+ckf_queries:
+  - "decision-log retention policy"
+  - "human-oversight records for the system"
+tools_allowed:
+  - recall_facts
+  - lookup_article
+tags: [ai_act, art86, explanation, deployer, fundamental_rights]
+output_format: both
+output_artefacts:
+  - Right to Explanation of Individual Decisions (Art. 86)
+applicability:
+  purpose: >-
+    Article 86 creates an individual right analogous to GDPR
+    Art. 22(3) but specific to AI Act high-risk systems. Deployers
+    who produce legally-significant decisions using an Annex III
+    system must be able to respond to explanation requests
+    without delay.
+  triggers:
+    - "First deployment of a high-risk Annex III system producing individual decisions"
+    - "On incoming explanation request from an affected person"
+    - "Annual review"
+  deadline: "From 2 August 2026"
+  actors: [deployer]
+  applies_when:
+    - "actor=deployer"
+    - "is_high_risk"
+    - "automated_decision_making"
+  not_applicable_when:
+    - "actor=provider"
+    - "!automated_decision_making"
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system \u2014 provider, deployer,\
+  \ importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification\
+  \ will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    automated_decision_making:
+      question: "Does the system make automated decisions that produce legal or similarly significant\
+  \ effects on individuals?"
+      context: "GDPR Art. 22 and AI Act Art. 86 grant affected persons a right to explanation."
+      priority: high
+      fact_key: automated_decision_making
+      citation: "GDPR Art. 22; EU AI Act Art. 86"
+      answer_type: bool
+sections:
+  - id: scope_and_exemptions
+    title: 1. Scope and Exemptions
+    word_budget: 200
+    citations: ["Article 86(1)", "Annex III"]
+    applicability:
+      required: true
+    instructions: >-
+      Identify the Annex III row, confirm decisions are produced
+      on the basis of the system's output, and record that the
+      system is not excluded under Art. 86(1) (e.g. Annex III §2).
+  - id: request_intake
+    title: 2. Request Intake Channel
+    word_budget: 200
+    citations: ["Article 86(1)"]
+    instructions: >-
+      Named channel (email / web form), identity-verification
+      steps, acknowledgement SLA, and escalation path.
+  - id: explanation_content
+    title: 3. Content of the Explanation
+    word_budget: 300
+    citations: ["Article 86(1)"]
+    applicability:
+      required: true
+    instructions: >-
+      What the explanation must contain: the role of the AI system
+      in the procedure, the main elements of the decision, the
+      main parameters and their weight as far as relevant, the
+      human-oversight steps performed, contact for further
+      information. Plain language.
+  - id: timelines_and_format
+    title: 4. Timelines and Format
+    word_budget: 150
+    citations: ["Article 86"]
+    instructions: >-
+      Maximum response time, format options (written / oral on
+      request), language policy, and record retention.
+  - id: interaction_with_gdpr
+    title: 5. Interaction with GDPR Art. 15 and Art. 22
+    word_budget: 200
+    citations: ["Article 86(3)"]
+    applicability:
+      applies_when: ["processes_personal_data"]
+      skip_rationale: >-
+        Skipped because the system does not process personal data,
+        so GDPR access and automated-decision-making safeguards
+        do not compound with Art. 86.
+    instructions: >-
+      Explain how explanation requests are coordinated with GDPR
+      Art. 15 (right of access) and Art. 22(3) safeguards when the
+      decision also triggers those rights.
+  - id: training_and_audit
+    title: 6. Staff Training and Audit
+    word_budget: 150
+    citations: ["Article 86", "Article 4"]
+    applicability:
+      required: true
+    instructions: >-
+      Which staff handle requests, required training (link to the
+      Art. 4 AI-literacy programme), and the audit-trail kept per
+      request (who decided, what was explained, when, evidence).

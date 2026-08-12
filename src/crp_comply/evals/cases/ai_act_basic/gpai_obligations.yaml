@@ -1,0 +1,23 @@
+case_id: ai_act_gpai_provider
+task: |
+  We are training and releasing a 30-billion-parameter open-weights
+  language model in the EU. Walk us through our obligations as a
+  general-purpose AI model provider, including any thresholds that
+  trigger the systemic-risk regime.
+system_id: gpai-30b-v1
+customer_id: acme-labs
+expected_risk_level: limited
+expected_citations:
+  - Article 53
+  - Annex XI
+must_contain:
+  - general-purpose
+  - technical documentation
+must_not_contain:
+  - prohibited
+expected_tools:
+  - query_regulation
+tags:
+  - ai_act
+  - gpai
+  - provider

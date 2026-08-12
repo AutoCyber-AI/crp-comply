@@ -1,0 +1,144 @@
+recipe_id: eu_ai_act_art_49_eu_database_registration
+title: EU AI Act — EU Database Registration Dossier (Art. 49, Annex VIII)
+regulation: EU AI Act — Regulation (EU) 2024/1689
+version: "1.0"
+description: >-
+  Providers (and in some cases deployers that are public authorities,
+  Union agencies, or bodies) of high-risk AI systems listed in Annex
+  III must register the system in the EU database before placing it
+  on the market or putting it into service. This recipe produces the
+  Annex VIII Section A / B dossier required for that registration.
+required_inputs:
+  - provider
+  - system_id
+  - trade_name
+  - annex_iii_row
+ckf_queries:
+  - "EU representative details if not established in Union"
+  - "CE marking status and EU declaration of conformity"
+tools_allowed:
+  - recall_facts
+  - lookup_article
+  - lookup_annex
+tags: [ai_act, art49, annex_viii, registration, high_risk]
+output_format: both
+output_artefacts:
+  - EU Database Registration Dossier (Art. 49, Annex VIII)
+applicability:
+  purpose: >-
+    Registration in the EU database is a precondition for placing a
+    high-risk Annex III system on the market. Non-registration blocks
+    market access and triggers fines under Art. 99.
+  triggers:
+    - "Before first placing on the market or putting into service"
+    - "On material change of the registered information"
+    - "On withdrawal from the market"
+  deadline: "Before market placement; update within the period set by Commission IR"
+  actors: [provider, deployer]
+  applies_when:
+    - "is_high_risk"
+  not_applicable_when:
+    - "system_category=minimal_risk"
+    - "system_category=limited_risk"
+  ask_when_unknown:
+    is_high_risk:
+      question: "Is this AI system high-risk under the EU AI Act (Art. 6 and Annex III)?"
+      context: "High-risk classification triggers the Chapter III \xA72 obligation stack."
+      priority: high
+      fact_key: is_high_risk
+      citation: "EU AI Act Art. 6; Annex III"
+      answer_type: bool
+    system_category:
+      question: "How is the system classified \u2014 high_risk, limited_risk, minimal_risk, prohibited,\
+  \ gpai, or gpai_systemic?"
+      context: "Risk category gates the obligation set; prohibited and minimal_risk exit most pipelines."
+      priority: high
+      fact_key: system_category
+      citation: "EU AI Act Art. 5, 6, 50; Annex III"
+      answer_type: choice
+      options: [high_risk, limited_risk, minimal_risk, prohibited, gpai, gpai_systemic]
+sections:
+  - id: provider_identification
+    title: 1. Provider Identification — Annex VIII § 1
+    word_budget: 200
+    citations: ["Annex VIII Section A(1)"]
+    applicability:
+      required: true
+    instructions: >-
+      Legal name, address, contact details, VAT or national
+      registration number of the provider (and, where applicable,
+      authorised representative under Art. 22).
+  - id: authorised_representative
+    title: 2. Authorised Representative (if provider not established in the Union)
+    word_budget: 150
+    citations: ["Annex VIII Section A(2)", "Article 22"]
+    applicability:
+      applies_when: ["!established_in_eu"]
+      skip_rationale: >-
+        Skipped because the provider is established in the Union,
+        so an authorised representative is not required.
+    instructions: >-
+      Name, address, contact details and written mandate of the
+      EU-established authorised representative.
+  - id: system_identification
+    title: 3. System Trade Name and Description — Annex VIII § 3-5
+    word_budget: 300
+    citations: ["Annex VIII Section A(3)", "Annex VIII Section A(4)", "Annex VIII Section A(5)"]
+    applicability:
+      required: true
+    instructions: >-
+      Trade name, any additional unambiguous references allowing
+      identification, intended purpose, basic elements of the
+      components and functions supported, description of
+      data/inputs/outputs.
+  - id: annex_iii_classification
+    title: 4. Annex III Classification and Risk Class Rationale
+    word_budget: 200
+    citations: ["Annex III", "Annex VIII Section A(6)"]
+    applicability:
+      required: true
+    instructions: >-
+      State the exact Annex III row and point. Cross-reference the
+      risk-classification justification that led to the high-risk
+      determination.
+  - id: conformity_assessment_and_ce
+    title: 5. Conformity Assessment Procedure and EU Declaration
+    word_budget: 250
+    citations: ["Article 43", "Article 47", "Annex VIII Section A(7)"]
+    instructions: >-
+      Which conformity-assessment route (internal control or
+      notified body). Notified body identification (4-digit
+      number) where applicable. Reference to the EU declaration
+      of conformity (Art. 47) and CE marking.
+  - id: instructions_for_use_ref
+    title: 6. Instructions for Use and Member-State Language Coverage
+    word_budget: 150
+    citations: ["Article 13", "Annex VIII Section A(9)"]
+    instructions: >-
+      Link to the instructions-for-use artefact, languages
+      supported, and the list of Member States in which the system
+      is or is intended to be placed on the market.
+  - id: deployer_specific_fields
+    title: 7. Deployer-Specific Fields (public authorities)
+    word_budget: 200
+    citations: ["Annex VIII Section C", "Article 49(3)"]
+    applicability:
+      applies_when: ["actor=deployer", "organisation_type=public_body"]
+      skip_rationale: >-
+        Skipped because your profile is not a public authority,
+        Union agency, or body acting as a deployer; only those
+        deployers register under Art. 49(3).
+    instructions: >-
+      Registration information required of public-authority
+      deployers: identification, summary of the FRIA (Art. 27),
+      Member State, intended purpose, duration, geographical scope.
+  - id: change_and_withdrawal
+    title: 8. Update, Correction and Withdrawal Procedure
+    word_budget: 150
+    citations: ["Article 49(4)", "Article 49(5)"]
+    applicability:
+      required: true
+    instructions: >-
+      Internal ownership and procedure for keeping the registered
+      information up to date, handling corrections, and
+      withdrawing the registration on system end-of-life.

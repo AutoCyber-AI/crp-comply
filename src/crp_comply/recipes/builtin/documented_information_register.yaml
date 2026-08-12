@@ -1,0 +1,93 @@
+recipe_id: documented_information_register
+title: Documented Information Register
+regulation: ISO/IEC 42001:2023
+version: "1.0"
+description: >-
+  Clause 7.5 requires the organisation to create, update, control and
+  retain documented information necessary to support the AI management
+  system. This recipe produces a register of controlled documents and
+  records.
+required_inputs:
+  - organisation
+  - aims_scope
+ckf_queries:
+  - "controlled documents and records for the AIMS"
+  - "document control procedure and owner"
+  - "prior audit findings on documented information"
+tools_allowed:
+  - query_regulation
+  - query_regulation_packed
+  - recall_facts
+  - lookup_article
+tags: [iso_42001, documented_information, clause_7_5, records]
+output_format: both
+output_artefacts:
+  - Documented Information Register
+applicability:
+  purpose: >-
+    Provides an auditable inventory of AIMS documents and records,
+    including version control, ownership, access and retention, as
+    required by Clause 7.5.
+  triggers:
+    - "Initial AIMS implementation"
+    - "Document control review"
+    - "Preparation for certification audit"
+  deadline: "Available before Stage 1 audit; maintained throughout"
+  actors: [any]
+  applies_when: []
+  not_applicable_when: []
+  ask_when_unknown:
+    actor:
+      question: "Which role does your organisation play for this AI system — provider, deployer, importer, distributor, authorised representative, or GPAI provider?"
+      context: "Many EU AI Act obligations land on specific roles; the wrong actor classification will mis-apply this recipe."
+      priority: high
+      fact_key: actor
+      citation: "EU AI Act Art. 3 definitions"
+      answer_type: choice
+      options: [provider, deployer, importer, distributor, authorised_representative, gpai_provider]
+    iso_42001_certified:
+      question: "Is your organisation certified against ISO/IEC 42001 (AI management system)?"
+      context: "Certification changes the evidence pattern for several recipes."
+      priority: low
+      fact_key: iso_42001_certified
+      citation: "ISO/IEC 42001"
+      answer_type: bool
+sections:
+  - id: register_structure
+    title: 1. Register Structure and Control Method
+    word_budget: 200
+    citations: ["Clause 7.5.1", "Clause 7.5.2"]
+    instructions: >-
+      Describe the structure of the register, the document control
+      procedure, and how documents are approved, reviewed, updated and
+      made available.
+  - id: controlled_documents
+    title: 2. Controlled Documents
+    word_budget: 400
+    citations: ["Clause 7.5.1(a)"]
+    instructions: >-
+      List controlled documents required by ISO/IEC 42001 (e.g. AI
+      policy, scope statement, risk assessment, SoA, objectives,
+      procedures) with owner, version, date and location.
+  - id: records
+    title: 3. Records
+    word_budget: 400
+    citations: ["Clause 7.5.1(b)"]
+    instructions: >-
+      List records to be retained (e.g. risk assessments, audits,
+      management reviews, training records, CAPAs, monitoring logs)
+      with retention period and storage location.
+  - id: metadata_and_version_control
+    title: 4. Metadata and Version Control
+    word_budget: 200
+    citations: ["Clause 7.5.2(a)", "Clause 7.5.2(b)"]
+    instructions: >-
+      Define the metadata captured for each entry (title, owner,
+      revision, approval, distribution) and how changes are tracked.
+  - id: access_and_retention
+    title: 5. Access, Distribution and Retention
+    word_budget: 200
+    citations: ["Clause 7.5.2(c)", "Clause 7.5.2(d)"]
+    instructions: >-
+      State how access, retrieval, storage, preservation, retention
+      and disposition of documented information are controlled.
