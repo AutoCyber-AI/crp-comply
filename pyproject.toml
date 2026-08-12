@@ -81,11 +81,11 @@ agent = [
     # lxml >=6.1.0 fixes CVE-2026-41066.
     "lxml>=6.1,<7",
     "numpy>=1.24,<3",
-    "sentence-transformers>=2.2,<4",
+    "sentence-transformers>=2.2,<6",
 ]
 rag = [
     "numpy>=1.24,<3",
-    "sentence-transformers>=2.2,<4",
+    "sentence-transformers>=2.2,<6",
 ]
 ml = [
     # Stage 3 of the CRP extraction pipeline (NER) loads a GLiNER model.
@@ -94,7 +94,7 @@ ml = [
     "gliner>=0.2,<1",
     # Sentence-Transformers is required by the dense embedder and by
     # GLiNER's underlying model card resolution.
-    "sentence-transformers>=2.2,<4",
+    "sentence-transformers>=2.2,<6",
 ]
 dev = [
     "pytest>=7.0",
@@ -108,7 +108,7 @@ dev = [
     "beautifulsoup4>=4.12,<5",
     "lxml>=6.1,<7",
     "numpy>=1.24,<3",
-    "sentence-transformers>=2.2,<4",
+    "sentence-transformers>=2.2,<6",
 ]
 
 [project.urls]
