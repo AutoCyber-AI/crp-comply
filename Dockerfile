@@ -13,7 +13,7 @@ ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
 RUN npm run build
 
 # ── Stage 2: Python Backend ───────────────────────────────────
-FROM python:3.13-slim AS runtime
+FROM python:3.14-slim AS runtime
 
 LABEL maintainer="Constantinos Vidiniotis <contact@crprotocol.io>"
 LABEL description="CRP Comply — AI Governance & EU AI Act Compliance Platform"
