@@ -76,7 +76,7 @@ jobs:
         run: echo "REPO_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: CRP Comply v${{ steps.version.outputs.VERSION }}
           generate_release_notes: true
