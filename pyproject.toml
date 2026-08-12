@@ -50,7 +50,7 @@ dependencies = [
     "psycopg2-binary>=2.9,<3",
     "redis>=5.0,<6",
     "python-dotenv>=1.0",
-    "webauthn>=2.0,<3",
+    "webauthn>=2.0,<4",
     # numpy is a base dep because ``crp_comply.agent.rag`` (imported at
     # module load time by ``crp_comply.api.app`` via ``agent.__init__``)
     # does ``import numpy as np`` at the top of ``embedder.py`` and
