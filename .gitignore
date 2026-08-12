@@ -85,3 +85,4 @@ tmp_cache.sqlite
 
 test_result.log 
 CRP-comply-worker-*.log
+.kimi/
