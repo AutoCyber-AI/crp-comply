@@ -48,7 +48,7 @@ dependencies = [
     "stripe>=8.0",
     "asyncpg>=0.29.0",
     "psycopg2-binary>=2.9,<3",
-    "redis>=5.0,<6",
+    "redis>=5.0,<9",
     "python-dotenv>=1.0",
     "webauthn>=2.0,<3",
     # numpy is a base dep because ``crp_comply.agent.rag`` (imported at
