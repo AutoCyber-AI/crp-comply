@@ -25,9 +25,9 @@ def _env_or(key: str, default: str) -> str:
 # are used when no env var is set.
 PRICE_TO_PLAN: dict[str, str] = {
     # CRP Comply
-    _env_or("STRIPE_COMPLY_STARTER_MONTHLY_PRICE_ID", "price_<YOUR_COMPLY_STARTER_MONTHLY>"): "comply_starter",
+    _env_or("STRIPE_COMPLY_STARTER_PRICE_ID", "price_<YOUR_COMPLY_STARTER>"): "comply_starter",
     _env_or("STRIPE_COMPLY_STARTER_ANNUAL_PRICE_ID", "price_<YOUR_COMPLY_STARTER_ANNUAL>"): "comply_starter",
-    _env_or("STRIPE_COMPLY_SCALE_MONTHLY_PRICE_ID", "price_<YOUR_COMPLY_SCALE_MONTHLY>"): "comply_scale",
+    _env_or("STRIPE_COMPLY_SCALE_PRICE_ID", "price_<YOUR_COMPLY_SCALE>"): "comply_scale",
     _env_or("STRIPE_COMPLY_SCALE_ANNUAL_PRICE_ID", "price_<YOUR_COMPLY_SCALE_ANNUAL>"): "comply_scale",
     _env_or("STRIPE_COMPLY_CREDITS_5_PRICE_ID", "price_<YOUR_COMPLY_CREDITS_5>"): "comply_credits",
     _env_or("STRIPE_COMPLY_CREDITS_20_PRICE_ID", "price_<YOUR_COMPLY_CREDITS_20>"): "comply_credits",
@@ -36,9 +36,9 @@ PRICE_TO_PLAN: dict[str, str] = {
     _env_or("STRIPE_SCAN_PRO_PRICE_ID", "price_<YOUR_SCAN_PRO>"): "scan_pro",
     _env_or("STRIPE_SCAN_BUSINESS_PRICE_ID", "price_<YOUR_SCAN_BUSINESS>"): "scan_business",
     # CRP Gateway
-    _env_or("STRIPE_GATEWAY_DEVELOPER_MONTHLY_PRICE_ID", "price_<YOUR_GATEWAY_DEVELOPER_MONTHLY>"): "gateway_developer",
+    _env_or("STRIPE_GATEWAY_DEVELOPER_PRICE_ID", "price_<YOUR_GATEWAY_DEVELOPER>"): "gateway_developer",
     _env_or("STRIPE_GATEWAY_DEVELOPER_ANNUAL_PRICE_ID", "price_<YOUR_GATEWAY_DEVELOPER_ANNUAL>"): "gateway_developer",
-    _env_or("STRIPE_GATEWAY_TEAM_MONTHLY_PRICE_ID", "price_<YOUR_GATEWAY_TEAM_MONTHLY>"): "gateway_team",
+    _env_or("STRIPE_GATEWAY_TEAM_PRICE_ID", "price_<YOUR_GATEWAY_TEAM>"): "gateway_team",
     _env_or("STRIPE_GATEWAY_TEAM_ANNUAL_PRICE_ID", "price_<YOUR_GATEWAY_TEAM_ANNUAL>"): "gateway_team",
 }
 
