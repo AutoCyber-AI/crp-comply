@@ -35,7 +35,7 @@ dependencies = [
     # (dispatch_positioned / run_positioned, TCF, CSO). Requires crprotocol 5.x.
     # Requires crprotocol 5.1+ for github_app.py list_repos(), TCF, CSO, and
     # the positioned loop fixes used in this release.
-    "crprotocol[full]>=5.1,<6",
+    "crprotocol[full]>=5.1,<7",
     "click>=8.0,<9",
     "fastapi>=0.100,<1",
     "uvicorn[standard]>=0.20,<1",
